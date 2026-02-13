@@ -1,0 +1,46 @@
+
+{% load static %}
+
+{% block content %}
+<div class="container mt-4">
+
+    <h2 class="mb-3">All Enquiries (Public List)</h2>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+
+            {% if enquiries %}
+                <table class="table table-bordered table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Enquiry ID</th>
+                            <th>Customer Name</th>
+                            <th>Service Type</th>
+                            <th>City</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for e in enquiries %}
+                        <tr>
+                            <td>{{ e.enquiry_id }}</td>
+                            <td>{{ e.customer_name }}</td>
+                            <td>{{ e.service_type }}</td>
+                            <td>{{ e.city }}</td>
+                            <td>{{ e.created_at|date:"d M Y" }}</td>
+                            <td>{{ e.status }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            {% else %}
+                <p class="text-muted">No enquiries found.</p>
+            {% endif %}
+
+        </div>
+    </div>
+
+</div>
+{% endblock %}

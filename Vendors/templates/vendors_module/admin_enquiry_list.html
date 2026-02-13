@@ -1,0 +1,168 @@
+{% load static %}
+{% block content %}
+
+<style>
+    body {
+        background: #f2f6ff;
+        font-family: "Inter", sans-serif;
+    }
+
+    .page-title {
+        font-weight: 700;
+        color: #2c3e50;
+        margin-bottom: 20px;
+    }
+
+    .modern-card {
+        border-radius: 18px;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+        padding: 25px;
+    }
+
+    table {
+        border-radius: 10px !important;
+        overflow: hidden !important;
+    }
+
+    thead tr {
+        background: #1e3c72;
+        background: linear-gradient(90deg, #1e3c72, #2a5298);
+        color: #fff;
+    }
+
+    tbody tr:hover {
+        background: rgba(0, 0, 0, 0.04);
+        cursor: pointer;
+    }
+
+    .badge {
+        padding: 6px 10px;
+        font-size: 12px;
+        border-radius: 8px;
+    }
+
+    .btn-sm {
+        border-radius: 8px;
+        padding: 5px 10px;
+    }
+
+    .action-btns .btn {
+        margin-bottom: 4px;
+        width: 100%;
+    }
+
+    td,th {
+        vertical-align: middle !important;
+    }
+</style>
+
+<div class="container mt-4">
+
+    <h2 class="page-title">📋 Admin – All Service Enquiries</h2>
+
+    <div class="modern-card">
+
+        {% if enquiries %}
+            <div class="table-responsive">
+                <table class="table table-borderless align-middle">
+                    <thead>
+                        <tr>
+                            <th>Enquiry ID</th>
+                            <th>Service</th>
+                            <th>City</th>
+                            <th>Status</th>
+                            <th>Vendor</th>
+                            <th>Date</th>
+                            <th style="width:170px;">Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for enquiry in enquiries %}
+                        <tr>
+
+                            <!-- Enquiry ID -->
+                            <td>
+                                {% if enquiry.enquiry_id %}
+                                    <strong>{{ enquiry.enquiry_id }}</strong>
+                                {% else %}
+                                    <span class="text-danger">Missing ID</span>
+                                {% endif %}
+                            </td>
+
+                            <td>{{ enquiry.service }}</td>
+                            <td>{{ enquiry.city }}</td>
+
+                            <!-- Status Badge -->
+                            <td>
+                                <span class="badge 
+                                    {% if enquiry.status == 'shared' %} bg-warning text-dark
+                                    {% elif enquiry.status == 'assigned' %} bg-primary
+                                    {% elif enquiry.status == 'completed' %} bg-success
+                                    {% else %} bg-secondary
+                                    {% endif %}
+                                ">
+                                    {{ enquiry.status|title }}
+                                </span>
+                            </td>
+
+                            <!-- Assigned Vendor -->
+                            <td>
+                                {% if enquiry.assigned_vendor %}
+                                    <span class="text-success fw-semibold">
+                                        {{ enquiry.assigned_vendor.business_name }}
+                                    </span>
+                                {% else %}
+                                    <span class="text-muted">Not Assigned</span>
+                                {% endif %}
+                            </td>
+
+                            <td>{{ enquiry.created_at|date:"d M Y, h:i A" }}</td>
+
+                            <!-- ACTION BUTTONS -->
+                            <td>
+                                {% if enquiry.enquiry_id %}
+                                <div class="action-btns">
+
+                                    <!-- VIEW -->
+                                    <a href="{% url 'enquiry_detail' enquiry.enquiry_id %}"
+                                       class="btn btn-outline-primary btn-sm">
+                                        View
+                                    </a>
+
+                                <a href="{% url 'auto_assign_enquiry' enquiry.enquiry_id %}"
+   class="btn btn-success btn-sm"
+   onclick="return confirm('Auto-assign this enquiry?');">
+   Auto Assign
+</a>
+                                    <!-- MANUAL ASSIGN -->
+                                    <a href="{% url 'manual_assign_enquiry' enquiry.enquiry_id %}"
+                                       class="btn btn-warning btn-sm text-dark">
+                                        Manual Assign
+                                    </a>
+
+                                </div>
+                                {% else %}
+                                    <span class="text-danger">Invalid Enquiry</span>
+                                {% endif %}
+                            </td>
+
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        {% else %}
+            <div class="alert alert-info text-center">
+                No enquiries found.
+            </div>
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

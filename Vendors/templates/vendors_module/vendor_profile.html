@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ vendor.business_name }} - Vendor Profile</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .profile-card {
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 20px;
+      background: #fff;
+      margin-top: 30px;
+    }
+    .vendor-logo {
+      width: 120px;
+      height: 120px;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 1px solid #ddd;
+    }
+    .section-title {
+      font-weight: 600;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+  <div class="profile-card">
+    <div class="d-flex align-items-center mb-3">
+      {% if vendor.logo %}
+        <img src="{{ vendor.logo.url }}" alt="Logo" class="vendor-logo me-3">
+      {% endif %}
+      <div>
+        <h3 class="mb-1">{{ vendor.business_name }}</h3>
+        <p class="text-muted mb-0">{{ vendor.primary_service|title }}</p>
+        <span class="badge bg-info text-dark">{{ vendor.vendor_status|title }}</span>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <div class="col-md-6">
+        <h5 class="section-title">Contact Details</h5>
+        <p><strong>Contact Person:</strong> {{ vendor.contact_person }}</p>
+        <p><strong>Phone:</strong> {{ vendor.phone }}</p>
+        <p><strong>Email:</strong> {{ vendor.email }}</p>
+      </div>
+
+      <div class="col-md-6">
+        <h5 class="section-title">Business Info</h5>
+        <p><strong>Company Reg No:</strong> {{ vendor.company_reg_no }}</p>
+        <p><strong>Experience:</strong> {{ vendor.exp_year }}</p>
+        <p><strong>Coverage:</strong> {{ vendor.city }}, {{ vendor.pincode }} ({{ vendor.coverage_km }} km)</p>
+      </div>
+    </div>
+
+    <hr>
+
+    <h5 class="section-title">Services</h5>
+    <p><strong>Mode:</strong> {{ vendor.service_mode|title }}</p>
+    {% if vendor.services %}
+      <p><strong>Services Offered:</strong> {{ vendor.services }}</p>
+    {% endif %}
+    {% if vendor.special_tags %}
+      <p><strong>Special Tags:</strong> {{ vendor.special_tags }}</p>
+    {% endif %}
+    <p><strong>Description:</strong> {{ vendor.service_description }}</p>
+
+    <hr>
+
+    <h5 class="section-title">Pricing</h5>
+    <p><strong>Pricing Model:</strong> {{ vendor.pricing_model|title }}</p>
+    {% if vendor.price_flat %}<p>Flat Price: ₹{{ vendor.price_flat }}</p>{% endif %}
+    {% if vendor.price_per_km %}<p>Per Km: ₹{{ vendor.price_per_km }}</p>{% endif %}
+    {% if vendor.price_per_hour %}<p>Per Hour: ₹{{ vendor.price_per_hour }}</p>{% endif %}
+
+    {% if vendor.bank_account %}
+      <p><strong>Bank/UPI:</strong> {{ vendor.bank_account }}</p>
+    {% endif %}
+
+    <hr>
+    {% if vendor.docs %}
+      <h5 class="section-title">Documents</h5>
+      <ul>
+        {% for file in vendor.docs.url %}
+          <li><a href="{{ file }}" target="_blank">View Document</a></li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    <a href="{% url 'vendor_directory' %}" class="btn btn-outline-primary mt-3">← Back to Directory</a>
+  </div>
+</div>
+
+</body>
+</html>

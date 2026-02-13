@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>All Blogs | YourBrand</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+/* ==========================================
+   DARK THEME VARIABLES
+========================================== */
+:root {
+  --bg-dark:#0f1624;
+  --bg-card:#1b2334;
+  --bg-glass:rgba(255,255,255,0.06);
+  --primary:#4f73ff;
+  --primary-dark:#3558e0;
+  --primary-light:#7f99ff;
+  --accent:#f9b449;
+  --text-light:#e5e7eb;
+  --text-muted:#9ca3af;
+  --gradient:linear-gradient(135deg,#4f73ff,#1fa2ff);
+  --shadow-1:0 12px 25px rgba(0,0,0,0.3);
+  --shadow-2:0 20px 40px rgba(0,0,0,0.5);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family:"Poppins", sans-serif;
+  background:var(--bg-dark);
+  color:var(--text-light);
+  overflow-x:hidden;
+  line-height: 1.6;
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(20,27,45,0.75);
+  padding: 18px 25px;
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.logo {
+  font-size: 1.9rem;
+  font-weight: 800;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-decoration: none;
+}
+
+nav.desktop-menu {
+  display: flex;
+  align-items: center;
+}
+
+nav.desktop-menu a {
+  margin-left: 25px;
+  font-weight: 600;
+  color: var(--text-light);
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+nav.desktop-menu a:hover { 
+  color: var(--accent); 
+}
+
+/* MOBILE MENU */
+.mobile-menu-btn {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: white;
+}
+
+.mobile-nav {
+  display: none;
+  flex-direction: column;
+  padding: 20px;
+  gap: 12px;
+  background: #111827;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.mobile-nav a {
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 8px 0;
+  transition: 0.3s;
+}
+
+.mobile-nav a:hover {
+  color: var(--accent);
+}
+
+.mobile-nav.active {
+  display: flex;
+}
+
+@media (max-width: 991px) {
+  nav.desktop-menu { display: none; }
+  .mobile-menu-btn { display: block; }
+}
+
+/* ==========================================
+   PAGE TITLE SECTION
+========================================== */
+.page-title-section {
+  text-align: center;
+  padding: 80px 0 50px;
+  background: var(--gradient);
+}
+
+.page-title {
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: white;
+  margin-bottom: 15px;
+}
+
+.page-subtitle {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.9);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+@media (max-width: 767px) {
+  .page-title { 
+    font-size: 2rem; 
+  }
+  .page-subtitle {
+    font-size: 0.95rem;
+  }
+}
+
+/* ==========================================
+   BLOG CARDS
+========================================== */
+.blog-cards-container {
+  padding: 60px 0;
+}
+
+.block-card {
+  background: var(--bg-card);
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.07);
+  overflow: hidden;
+  height: 100%;
+  transition: 0.35s ease;
+  box-shadow: var(--shadow-1);
+  display: flex;
+  flex-direction: column;
+}
+
+.block-card:hover {
+  transform: translateY(-12px);
+  box-shadow: var(--shadow-2);
+  border-color: rgba(79,115,255,0.3);
+}
+
+/* Featured Image Container */
+.blog-image-container {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1a1f2e, #0d1117);
+}
+
+.blog-featured-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.block-card:hover .blog-featured-img {
+  transform: scale(1.1);
+}
+
+/* Category Badge Overlay */
+.category-badge-overlay {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(79,115,255,0.95);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 2;
+}
+
+/* Placeholder for missing images */
+.blog-image-placeholder {
+  width: 100%;
+  height: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(79,115,255,0.1), rgba(127,153,255,0.05));
+  color: var(--text-muted);
+}
+
+.blog-image-placeholder i {
+  font-size: 3.5rem;
+  opacity: 0.3;
+  margin-bottom: 10px;
+}
+
+.blog-image-placeholder p {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.5;
+}
+
+/* Card Content */
+.blog-card-content {
+  padding: 25px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Icon Box */
+.icon-box {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  background: rgba(79,115,255,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.icon-box i {
+  font-size: 28px;
+  color: var(--primary-light);
+}
+
+/* Blog Title */
+.blog-card-content h5 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-light);
+  line-height: 1.4;
+  margin-bottom: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 70px;
+}
+
+/* Description */
+.blog-card-content p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin-bottom: 15px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex-grow: 1;
+}
+
+/* Blog Meta Info */
+.blog-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.blog-meta .meta-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.blog-meta .meta-item i {
+  font-size: 0.9rem;
+}
+
+.blog-meta .meta-divider {
+  color: rgba(255,255,255,0.2);
+}
+
+/* Button Styling */
+.blog-card-content .btn {
+  background: var(--primary);
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  padding: 12px 24px;
+  font-size: 0.95rem;
+  color: white;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+  margin-top: auto;
+}
+
+.blog-card-content .btn:hover {
+  background: var(--primary-light);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(79,115,255,0.4);
+}
+
+.blog-card-content .btn i {
+  font-size: 1.1rem;
+  transition: transform 0.3s ease;
+}
+
+.block-card:hover .btn i {
+  transform: translateX(4px);
+}
+
+/* ==========================================
+   FOOTER
+========================================== */
+footer {
+  background: #0d1320;
+  padding: 50px 0;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  margin-top: 80px;
+  color: var(--text-light);
+}
+
+footer h4, 
+footer h6 {
+  color: var(--text-light);
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+footer p {
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: 10px;
+}
+
+footer a { 
+  color: #ffd37a; 
+  text-decoration: none;
+  transition: 0.3s;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+footer a:hover {
+  color: var(--accent);
+  transform: translateX(3px);
+}
+
+/* ==========================================
+   RESPONSIVE ADJUSTMENTS
+========================================== */
+@media (max-width: 767px) {
+  .blog-image-container,
+  .blog-image-placeholder {
+    height: 200px;
+  }
+  
+  .blog-card-content h5 {
+    font-size: 1.15rem;
+    min-height: auto;
+  }
+  
+  .blog-card-content p {
+    font-size: 0.85rem;
+  }
+  
+  .blog-card-content {
+    padding: 20px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .blog-image-container,
+  .blog-image-placeholder {
+    height: 220px;
+  }
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="d-flex justify-content-between align-items-center">
+  <a href="/" class="logo">YourBrand</a>
+
+  <nav class="desktop-menu">
+    <a href="/rent">Rent</a>
+    <a href="/post-property">Post Property</a>
+    <a href="/services">Services</a>
+    <a href="/blogs">Blogs</a>
+    <a href="/login">Login</a>
+  </nav>
+
+  <button class="mobile-menu-btn" onclick="toggleMenu()">
+    <i class="bi bi-list"></i>
+  </button>
+</header>
+
+<div id="mobileNav" class="mobile-nav">
+  <a href="/rent">Rent</a>
+  <a href="/post-property">Post Property</a>
+  <a href="/services">Services</a>
+  <a href="/blogs">Blogs</a>
+  <a href="/login">Login</a>
+</div>
+
+<!-- PAGE TITLE SECTION -->
+<section class="page-title-section">
+  <div class="container">
+    <h1 class="page-title">All Blogs</h1>
+    <p class="page-subtitle">Discover insights, tips, and stories about real estate, rentals, and property management</p>
+  </div>
+</section>
+
+<!-- BLOG CARDS SECTION -->
+<div class="container blog-cards-container">
+  <div class="row g-4">
+
+    <!-- DYNAMIC DJANGO BLOG CARDS -->
+    {% for blog in blogs %}
+    <div class="col-lg-4 col-md-6 col-12">
+      <div class="block-card">
+
+        <!-- Featured Image Section -->
+        {% if blog.featured_image %}
+        <div class="blog-image-container">
+          <img src="{{ blog.featured_image.url }}"
+               class="blog-featured-img"
+               alt="{{ blog.title }}"
+               loading="lazy">
+          
+          <!-- Category Badge on Image -->
+          {% if blog.category %}
+          <span class="category-badge-overlay">{{ blog.category }}</span>
+          {% endif %}
+        </div>
+        {% else %}
+        <!-- Placeholder if no image -->
+        <div class="blog-image-placeholder">
+          <i class="bi bi-image"></i>
+          <p>No Image</p>
+        </div>
+        {% endif %}
+
+        <!-- Card Content -->
+        <div class="blog-card-content">
+          <!-- Icon Box -->
+          <div class="icon-box">
+            <i class="bi bi-journal-text"></i>
+          </div>
+
+          <!-- Blog Title -->
+          <h5>{{ blog.title }}</h5>
+
+          <!-- Meta Description -->
+          <p>{{ blog.meta_description|truncatechars:120 }}</p>
+
+          <!-- Reading Time & Date -->
+          <div class="blog-meta">
+            <span class="meta-item">
+              <i class="bi bi-clock"></i> {{ blog.reading_time|default:"5" }} min
+            </span>
+            <span class="meta-divider">•</span>
+            <span class="meta-item">
+              <i class="bi bi-calendar3"></i> {{ blog.created_at|date:"M d, Y" }}
+            </span>
+          </div>
+
+          <!-- View Blog Button -->
+          <a href="{% url 'blog_details' blog.key %}" class="btn w-100">
+            <i class="bi bi-arrow-right-circle"></i> Read Article
+          </a>
+        </div>
+
+      </div>
+    </div>
+    {% endfor %}
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h4>YourBrand</h4>
+        <p>Premium, Modern & Verified Real Estate Services.</p>
+      </div>
+
+      <div class="col-md-4">
+        <h6>Quick Links</h6>
+        <a href="/rent">Rent</a><br>
+        <a href="/post-property">Post Property</a><br>
+        <a href="/services">Services</a><br>
+        <a href="/blogs">Blogs</a>
+      </div>
+
+      <div class="col-md-4">
+        <h6>Contact</h6>
+        <p>Email: support@yourbrand.com</p>
+        <p>© 2025 YourBrand</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleMenu() {
+  document.getElementById("mobileNav").classList.toggle("active");
+}
+</script>
+
+</body>
+</html>

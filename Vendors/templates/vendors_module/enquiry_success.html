@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Enquiry Submitted</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-5">
+    <div class="card shadow p-4">
+        <h3>Enquiry Submitted Successfully!</h3>
+        <hr>
+
+        <p><strong>Service:</strong> {{ enquiry.service }}</p>
+        <p><strong>City:</strong> {{ enquiry.city }}</p>
+        <p><strong>Details:</strong> {{ enquiry.details }}</p>
+        <p><strong>Preferred:</strong> {{ enquiry.preferred_dt }}</p>
+
+        <hr>
+        <h4>Top Matched Vendors</h4>
+
+        {% if vendors %}
+            <ul class="list-group">
+                {% for v in vendors %}
+                    <li class="list-group-item">
+                        <strong>{{ v.business_name }}</strong> ({{ v.city }})  
+                        <br>
+                        <small>{{ v.primary_service }}</small>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="text-danger">No vendors found for this service.</p>
+        {% endif %}
+
+        <a href="{% url 'create_enquiry' %}" class="btn btn-primary mt-4">Create Another Enquiry</a>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+{% extends 'rm_panel/base.html' %}
+
+
+
+{% block title %}RM Dashboard{% endblock %}
+{% block content %}
+<h3 class="mb-3">My Affiliate Links</h3>
+<div class="mb-3">
+  <form id="createLinkForm" method="post" action="{% url 'create_affiliate_link' %}">
+    
+<a href="{% url 'affilate_page' %}" class="btn btn-primary">Affilate Page</a>
+    {% csrf_token %}
+    <div class="row g-2 align-items-center">
+      <div class="col-auto">
+        <select name="target_type" class="form-select">
+          <option value="subscription">Subscription</option>
+          <option value="addon">Add-on</option>
+          <option value="product">Product</option>
+        </select>
+      </div>
+      <div class="col-auto">
+        <input type="text" name="target_id" class="form-control" placeholder="Target ID (optional)">
+      </div>
+      <div class="col-auto">
+        <button class="btn btn-primary">Create Link</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="row">
+  {% for link in links %}
+  <div class="col-md-6">
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">{{ link.code }}</h5>
+        <p class="small text-muted mb-1">Owner ID: {{ link.owner.id }} · Created by: {{ link.created_by }} · Created at: {{ link.created_at }}</p>
+        <div class="input-group mb-2">
+          <input type="text" class="form-control" id="link{{ forloop.counter }}" value="{{ request.scheme }}://{{ request.get_host }}{{ link.get_target_url }}" readonly>
+          <button class="btn btn-outline-secondary" onclick="navigator.clipboard.writeText(document.getElementById('link{{ forloop.counter }}').value).then(()=>alert('Copied'))">Copy</button>
+        </div>
+        <p class="mb-0">Clicks: {{ link.click_count }} · Registrations: {{ link.registration_count }} · Conversions: {{ link.conversion_count }} · Commission: ₹{{ link.commission_total }}</p>
+        <div class="mt-2">
+          <form method="post" action="{% url 'request_payout' %}" class="d-inline-block">
+            {% csrf_token %}
+            <input type="hidden" name="code" value="{{ link.code }}">
+            <input type="number" step="0.01" name="amount" placeholder="Amount to request" class="form-control d-inline-block" style="width:150px; display:inline-block">
+            <button class="btn btn-sm btn-success">Request Payout</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% empty %}
+  <p>No links yet. Create one using the form above.</p>
+  {% endfor %}
+</div>
+
+<script>
+const form = document.getElementById('createLinkForm');
+form.addEventListener('submit', async function(e){
+  e.preventDefault();
+  const data = new FormData(form);
+  const res = await fetch(form.action, {method:'POST', headers: {'X-Requested-With':'XMLHttpRequest'}, body: data});
+  const j = await res.json();
+  if(j.ok){ alert('Link created: ' + j.code + '\nLink: ' + j.link); location.reload(); }
+  else alert('Error creating link');
+});
+</script>
+{% endblock %}
+
+

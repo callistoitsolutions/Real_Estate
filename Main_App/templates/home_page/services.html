@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1200" />
+<title>Services | YourBrand</title>
+
+<!-- Bootstrap + Icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+/* =======================
+   DISABLE RESPONSIVENESS
+======================= */
+html, body {
+  min-width: 1200px;
+}
+
+.container {
+  max-width: 1200px !important;
+  width: 1200px !important;
+}
+
+.row {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+}
+
+.col-md-4 {
+  width: 33.33% !important;
+}
+
+.mobile-menu,
+.mobile-menu-btn {
+  display: none !important;
+}
+
+/* ==========================================
+   DARK THEME ROOTS
+========================================== */
+:root {
+  --bg-dark:#0d1117;
+  --bg-section:#1a1f2b;
+  --bg-card:#141822;
+  --primary:#4f73ff;
+  --primary-glow:#6c8aff;
+  --text-light:#e5e7eb;
+  --text-muted:#a0a6b6;
+  --glass:rgba(255,255,255,0.05);
+}
+
+/* ==========================================
+   GLOBAL
+========================================== */
+body {
+  font-family:"Poppins", sans-serif;
+  background:var(--bg-dark);
+  color:var(--text-light);
+  overflow-x:hidden;
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+header {
+  background:rgba(17,24,39,0.85);
+  backdrop-filter:blur(12px);
+  padding:18px 25px;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.logo {
+  font-size:2rem;
+  font-weight:800;
+  background:linear-gradient(120deg,#5576ff,#8ea1ff);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+nav.desktop-menu a {
+  margin-left:25px;
+  font-weight:600;
+  color:var(--text-light);
+}
+nav.desktop-menu a:hover { color:var(--primary); }
+
+/* ==========================================
+   TITLE
+========================================== */
+.page-title {
+  font-size:2.4rem;
+  font-weight:900;
+  text-align:center;
+  margin:40px 0;
+  background:linear-gradient(90deg,#4f73ff,#92a5ff);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+/* ==========================================
+   SERVICE CARD DESIGN
+========================================== */
+.service-card {
+  background: var(--glass);
+  border-radius: 20px;
+  padding: 30px;
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(14px);
+  transition: 0.35s ease;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  box-shadow: 0 0 0 rgba(79,115,255,0.0);
+}
+
+.service-card::before {
+  content: "";
+  position: absolute;
+  top:-2px; left:-2px;
+  right:-2px; bottom:-2px;
+  border-radius: 22px;
+  padding: 2px;
+  background: linear-gradient(135deg, rgba(79,115,255,0.4), rgba(79,115,255,0), rgba(79,115,255,0.3));
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events:none;
+  opacity:.4;
+  transition:.4s;
+}
+
+.service-card:hover::before { opacity:1; }
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 30px rgba(79,115,255,0.35);
+}
+
+.service-icon {
+  font-size: 45px;
+  color: var(--primary);
+  margin-bottom: 20px;
+  text-align: center;
+  display:block;
+}
+
+.service-card h5 {
+  color:white;
+  font-size:1.3rem;
+  font-weight:700;
+  margin-bottom:12px;
+}
+
+.service-card p {
+  color:var(--text-muted);
+  font-size:.95rem;
+  line-height:1.6;
+  margin-bottom:20px;
+}
+
+.service-card .btn {
+  background:var(--primary);
+  border:none;
+  font-weight:600;
+  border-radius:50px;
+  padding:10px 20px;
+  transition:0.3s;
+}
+
+.service-card .btn:hover {
+  background:var(--primary-glow);
+  transform:translateY(-3px);
+}
+
+/* ==========================================
+   FOOTER
+========================================== */
+footer {
+  background:#0b0f18;
+  padding:50px 20px;
+  border-radius:25px 25px 0 0;
+  margin-top:70px;
+  border-top:1px solid rgba(255,255,255,0.05);
+}
+</style>
+
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="d-flex justify-content-between align-items-center">
+  <div class="logo">YourBrand</div>
+
+  <nav class="desktop-menu">
+    <a href="/rent">Rent</a>
+    <a href="/post-property">Post Property</a>
+    <a href="/services">Services</a>
+    <a href="/blogs">Blogs</a>
+    <a href="/login">Login</a>
+  </nav>
+</header>
+
+<div class="container">
+
+<h2 class="page-title">Our Professional Services</h2>
+
+<div class="row g-4">
+
+  {% for seo in services %}
+  <div class="col-md-4">
+    <div class="service-card">
+
+      <span class="service-icon"><i class="bi bi-stars"></i></span>
+
+      <h5>{{ seo.meta_title }}</h5>
+
+      <p>{{ seo.meta_description|truncatechars:120 }}</p>
+
+      <a href="{% url 'services_details' key=seo.key %}" class="btn btn-primary w-100">
+        Explore {{ seo.content_object.title }}
+      </a>
+
+    </div>
+  </div>
+  {% empty %}
+    <p class="text-center text-muted">No Services available yet.</p>
+  {% endfor %}
+
+</div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="row">
+    <div class="col-md-4">
+      <h4>YourBrand</h4>
+      <p>Smart, transparent, verified rental services.</p>
+    </div>
+
+    <div class="col-md-4">
+      <h6>Quick Links</h6>
+      <a href="/rent">Rent</a><br>
+      <a href="/post-property">Post Property</a><br>
+      <a href="/services">Services</a><br>
+      <a href="/blogs">Blogs</a>
+    </div>
+
+    <div class="col-md-4 text-md-end mt-4 mt-md-0">
+      <h6>Contact</h6>
+      <p>Email: support@yourbrand.com</p>
+      <p>© 2025 YourBrand</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
