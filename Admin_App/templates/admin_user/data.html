@@ -11,13 +11,13 @@
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
+  <link rel="stylesheet" href="{% static 'assets1/plugins/fontawesome-free/css/all.min.css' %}">
   <!-- DataTables -->
-  <link rel="stylesheet" href="{% static 'plugins/datatables-bs4/css/dataTables.bootstrap4.min.css' %}">
-  <link rel="stylesheet" href="{% static 'plugins/datatables-responsive/css/responsive.bootstrap4.min.css' %}">
-  <link rel="stylesheet" href="{% static 'plugins/datatables-buttons/css/buttons.bootstrap4.min.css' %}">
+  <link rel="stylesheet" href="{% static 'assets1/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css' %}">
+  <link rel="stylesheet" href="{% static 'assets1/plugins/datatables-responsive/css/responsive.bootstrap4.min.css' %}">
+  <link rel="stylesheet" href="{% static 'assets1/plugins/datatables-buttons/css/buttons.bootstrap4.min.css' %}">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{% static 'dist/css/adminlte.min2167.css' %}">
+  <link rel="stylesheet" href="{% static 'assets1/dist/css/adminlte.min2167.css' %}">
 <script data-cfasync="false" nonce="f01951ef-8488-4214-8912-61e4304fb04f">try{(function(w,d){!function(bz,bA,bB,bC){if(bz.zaraz)console.error("zaraz is loaded twice");else{bz[bB]=bz[bB]||{};bz[bB].executed=[];bz.zaraz={deferred:[],listeners:[]};bz.zaraz._v="5853";bz.zaraz._n="f01951ef-8488-4214-8912-61e4304fb04f";bz.zaraz.q=[];bz.zaraz._f=function(bD){return async function(){var bE=Array.prototype.slice.call(arguments);bz.zaraz.q.push({m:bD,a:bE})}};for(const bF of["track","set","debug"])bz.zaraz[bF]=bz.zaraz._f(bF);bz.zaraz.init=()=>{var bG=bA.getElementsByTagName(bC)[0],bH=bA.createElement(bC),bI=bA.getElementsByTagName("title")[0];bI&&(bz[bB].t=bA.getElementsByTagName("title")[0].text);bz[bB].x=Math.random();bz[bB].w=bz.screen.width;bz[bB].h=bz.screen.height;bz[bB].j=bz.innerHeight;bz[bB].e=bz.innerWidth;bz[bB].l=bz.location.href;bz[bB].r=bA.referrer;bz[bB].k=bz.screen.colorDepth;bz[bB].n=bA.characterSet;bz[bB].o=(new Date).getTimezoneOffset();if(bz.dataLayer)for(const bJ of Object.entries(Object.entries(dataLayer).reduce(((bK,bL)=>({...bK[1],...bL[1]})),{})))zaraz.set(bJ[0],bJ[1],{scope:"page"});bz[bB].q=[];for(;bz.zaraz.q.length;){const bM=bz.zaraz.q.shift();bz[bB].q.push(bM)}bH.defer=!0;for(const bN of[localStorage,sessionStorage])Object.keys(bN||{}).filter((bP=>bP.startsWith("_zaraz_"))).forEach((bO=>{try{bz[bB]["z_"+bO.slice(7)]=JSON.parse(bN.getItem(bO))}catch{bz[bB]["z_"+bO.slice(7)]=bN.getItem(bO)}}));bH.referrerPolicy="origin";bH.src="../../../../cdn-cgi/zaraz/sd0d9.js?z="+btoa(encodeURIComponent(JSON.stringify(bz[bB])));bG.parentNode.insertBefore(bH,bG)};["complete","interactive"].includes(bA.readyState)?zaraz.init():bz.addEventListener("DOMContentLoaded",zaraz.init)}}(w,d,"zarazData","script");window.zaraz._p=async dq=>new Promise((dr=>{if(dq){dq.e&&dq.e.forEach((ds=>{try{const dt=d.querySelector("script[nonce]"),du=dt?.nonce||dt?.getAttribute("nonce"),dv=d.createElement("script");du&&(dv.nonce=du);dv.innerHTML=ds;dv.onload=()=>{d.head.removeChild(dv)};d.head.appendChild(dv)}catch(dw){console.error(`Error executing script: ${ds}\n`,dw)}}));Promise.allSettled((dq.f||[]).map((dx=>fetch(dx[0],dx[1]))))}dr()}));zaraz._p({"e":["(function(w,d){})(window,document)"]});})(window,document)}catch(e){throw fetch("/cdn-cgi/zaraz/t"),e;};</script></head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -28,20 +28,21 @@
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
-     
+      
     </ul>
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <!-- Navbar Search -->
-      
+  
+
       <!-- Messages Dropdown Menu -->
-    
+      
       <!-- Notifications Dropdown Menu -->
     
+     
+    
       
-      
-
        <li class="nav-item">
   <a class="nav-link text-danger" href="" role="button">
     <i class="fas fa-sign-out-alt"></i> Logout
@@ -54,14 +55,14 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-<a href="{% url 'index' %}" class="brand-link">
-
+    <a href="{% url 'index' %}" class="brand-link">
       <img src="{% static 'dist/img/AdminLTELogo.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Rental Property</span>
     </a>
 
     <!-- Sidebar -->
    
+
       
 
       <!-- Sidebar Menu -->
@@ -70,29 +71,28 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="" class="nav-link">
+     <a href="{% url 'index' %}" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-          
+           
           </li>
+        
           
-       
-       
-       
+      
+         
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
-                 Property Listing Forms
+                  Property Listing Forms
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
-             
               <li class="nav-item">
                 <a href="{% url 'residential' %}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -100,28 +100,27 @@
                 </a>
               </li>
               
-
-               <li class="nav-item">
+              <li class="nav-item">
                 <a href="{% url 'commercial' %}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                    <p>Commercial Property</p>
                 </a>
               </li>
-              <li class="nav-item">
+              
+
+               <li class="nav-item">
                 <a href="{% url 'pg_coliving' %}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                    <p>PG_Co_Living Property</p>
                 </a>
               </li>
-             
-             
             </ul>
           </li>
           <li class="nav-item menu-open">
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-table"></i>
               <p>
-                 Property Listing Module
+                  Property Listing Module
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -133,15 +132,16 @@
                   <p>Residential Property Reports</p>
                 </a>
               </li>
-              
-               <li class="nav-item">
+             
+              <li class="nav-item">
                 <a href="{% url 'commercial_table' %}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Commercial Property Reports</p>
                 </a>
               </li>
-              
-              <li class="nav-item">
+             
+
+               <li class="nav-item">
                 <a href="{% url 'pg_co_table' %}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>PG_Coliving Property Reports</p>
@@ -149,32 +149,9 @@
               </li>
             </ul>
           </li>
-          <li class="nav-header">EXAMPLES</li>
-          <li class="nav-item">
-            <a href="../calendar.html" class="nav-link">
-              <i class="nav-icon far fa-calendar-alt"></i>
-              <p>
-                Calendar
-                <span class="badge badge-info right">2</span>
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="../gallery.html" class="nav-link">
-              <i class="nav-icon far fa-image"></i>
-              <p>
-                Gallery
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="../kanban.html" class="nav-link">
-              <i class="nav-icon fas fa-columns"></i>
-              <p>
-                Kanban Board
-              </p>
-            </a>
-          </li>
+      
+         
+         
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon far fa-envelope"></i>
@@ -557,164 +534,105 @@
           <div class="col-12">
             <div class="card">
              
-            <div class="card-header d-flex justify-content-end">
+               <div class="card-header d-flex justify-content-end">
   <a href="{% url 'residential' %}" class="btn btn-primary btn-sm">
     <i class="fas fa-plus"></i> Add Residential Property
   </a>
 </div>
-
               <!-- /.card-header -->
               
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
 
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title"></h3>
-              </div>
+           
+            
               <!-- /.card-header -->
              
 
               <div class="card-body">
   <!-- ✅ Horizontal scrollbar -->
   <div style="overflow-x:auto; white-space:nowrap;">
-    
-
+   
 
     <table id="example1" class="table table-bordered table-striped table-hover">
-    <thead class="table-primary">
-      <tr>
-        <th>Sr.No</th>
-        <th>Title Of Property</th>
-        <th>City</th>
-        <th>Area/Locality</th>
-        <th>Property Address</th>
-        <th>Property Type</th>
-        <th>Built-up Area (sq.ft)</th>
-        <th>Carpet Area (sq.ft)</th>
-        <th>Zone</th>
-        <th>Society Type</th>
-        <th>Recommended For</th>
-        <th>Road Connectivity</th>
-        <th>No.Of Bedrooms</th>
-        <th>No.Of Bathrooms</th>
-        <th>No.Of Balconies</th>
-        <th>Furnishing Type</th>
-        <th>Floor No</th>
-        <th>Total Floors</th>
-        <th>Age Of Properties(Years)</th>
-        <th>Water Type</th>
-        <th>Rent Price</th>
-        <th>Security Deposit</th>
-        <th>Maintenance Charges</th>
-        <th>Available From</th>
-        <th>Lock In Period(In Months)</th>
-        <th>Brokarage</th>
-        <th>Near By Facilities</th>
-        <th>Amenities</th>
-        <th>No Of Amenities</th>
-        <th>Upload Property Images</th>
-        <th>Upload Floor Plan (PDF/JPG)</th>
-        <th>Upload Video</th>
-        <th>Featured Property</th>
-        <th>Placement</th>
-        <th>Verified Property</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-      <td>1</td>  <td>Sunshine Residency</td><td>Mumbai</td><td>Bandra</td><td>123 Hill Road</td>
-        <td>Apartment</td><td>1450</td><td>1250</td><td>West</td><td>Co-operative</td>
-        <td>Family</td><td>Near Metro</td><td>3</td><td>2</td><td>2</td><td>Semi-Furnished</td>
-        <td>5</td><td>10</td><td>5</td><td>Borewell</td><td>₹60,000</td><td>₹2,00,000</td>
-        <td>₹3,000</td><td>01-09-2025</td><td>11</td><td>Yes</td><td>School, Mall</td>
-        <td>Gym, Pool</td><td>5</td><td>image1.jpg</td><td>floor1.pdf</td><td>tour1.mp4</td>
-        <td>Yes</td><td>Corner</td><td>Verified</td>
-      </tr>
-      <tr>
-        <td>2</td>   <td>Green Villas</td><td>Pune</td><td>Koregaon Park</td><td>Plot No. 45</td>
-        <td>Villa</td><td>2500</td><td>2200</td><td>East</td><td>Private</td>
-        <td>Office</td><td>Main Road</td><td>4</td><td>3</td><td>2</td><td>Furnished</td>
-        <td>2</td><td>3</td><td>3</td><td>Municipal</td><td>₹85,000</td><td>₹3,00,000</td>
-        <td>₹5,000</td><td>15-08-2025</td><td>12</td><td>No</td><td>Hospital, Metro</td>
-        <td>Clubhouse</td><td>4</td><td>villa1.jpg</td><td>villa_plan.jpg</td><td>villa_tour.mp4</td>
-        <td>No</td><td>Main Road</td><td>Verified</td>
-      </tr>
-      <tr>
-     <td>3</td>      <td>Lakeview Heights</td><td>Bangalore</td><td>Whitefield</td><td>12 Lake Road</td>
-        <td>Apartment</td><td>1800</td><td>1600</td><td>South</td><td>Gated</td>
-        <td>Family</td><td>Ring Road</td><td>3</td><td>2</td><td>1</td><td>Unfurnished</td>
-        <td>8</td><td>15</td><td>2</td><td>Borewell</td><td>₹55,000</td><td>₹1,50,000</td>
-        <td>₹2,500</td><td>05-09-2025</td><td>9</td><td>Yes</td><td>IT Park</td>
-        <td>Lift</td><td>3</td><td>lake.jpg</td><td>lake_plan.pdf</td><td>lake.mp4</td>
-        <td>Yes</td><td>Park Facing</td><td>Verified</td>
-      </tr>
-      <tr>
-      <td>4</td>     <td>Royal Towers</td><td>Delhi</td><td>Saket</td><td>Near Select City Mall</td>
-        <td>Apartment</td><td>2000</td><td>1800</td><td>Central</td><td>Co-operative</td>
-        <td>Bachelor</td><td>Metro</td><td>3</td><td>3</td><td>2</td><td>Furnished</td>
-        <td>12</td><td>15</td><td>6</td><td>Municipal</td><td>₹95,000</td><td>₹4,00,000</td>
-        <td>₹6,000</td><td>20-08-2025</td><td>10</td><td>Yes</td><td>Mall, Metro</td>
-        <td>Parking</td><td>4</td><td>royal.jpg</td><td>royal_plan.pdf</td><td>royal.mp4</td>
-        <td>Yes</td><td>Main Road</td><td>Verified</td>
-      </tr>
-      <tr>
-         <td>5</td>  <td>Serene Homes</td><td>Hyderabad</td><td>Gachibowli</td><td>Plot 78</td>
-        <td>Villa</td><td>2800</td><td>2500</td><td>West</td><td>Private</td>
-        <td>Family</td><td>Highway</td><td>4</td><td>4</td><td>2</td><td>Semi-Furnished</td>
-        <td>1</td><td>2</td><td>4</td><td>Borewell</td><td>₹1,20,000</td><td>₹5,00,000</td>
-        <td>₹8,000</td><td>01-10-2025</td><td>18</td><td>No</td><td>IT Hub</td>
-        <td>Garden</td><td>6</td><td>serene.jpg</td><td>serene_plan.pdf</td><td>serene.mp4</td>
-        <td>Yes</td><td>Corner</td><td>Verified</td>
-      </tr>
-      <tr>
-     <td>6</td>      <td>City Center Flats</td><td>Ahmedabad</td><td>Navrangpura</td><td>Opp Law Garden</td>
-        <td>Apartment</td><td>1200</td><td>1000</td><td>Central</td><td>Co-operative</td>
-        <td>Bachelor</td><td>Main Road</td><td>2</td><td>1</td><td>1</td><td>Unfurnished</td>
-        <td>6</td><td>8</td><td>7</td><td>Municipal</td><td>₹30,000</td><td>₹80,000</td>
-        <td>₹1,500</td><td>12-09-2025</td><td>6</td><td>No</td><td>College</td>
-        <td>Parking</td><td>3</td><td>city.jpg</td><td>city_plan.pdf</td><td>city.mp4</td>
-        <td>No</td><td>Main Road</td><td>Verified</td>
-      </tr>
-      <tr>
-        <td>7</td>   <td>Prestige Enclave</td><td>Chennai</td><td>Anna Nagar</td><td>Plot 21</td>
-        <td>Apartment</td><td>1900</td><td>1700</td><td>North</td><td>Gated</td>
-        <td>Family</td><td>Metro</td><td>3</td><td>2</td><td>2</td><td>Semi-Furnished</td>
-        <td>9</td><td>12</td><td>8</td><td>Borewell</td><td>₹65,000</td><td>₹2,50,000</td>
-        <td>₹4,000</td><td>25-08-2025</td><td>11</td><td>Yes</td><td>School</td>
-        <td>Clubhouse</td><td>4</td><td>prestige.jpg</td><td>prestige_plan.pdf</td><td>prestige.mp4</td>
-        <td>Yes</td><td>Corner</td><td>Verified</td>
-      </tr>
-      <tr>
-        <td>8</td>   <td>Galaxy Towers</td><td>Kolkata</td><td>Salt Lake</td><td>Block B, Sector 5</td>
-        <td>Apartment</td><td>1600</td><td>1400</td><td>East</td><td>Co-operative</td>
-        <td>Bachelor</td><td>Ring Road</td><td>2</td><td>2</td><td>1</td><td>Furnished</td>
-        <td>11</td><td>20</td><td>10</td><td>Municipal</td><td>₹45,000</td><td>₹1,20,000</td>
-        <td>₹2,000</td><td>30-08-2025</td><td>9</td><td>No</td><td>Mall</td>
-        <td>Gym</td><td>3</td><td>galaxy.jpg</td><td>galaxy_plan.pdf</td><td>galaxy.mp4</td>
-        <td>Yes</td><td>Main Road</td><td>Verified</td>
-      </tr>
-      <tr>
-        <td>9</td>   <td>Hilltop View</td><td>Shimla</td><td>Mall Road</td><td>Plot 12</td>
-        <td>Villa</td><td>2200</td><td>2000</td><td>North</td><td>Private</td>
-        <td>Family</td><td>Highway</td><td>4</td><td>3</td><td>2</td><td>Furnished</td>
-        <td>2</td><td>3</td><td>12</td><td>Borewell</td><td>₹70,000</td><td>₹2,80,000</td>
-        <td>₹4,500</td><td>02-09-2025</td><td>10</td><td>No</td><td>Park</td>
-        <td>Garden</td><td>5</td><td>hill.jpg</td><td>hill_plan.pdf</td><td>hill.mp4</td>
-        <td>No</td><td>Corner</td><td>Verified</td>
-      </tr>
-      <tr>
-       <td>10</td>    <td>Oasis Residency</td><td>Jaipur</td><td>Vaishali Nagar</td><td>Plot 98</td>
-        <td>Apartment</td><td>1500</td><td>1300</td><td>South</td><td>Gated</td>
-        <td>Family</td><td>Main Road</td><td>3</td><td>2</td><td>1</td><td>Semi-Furnished</td>
-        <td>7</td><td>9</td><td>4</td><td>Municipal</td><td>₹40,000</td><td>₹1,00,000</td>
-        <td>₹2,200</td><td>18-08-2025</td><td>8</td><td>Yes</td><td>Market</td>
-        <td>Lift</td><td>4</td><td>oasis.jpg</td><td>oasis_plan.pdf</td><td>oasis.mp4</td>
-        <td>Yes</td><td>Main Road</td><td>Verified</td>
-      </tr>
-    </tbody>
-  </table>
+  <thead class="table-primary">
+    <tr>
+      <th>Sr.No</th>
+      <th>Property Type</th>
+      <th>City</th>
+      <th>Area/Locality</th>
+      <th>Property Address</th>
+      <th>Building/Project/Society Name</th>
+      <th>Possession Status</th>
+      <th>Available From</th>
+      <th>Age of Property (years)</th>
+      <th>Zone Type</th>
+      <th>Location Hub</th>
+      <th>Property Condition</th>
+      <th>Built Up Area (sqft)</th>
+      <th>Carpet Area (sqft)</th>
+      <th>Ownership Type</th>
+      <th>Construction Status</th>
+      <th>Total Floors</th>
+      <th>Your Floors</th>
+      <th>Number of Staircases</th>
+      <th>Passenger Lifts</th>
+      <th>Service Lifts</th>
+      <th>Private Parking</th>
+      <th>Public Parking</th>
+      <th>Minimum Seats</th>
+      <th>Maximum Seats</th>
+      <th>Number of Cabins</th>
+      <th>Meeting Rooms</th>
+      <th>Flooring Type</th>
+      <th>Expected Rent (₹)</th>
+      <th>Security Deposit</th>
+      <th>Lock-in Period (months)</th>
+      <th>Expected Rent Increase (%)</th>
+      <th>Amenities</th>
+      <th>Upload Property Images</th>
+      <th>Upload Floor Plan (PDF/JPG)</th>
+      <th>Upload Video</th>
+      <th>Featured Property</th>
+      <th>Placement</th>
+      <th>Verified Property</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td><td>Apartment</td><td>Mumbai</td><td>Bandra</td><td>123 Hill Road</td><td>Sunshine Residency</td><td>Ready</td><td>2025-08-01</td><td>5</td><td>Residential</td><td>Near Metro</td><td>Good</td><td>1450</td><td>1250</td><td>Co-operative</td><td>Completed</td><td>12</td><td>5</td><td>2</td><td>2</td><td>1</td><td>Yes</td><td>Yes</td><td>10</td><td>20</td><td>4</td><td>2</td><td>Marble</td><td>85,000</td><td>2,50,000</td><td>11</td><td>8</td><td>Gym, Pool, Clubhouse</td><td>image1.jpg</td><td>floor1.pdf</td><td>video1.mp4</td><td>Yes</td><td>Premium</td><td>Yes</td>
+    </tr>
+    <tr>
+      <td>2</td><td>Villa</td><td>Pune</td><td>Koregaon Park</td><td>Plot No. 45</td><td>Green Villas</td><td>Ready</td><td>2025-08-15</td><td>3</td><td>Residential</td><td>Main Road</td><td>Excellent</td><td>2500</td><td>2200</td><td>Private</td><td>Completed</td><td>3</td><td>2</td><td>1</td><td>0</td><td>0</td><td>Yes</td><td>No</td><td>15</td><td>30</td><td>5</td><td>3</td><td>Wooden</td><td>1,50,000</td><td>5,00,000</td><td>12</td><td>10</td><td>Garden, Parking</td><td>image2.jpg</td><td>floor2.jpg</td><td>video2.mp4</td><td>No</td><td>Standard</td><td>Yes</td>
+    </tr>
+    <tr>
+      <td>3</td><td>Office</td><td>Delhi</td><td>Connaught Place</td><td>56 Janpath Road</td><td>Capital Tower</td><td>Under Construction</td><td>2026-01-01</td><td>0</td><td>Commercial</td><td>CBD</td><td>New</td><td>5000</td><td>4200</td><td>Leasehold</td><td>In Progress</td><td>20</td><td>8</td><td>4</td><td>4</td><td>2</td><td>Yes</td><td>Yes</td><td>50</td><td>200</td><td>20</td><td>5</td><td>Granite</td><td>4,50,000</td><td>12,00,000</td><td>24</td><td>12</td><td>AC, Cafeteria</td><td>image3.jpg</td><td>floor3.pdf</td><td>video3.mp4</td><td>Yes</td><td>Featured</td><td>Yes</td>
+    </tr>
+    <tr>
+      <td>4</td><td>Shop</td><td>Ahmedabad</td><td>CG Road</td><td>Plot 112</td><td>Royal Plaza</td><td>Ready</td><td>2025-09-01</td><td>7</td><td>Commercial</td><td>Market</td><td>Good</td><td>1200</td><td>1000</td><td>Freehold</td><td>Completed</td><td>6</td><td>1</td><td>1</td><td>1</td><td>0</td><td>Yes</td><td>Yes</td><td>8</td><td>12</td><td>2</td><td>1</td><td>Tiles</td><td>70,000</td><td>2,00,000</td><td>9</td><td>5</td><td>Parking</td><td>image4.jpg</td><td>floor4.jpg</td><td>video4.mp4</td><td>No</td><td>Standard</td><td>Yes</td>
+    </tr>
+    <tr>
+      <td>5</td><td>Warehouse</td><td>Navi Mumbai</td><td>Turbhe</td><td>Plot No. 78</td><td>Logistics Park</td><td>Ready</td><td>2025-08-20</td><td>2</td><td>Industrial</td><td>Highway</td><td>Excellent</td><td>10000</td><td>9500</td><td>Leasehold</td><td>Completed</td><td>1</td><td>1</td><td>2</td><td>0</td><td>0</td><td>Yes</td><td>Yes</td><td>0</td><td>0</td><td>0</td><td>0</td><td>Cement</td><td>3,00,000</td><td>9,00,000</td><td>18</td><td>7</td><td>Parking, Security</td><td>image5.jpg</td><td>floor5.pdf</td><td>video5.mp4</td><td>No</td><td>Premium</td><td>Yes</td>
+    </tr>
+    <tr>
+      <td>6</td><td>Apartment</td><td>Bangalore</td><td>Whitefield</td><td>77 IT Park Road</td><td>Prestige Lakeside</td><td>Ready</td><td>2025-09-10</td><td>4</td><td>Residential</td><td>IT Hub</td><td>Good</td><td>1800</td><td>1500</td><td>Co-operative</td><td>Completed</td><td>15</td><td>7</td><td>3</td><td>2</td><td>1</td><td>Yes</td><td>Yes</td><td>12</td><td>25</td><td>6</td><td>2</td><td>Wooden</td><td>95,000</td><td>3,00,000</td><td>10</td><td>8</td><td>Gym, Pool</td><td>image6.jpg</td><td>floor6.pdf</td><td>video6.mp4</td><td>Yes</td><td>Featured</td><td>Yes</td>
+    </tr>
+    <tr>
+      <td>7</td><td>Office</td><td>Hyderabad</td><td>Hitech City</td><td>Plot 300</td><td>Cyber Towers</td><td>Ready</td><td>2025-08-25</td><td>6</td><td>Commercial</td><td>IT Hub</td><td>Excellent</td><td>3500</td><td>3000</td><td>Leasehold</td><td>Completed</td><td>18</td><td>6</td><td>2</td><td>3</td><td>1</td><td>Yes</td><td>Yes</td><td>25</td><td>80</td><td>12</td><td>4</td><td>Granite</td><td>2,20,000</td><td>7,00,000</td><td>15</td><td>10</td><td>AC, Cafeteria</td><td>image7.jpg</td><td>floor7.pdf</td><td>video7.mp4</td><td>Yes</td><td>Premium</td><td>Yes</td>
+    </tr>
+    <tr>
+      <td>8</td><td>Showroom</td><td>Chennai</td><td>T Nagar</td><td>No. 9 Main Road</td><td>Elite Plaza</td><td>Ready</td><td>2025-08-05</td><td>8</td><td>Commercial</td><td>Shopping Hub</td><td>Good</td><td>2000</td><td>1800</td><td>Freehold</td><td>Completed</td><td>4</td><td>2</td><td>1</td><td>1</td><td>0</td><td>Yes</td><td>Yes</td><td>5</td><td>15</td><td>3</td><td>1</td><td>Tiles</td><td>1,00,000</td><td>3,50,000</td><td>12</td><td>6</td><td>Parking</td><td>image8.jpg</td><td>floor8.pdf</td><td>video8.mp4</td><td>No</td><td>Standard</td><td>Yes</td>
+    </tr>
+    <tr>
+      <td>9</td><td>Apartment</td><td>Kolkata</td><td>Salt Lake</td><td>Sector V</td><td>Lake View Apartments</td><td>Ready</td><td>2025-10-01</td><td>10</td><td>Residential</td><td>IT Hub</td><td>Renovated</td><td>1600</td><td>1400</td><td>Co-operative</td><td>Completed</td><td>10</td><td>3</td><td>2</td><td>1</td><td>0</td><td>Yes</td><td>Yes</td><td>8</td><td>18</td><td>4</td><td>2</td><td>Marble</td><td>70,000</td><td>2,10,000</td><td>9</td><td>7</td><td>Gym, Parking</td><td>image9.jpg</td><td>floor9.pdf</td><td>video9.mp4</td><td>Yes</td><td>Premium</td><td>Yes</td>
+    </tr>
+    <tr>
+      <td>10</td><td>Office</td><td>Gurgaon</td><td>DLF Cyber City</td><td>Tower B</td><td>DLF Corporate Park</td><td>Ready</td><td>2025-08-30</td><td>2</td><td>Commercial</td><td>Corporate Hub</td><td>Excellent</td><td>4000</td><td>3500</td><td>Leasehold</td><td>Completed</td><td>16</td><td>5</td><td>2</td><td>2</td><td>1</td><td>Yes</td><td>Yes</td><td>30</td><td>100</td><td>15</td><td>6</td><td>Granite</td><td>3,50,000</td><td>10,00,000</td><td>18</td><td>12</td><td>AC, Cafeteria, Security</td><td>image10.jpg</td><td>floor10.pdf</td><td>video10.mp4</td><td>Yes</td><td>Featured</td><td>Yes</td>
+    </tr>
+  </tbody>
+</table>
+
   </div>
 </div>
 
@@ -747,26 +665,26 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'assets1/plugins/jquery/jquery.min.js' %}"></script>
 <!-- Bootstrap 4 -->
-<script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'assets1/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 <!-- DataTables  & Plugins -->
-<script src="{% static 'plugins/datatables/jquery.dataTables.min.js' %}"></script>
-<script src="{% static 'plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
-<script src="{% static 'plugins/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
-<script src="{% static 'plugins/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
-<script src="{% static 'plugins/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
-<script src="{% static 'plugins/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
-<script src="{% static 'plugins/jszip/jszip.min.js' %}"></script>
-<script src="{% static 'plugins/pdfmake/pdfmake.min.js' %}"></script>
-<script src="{% static 'plugins/pdfmake/vfs_fonts.js' %}"></script>
-<script src="{% static 'plugins/datatables-buttons/js/buttons.html5.min.js' %}"></script>
-<script src="{% static 'plugins/datatables-buttons/js/buttons.print.min.js' %}"></script>
-<script src="{% static 'plugins/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
+<script src="{% static 'assets1/plugins/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'assets1/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'assets1/plugins/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'assets1/plugins/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+<script src="{% static 'assets1/plugins/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'assets1/plugins/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+<script src="{% static 'assets1/plugins/jszip/jszip.min.js' %}"></script>
+<script src="{% static 'assets1/plugins/pdfmake/pdfmake.min.js' %}"></script>
+<script src="{% static 'assets1/plugins/pdfmake/vfs_fonts.js' %}"></script>
+<script src="{% static 'assets1/plugins/datatables-buttons/js/buttons.html5.min.js' %}"></script>
+<script src="{% static 'assets1/plugins/datatables-buttons/js/buttons.print.min.js' %}"></script>
+<script src="{% static 'assets1/plugins/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
 <!-- AdminLTE App -->
-<script src="{% static 'dist/js/adminlte.min2167.js' %}"></script>
+<script src="{% static 'assets1/dist/js/adminlte.min2167.js' %}"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="{% static 'dist/js/demo.js' %}"></script>
+<script src="{% static 'assets1/dist/js/demo.js' %}"></script>
 <!-- Page specific script -->
 <script>
   $(function () {
