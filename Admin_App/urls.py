@@ -12,6 +12,13 @@ urlpatterns = [
      path('residential',views.residential,name="residential"),
      path('commercial',views.commercial,name="commercial"),
      path('pg_coliving',views.pg_coliving,name="pg_coliving"),
+
+     path('residential_resale',views.residential_resale,name="residential_resale"),
+     path('commercial_resale',views.commercial_resale,name="commercial_resale"),
+     path('plot_resale',views.plot_resale,name="plot_resale"),
+     path('industrial_resale',views.industrial_resale,name="industrial_resale"),
+     path('agricultural_resale',views.agricultural_resale,name="agricultural_resale"),
+
      path('rm_register',views.rm_register,name="rm_register"),
      path('admin_approval_form',views.admin_approval_form,name="admin_approval_form"),
      path('referral_closing',views.referral_closing,name="referral_closing"),

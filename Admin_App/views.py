@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,HttpResponse
 
 # Create your views here.
 from django.shortcuts import render
@@ -177,6 +177,22 @@ def commercial(request):
 
 def pg_coliving(request):
     return render(request,"admin_user/pg_coliving.html")
+
+
+def residential_resale(request):
+    return render(request,"admin_user/Resale/residential_resale.html")
+
+def commercial_resale(request):
+    return render(request,"admin_user/Resale/commercial_resale.html")
+
+def plot_resale(request):
+    return render(request,"admin_user/Resale/plot_resale.html")
+
+def industrial_resale(request):
+    return render(request,"admin_user/Resale/industrial_resale.html")
+
+def agricultural_resale(request):
+    return render(request,"admin_user/Resale/agricultural_resale.html")
 
 
 
