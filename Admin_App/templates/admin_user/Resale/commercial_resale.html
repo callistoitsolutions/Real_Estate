@@ -1582,39 +1582,41 @@
         button.parentElement.remove();
     }
 
-    // RESIDENTIAL FORM
 
-    // Residential Loan
-    document.querySelectorAll('input[name="res_loan"]').forEach(radio => {
+    // COMMERCIAL FORM
+
+    // Commercial Loan
+    document.querySelectorAll('input[name="comm_loan"]').forEach(radio => {
         radio.addEventListener('change', function () {
-            document.getElementById('res_loan_amount_section').style.display =
+            document.getElementById('comm_loan_amount_section').style.display =
                 (this.value === 'yes') ? 'block' : 'none';
         });
     });
 
-    // Tenants
-    document.querySelectorAll('input[name="res_tenants"]').forEach(radio => {
+    // Commercial Tenants
+    document.querySelectorAll('input[name="comm_tenants"]').forEach(radio => {
         radio.addEventListener('change', function () {
-            document.getElementById('res_tenant_details_section').style.display =
+            document.getElementById('comm_tenant_details_section').style.display =
                 (this.value === 'yes') ? 'block' : 'none';
         });
     });
 
-    // Dispute
-    document.querySelectorAll('input[name="res_dispute"]').forEach(radio => {
+    // Commercial Dispute
+    document.querySelectorAll('input[name="comm_dispute"]').forEach(radio => {
         radio.addEventListener('change', function () {
-            document.getElementById('res_dispute_details_section').style.display =
+            document.getElementById('comm_dispute_details_section').style.display =
                 (this.value === 'yes') ? 'block' : 'none';
         });
     });
 
-    // Tax Due
-    document.querySelectorAll('input[name="res_tax_due"]').forEach(radio => {
+    // Commercial Tax Due
+    document.querySelectorAll('input[name="comm_tax_due"]').forEach(radio => {
         radio.addEventListener('change', function () {
-            document.getElementById('res_tax_amount_section').style.display =
+            document.getElementById('comm_tax_amount_section').style.display =
                 (this.value === 'yes') ? 'block' : 'none';
         });
     });
+
 
 
 
