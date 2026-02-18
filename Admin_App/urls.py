@@ -28,6 +28,10 @@ urlpatterns = [
      path('industrial_resale',views.industrial_resale,name="industrial_resale"),
      path('agricultural_resale',views.agricultural_resale,name="agricultural_resale"),
 
+     ########### urls for resale property list #########################
+
+     path('residential_resale_list',views.residential_resale_list,name="residential_resale_list"),
+
      path('rm_register',views.rm_register,name="rm_register"),
      path('admin_approval_form',views.admin_approval_form,name="admin_approval_form"),
      path('referral_closing',views.referral_closing,name="referral_closing"),
