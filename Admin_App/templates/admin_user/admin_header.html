@@ -1254,7 +1254,7 @@
             <li class="menu-section-title">MAIN MENU</li>
             
             <li class="menu-item">
-                <a href="#" class="menu-link active">
+                <a href="{% url "admin_page" %}" class="menu-link active">
                     <i class="fas fa-tachometer-alt menu-icon"></i>
                     <span class="menu-text">Dashboard</span>
                 </a>
@@ -1267,7 +1267,7 @@
                     <i class="fas fa-chevron-down dropdown-icon"></i>
                 </a>
                 <ul class="submenu">
-                    <li><a href="{% url "residential" %}" class="submenu-link" style="color:white;">Residential</a></li>
+                    <li><a href="{% url "residential_list" %}" class="submenu-link" style="color:white;">Residential</a></li>
                     <li><a href="{% url "commercial" %}" class="submenu-link" style="color:white;">Commercial</a></li>
                     <li><a href="{% url "pg_coliving" %}" class="submenu-link" style="color:white;">PG/Co-living</a></li>
                 </ul>
