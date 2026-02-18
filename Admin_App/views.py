@@ -187,6 +187,14 @@ def residential_list(request):
 ############ Views end for rental property list ###########################
 
 
+########### Views start for commercial property list ###################
+
+def commercial_list(request):
+    return render(request,'admin_user/Reports/Rental/commercial_list.html')
+
+############### Views end for commercial property list ########################
+
+
 def residential_resale(request):
     return render(request,"admin_user/Resale/residential_resale.html")
 
