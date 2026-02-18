@@ -179,6 +179,14 @@ def pg_coliving(request):
     return render(request,"admin_user/pg_coliving.html")
 
 
+############  Views start for rental property list ########################
+
+def residential_list(request):
+    return render(request,'admin_user/Reports/Rental/rental_list.html')
+
+############ Views end for rental property list ###########################
+
+
 def residential_resale(request):
     return render(request,"admin_user/Resale/residential_resale.html")
 

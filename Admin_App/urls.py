@@ -9,9 +9,16 @@ urlpatterns = [
      path('admin_page',views.admin_page,name="admin_page"),
      path('index3',views.index3,name="index3"),
      path('index2',views.index2,name="index2"),
+
+     ############ urls for rental forms ##########################
+
      path('residential',views.residential,name="residential"),
      path('commercial',views.commercial,name="commercial"),
      path('pg_coliving',views.pg_coliving,name="pg_coliving"),
+
+     ############# urls for rental property list ########################
+
+     path('residential_list',views.residential_list,name="residential_list"),
 
      path('residential_resale',views.residential_resale,name="residential_resale"),
      path('commercial_resale',views.commercial_resale,name="commercial_resale"),
