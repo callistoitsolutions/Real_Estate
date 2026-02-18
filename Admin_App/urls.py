@@ -20,6 +20,7 @@ urlpatterns = [
 
      path('residential_list',views.residential_list,name="residential_list"),
      path('commercial_list',views.commercial_list,name="commercial_list"),
+     path('pg_list',views.pg_list,name="pg_list"),
 
      path('residential_resale',views.residential_resale,name="residential_resale"),
      path('commercial_resale',views.commercial_resale,name="commercial_resale"),

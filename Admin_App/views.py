@@ -195,6 +195,14 @@ def commercial_list(request):
 ############### Views end for commercial property list ########################
 
 
+######### Views start for pg co living rental list ########################
+
+def pg_list(request):
+    return render(request,'admin_user/Reports/Rental/pg_list.html')
+
+########### Views end for pg co living rental list ########################
+
+
 def residential_resale(request):
     return render(request,"admin_user/Resale/residential_resale.html")
 
