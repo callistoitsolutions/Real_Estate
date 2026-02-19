@@ -246,7 +246,7 @@ def plot_resale_list(request):
 ########## Views start for resale industrial property list ##################
 
 def industrial_resale_list(request):
-    return HttpResponse("Industrial Resale List")
+    return render(request,'admin_user/Reports/Resale/industrial_list.html')
 
 ############ Views end for resale industrial property list ######################
 
