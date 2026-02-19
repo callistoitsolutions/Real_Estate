@@ -235,6 +235,22 @@ def commercial_resale_list(request):
 ############# Views end for resale commercial property list ############################
 
 
+######## Views start for resale plot commercial property list ###################
+
+def plot_resale_list(request):
+    return render(request,'admin_user/Reports/Resale/plot_list.html')
+
+############# Views end for resale plot commercial property list ########################
+
+
+########## Views start for resale industrial property list ##################
+
+def industrial_resale_list(request):
+    return HttpResponse("Industrial Resale List")
+
+############ Views end for resale industrial property list ######################
+
+
 
 def broadcast_email(request):
     return render(request,"admin_user/broadcast_email.html")
