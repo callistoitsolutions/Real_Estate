@@ -251,6 +251,14 @@ def industrial_resale_list(request):
 ############ Views end for resale industrial property list ######################
 
 
+########## Views start for resale agricultural resale list ######################
+
+def agricultural_resale_list(request):
+    return render(request,'admin_user/Reports/Resale/agricultural_list.html')
+
+######### Views end for agricultural resale list ############################
+
+
 
 def broadcast_email(request):
     return render(request,"admin_user/broadcast_email.html")

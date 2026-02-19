@@ -34,6 +34,7 @@ urlpatterns = [
      path('commercial_resale_list',views.commercial_resale_list,name="commercial_resale_list"),
      path('plot_resale_list',views.plot_resale_list,name="plot_resale_list"),
      path('industrial_resale_list',views.industrial_resale_list,name="industrial_resale_list"),
+     path('agricultural_resale_list',views.agricultural_resale_list,name="agricultural_resale_list"),
      
 
      path('rm_register',views.rm_register,name="rm_register"),
