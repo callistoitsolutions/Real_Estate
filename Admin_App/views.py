@@ -227,6 +227,14 @@ def residential_resale_list(request):
 ############ Views end for resale residential list #######################
 
 
+########### Views start for resale commercial property list ######################
+
+def commercial_resale_list(request):
+    return render(request,'admin_user/Reports/Resale/commercial_list.html')
+
+############# Views end for resale commercial property list ############################
+
+
 
 def broadcast_email(request):
     return render(request,"admin_user/broadcast_email.html")

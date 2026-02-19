@@ -31,6 +31,7 @@ urlpatterns = [
      ########### urls for resale property list #########################
 
      path('residential_resale_list',views.residential_resale_list,name="residential_resale_list"),
+     path('commercial_resale_list',views.commercial_resale_list,name="commercial_resale_list"),
 
      path('rm_register',views.rm_register,name="rm_register"),
      path('admin_approval_form',views.admin_approval_form,name="admin_approval_form"),
