@@ -14,6 +14,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     
     <style>
         :root {
@@ -1251,30 +1253,32 @@
         </a>
 
         <ul class="sidebar-menu">
-            <li class="menu-section-title">MAIN MENU</li>
+            <li class="menu-section-title" style="color:white;">MAIN MENU</li>
             
             <li class="menu-item">
-                <a href="{% url "admin_page" %}" class="menu-link active">
+                <a href="{% url "admin_page" %}" class="menu-link" id="Admin_Dashboard">
                     <i class="fas fa-tachometer-alt menu-icon"></i>
                     <span class="menu-text">Dashboard</span>
                 </a>
             </li>
 
+            <li class="menu-section-title" style="color:white;">PROPERTY DETAILS</li>
+
             <li class="menu-item">
-                <a href="javascript:void(0)" class="menu-link" onclick="toggleSubmenu(event, this)">
+                <a  class="menu-link" onclick="toggleSubmenu(event, this)" id="Rent">
                     <i class="fas fa-key menu-icon"></i>
                     <span class="menu-text">Rental Properties</span>
                     <i class="fas fa-chevron-down dropdown-icon"></i>
                 </a>
                 <ul class="submenu">
-                    <li><a href="{% url "residential_list" %}" class="submenu-link" style="color:white;">Residential</a></li>
+                    <li><a href="{% url "residential_list" %}" class="submenu-link" style="color:white;" id="Rent_Resident">Residential</a></li>
                     <li><a href="{% url "commercial_list" %}" class="submenu-link" style="color:white;">Commercial</a></li>
                     <li><a href="{% url "pg_list" %}" class="submenu-link" style="color:white;">PG/Co-living</a></li>
                 </ul>
             </li>
 
             <li class="menu-item">
-                <a href="javascript:void(0)" class="menu-link" onclick="toggleSubmenu(event, this)">
+                <a href="javascript:void(0)" class="menu-link" onclick="toggleSubmenu(event, this)" id="Resale">
                     <i class="fas fa-building menu-icon"></i>
                     <span class="menu-text">Resale Properties</span>
                     <i class="fas fa-chevron-down dropdown-icon"></i>
