@@ -149,7 +149,14 @@ def seo_meta_tag_list(request):
 
 
 def admin_page(request):
-    return render(request,"admin_user/admin_page.html")
+    session_id = request.session.get('Admin_id')
+    if session_id:
+        admin_obj = Admin_Login.objects.get(id=session_id)
+        context = {'admin_obj':admin_obj}
+        return render(request,"admin_user/admin_page.html",context)
+    else:
+        return render(request,'home_page/Adminlogin.html')
+    
 
 def index2(request):
     return render(request,"admin_user/index2.html")
@@ -168,21 +175,45 @@ def pg_co_table(request):
     return render(request,"admin_user/pg_co_table.html")
 
 def residential(request):
-    return render(request,"admin_user/residential.html")
+    session_id = request.session.get('Admin_id')
+    if session_id:
+        admin_obj = Admin_Login.objects.get(id=session_id)
+        context = {'admin_obj':admin_obj}
+        return render(request,"admin_user/residential.html",context)
+    else:
+        return render(request,'home_page/Adminlogin.html')
 
 
 def commercial(request):
-    return render(request,"admin_user/commercial.html")
+    session_id = request.session.get('Admin_id')
+    if session_id:
+        admin_obj = Admin_Login.objects.get(id=session_id)
+        context = {'admin_obj':admin_obj}
+        return render(request,"admin_user/commercial.html",context)
+    else:
+        return render(request,'home_page/Adminlogin.html')
 
 
 def pg_coliving(request):
-    return render(request,"admin_user/pg_coliving.html")
+    session_id = request.session.get('Admin_id')
+    if session_id:
+        admin_obj = Admin_Login.objects.get(id=session_id)
+        context = {'admin_obj':admin_obj}
+        return render(request,"admin_user/pg_coliving.html",context)
+    else:
+        return render(request,'home_page/Adminlogin.html')
 
 
 ############  Views start for rental property list ########################
 
 def residential_list(request):
-    return render(request,'admin_user/Reports/Rental/rental_list.html')
+    session_id = request.session.get('Admin_id')
+    if session_id:
+        admin_obj = Admin_Login.objects.get(id=session_id)
+        context = {'admin_obj':admin_obj}
+        return render(request,'admin_user/Reports/Rental/rental_list.html',context)
+    else:
+        return render(request,'home_page/Adminlogin.html')
 
 ############ Views end for rental property list ###########################
 
@@ -190,7 +221,13 @@ def residential_list(request):
 ########### Views start for commercial property list ###################
 
 def commercial_list(request):
-    return render(request,'admin_user/Reports/Rental/commercial_list.html')
+    session_id = request.session.get('Admin_id')
+    if session_id:
+        admin_obj = Admin_Login.objects.get(id=session_id)
+        context = {'admin_obj':admin_obj}
+        return render(request,'admin_user/Reports/Rental/commercial_list.html',context)
+    else:
+        return render(request,'home_page/Adminlogin.html')
 
 ############### Views end for commercial property list ########################
 
@@ -198,31 +235,77 @@ def commercial_list(request):
 ######### Views start for pg co living rental list ########################
 
 def pg_list(request):
-    return render(request,'admin_user/Reports/Rental/pg_list.html')
+    session_id = request.session.get('Admin_id')
+    if session_id:
+        admin_obj = Admin_Login.objects.get(id=session_id)
+        context = {'admin_obj':admin_obj}
+        return render(request,'admin_user/Reports/Rental/pg_list.html',context)
+    else:
+        return render(request,'home_page/Adminlogin.html')
 
 ########### Views end for pg co living rental list ########################
 
 
 def residential_resale(request):
-    return render(request,"admin_user/Resale/residential_resale.html")
+    session_id = request.session.get('Admin_id')
+    if session_id:
+        admin_obj = Admin_Login.objects.get(id=session_id)
+        context = {'admin_obj':admin_obj}
+        return render(request,"admin_user/Resale/residential_resale.html",context)
+    else:
+        return render(request,'home_page/Adminlogin.html')
+    
 
 def commercial_resale(request):
-    return render(request,"admin_user/Resale/commercial_resale.html")
+    session_id = request.session.get('Admin_id')
+    if session_id:
+        admin_obj = Admin_Login.objects.get(id=session_id)
+        context = {'admin_obj':admin_obj}
+        return render(request,"admin_user/Resale/commercial_resale.html",context)
+    else:
+        return render(request,'home_page/Adminlogin.html')
+
 
 def plot_resale(request):
-    return render(request,"admin_user/Resale/plot_resale.html")
+    session_id = request.session.get('Admin_id')
+    if session_id:
+        admin_obj = Admin_Login.objects.get(id=session_id)
+        context = {'admin_obj':admin_obj}
+        return render(request,"admin_user/Resale/plot_resale.html",context)
+    else:
+        return render(request,'home_page/Adminlogin.html')
+
 
 def industrial_resale(request):
-    return render(request,"admin_user/Resale/industrial_resale.html")
+    session_id = request.session.get('Admin_id')
+    if session_id:
+        admin_obj = Admin_Login.objects.get(id=session_id)
+        context = {'admin_obj':admin_obj}
+        return render(request,"admin_user/Resale/industrial_resale.html",context)
+    else:
+        return render(request,'home_page/Adminlogin.html')
+    
 
 def agricultural_resale(request):
-    return render(request,"admin_user/Resale/agricultural_resale.html")
+    session_id = request.session.get('Admin_id')
+    if session_id:
+        admin_obj = Admin_Login.objects.get(id=session_id)
+        context = {'admin_obj':admin_obj}
+        return render(request,"admin_user/Resale/agricultural_resale.html",context)
+    else:
+        return render(request,'home_page/Adminlogin.html')
 
 
 ############# Views start for resale residential property list ###################
 
 def residential_resale_list(request):
-    return render(request,'admin_user/Reports/Resale/residential_list.html')
+    session_id = request.session.get('Admin_id')
+    if session_id:
+        admin_obj = Admin_Login.objects.get(id=session_id)
+        context = {'admin_obj':admin_obj}
+        return render(request,'admin_user/Reports/Resale/residential_list.html',context)
+    else:
+        return render(request,'home_page/Adminlogin.html')
 
 ############ Views end for resale residential list #######################
 
@@ -230,7 +313,13 @@ def residential_resale_list(request):
 ########### Views start for resale commercial property list ######################
 
 def commercial_resale_list(request):
-    return render(request,'admin_user/Reports/Resale/commercial_list.html')
+    session_id = request.session.get('Admin_id')
+    if session_id:
+        admin_obj = Admin_Login.objects.get(id=session_id)
+        context = {'admin_obj':admin_obj}
+        return render(request,'admin_user/Reports/Resale/commercial_list.html',context)
+    else:
+        return render(request,'home_page/Adminlogin.html')
 
 ############# Views end for resale commercial property list ############################
 
@@ -238,7 +327,13 @@ def commercial_resale_list(request):
 ######## Views start for resale plot commercial property list ###################
 
 def plot_resale_list(request):
-    return render(request,'admin_user/Reports/Resale/plot_list.html')
+    session_id = request.session.get('Admin_id')
+    if session_id:
+        admin_obj = Admin_Login.objects.get(id=session_id)
+        context = {'admin_obj':admin_obj}
+        return render(request,'admin_user/Reports/Resale/plot_list.html',context)
+    else:
+        return render(request,'home_page/Adminlogin.html')
 
 ############# Views end for resale plot commercial property list ########################
 
@@ -246,7 +341,13 @@ def plot_resale_list(request):
 ########## Views start for resale industrial property list ##################
 
 def industrial_resale_list(request):
-    return render(request,'admin_user/Reports/Resale/industrial_list.html')
+    session_id = request.session.get('Admin_id')
+    if session_id:
+        admin_obj = Admin_Login.objects.get(id=session_id)
+        context = {'admin_obj':admin_obj}
+        return render(request,'admin_user/Reports/Resale/industrial_list.html',context)
+    else:
+        return render(request,'home_page/Adminlogin.html')
 
 ############ Views end for resale industrial property list ######################
 
@@ -254,7 +355,13 @@ def industrial_resale_list(request):
 ########## Views start for resale agricultural resale list ######################
 
 def agricultural_resale_list(request):
-    return render(request,'admin_user/Reports/Resale/agricultural_list.html')
+    session_id = request.session.get('Admin_id')
+    if session_id:
+        admin_obj = Admin_Login.objects.get(id=session_id)
+        context = {'admin_obj':admin_obj}
+        return render(request,'admin_user/Reports/Resale/agricultural_list.html',context)
+    else:
+        return render(request,'home_page/Adminlogin.html')
 
 ######### Views end for agricultural resale list ############################
 
