@@ -1197,8 +1197,7 @@
 
                         <div class="form-group mt-2">
                             <label class="form-label">Property Description <span class="required">*</span></label>
-                            <textarea class="form-control" id="res_description"
-                                placeholder="Describe property highlights, location benefits, nearby amenities..."
+                            <textarea class="form-control" id="resale_commercial_desc" name="resale_commercial_desc" placeholder="Describe property highlights, location benefits, nearby amenities..."
                                 required></textarea>
                         </div>
 
@@ -1411,6 +1410,15 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+        window.onload = function() {
+            if (CKEDITOR.instances.resale_commercial_desc) {
+                CKEDITOR.instances.resale_commercial_desc.destroy();
+            }
+            CKEDITOR.replace('resale_commercial_desc');
+        };
+</script>
 
 <script>
 
