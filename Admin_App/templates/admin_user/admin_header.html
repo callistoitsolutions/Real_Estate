@@ -1358,10 +1358,10 @@
             </li>
 
             <li class="menu-item">
-                <button class="menu-link" onclick="Admin_Logout()">
+                <a class="menu-link" onclick="Admin_Logout()">
                     <i class="fas fa-sign-out-alt menu-icon"></i>
                     <span class="menu-text">Logout</span>
-                </button>
+                </a>
             </li>
         </ul>
     </div>
@@ -1411,8 +1411,8 @@
     function Admin_Logout()
     {
         swal({
-            title: "DELETE",
-            text: "Are you sure, you want to delete the donation detail ?",
+            title: "LOGOUT",
+            text: "Are you sure, you want to logout ?",
             icon: "warning",
             buttons: ["No", "Yes"],	
             closeOnClickOutside: false,
@@ -1423,27 +1423,9 @@
             {	
                 $.ajax({
                     type:"POST",
-                    url: "{% url 'Delete_Donation' %}",
-                    data: {'donation_id' : donation_id},
-                    success: function (response) 
-                    {
-                        if (response.status == '1'){
-                            swal(""+response.msg+"", { 
-                                icon: "success",
-                                button: "Ok",
-                                closeOnClickOutside: false,
-                            }).then((addcat)=>{
-                                location.reload();
-                            });
-                        }
-                        else{
-                            swal(""+response.msg+"", {
-                            icon: "info",
-                            button: "Ok",
-                            closeOnClickOutside: false,
-                            });
-                        }
-                    }
+                    url: "{% url 'Admin_Logout' %}",
+                    data: {'admin_id' : '{{admin_obj.id}}'},
+                   
                     
                 })
             }
