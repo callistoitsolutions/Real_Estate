@@ -35,9 +35,17 @@ urlpatterns = [
      path('plot_resale_list',views.plot_resale_list,name="plot_resale_list"),
      path('industrial_resale_list',views.industrial_resale_list,name="industrial_resale_list"),
      path('agricultural_resale_list',views.agricultural_resale_list,name="agricultural_resale_list"),
+
+     ############# urls for display rm list #######################
+
+     path('rm_list',views.rm_list,name="rm_list"),
+
+    ############# urls for add rm ##############################
+
+    path('Add_RM',views.Add_RM,name="Add_RM"),
      
 
-     path('rm_register',views.rm_register,name="rm_register"),
+     
      path('admin_approval_form',views.admin_approval_form,name="admin_approval_form"),
      path('referral_closing',views.referral_closing,name="referral_closing"),
      
