@@ -76,8 +76,15 @@ def Adminlogin(request):
 
 ############### Views start for admin logout ########################
 
+@csrf_exempt
 def Admin_Logout(request):
-    return HttpResponse("Admin Logout Views")
+    try:
+        print("--------------------------")
+        del request.session['Admin_id']
+        del request.session['user_type']
+        return render(request,'home_page/Adminlogin.html')
+    except:
+        print(traceback.format_exc())
 
 ############### Views end for admin logout ###########################
 
