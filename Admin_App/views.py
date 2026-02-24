@@ -366,6 +366,28 @@ def agricultural_resale_list(request):
 ######### Views end for agricultural resale list ############################
 
 
+########### Views start for display rm list ##########################
+
+def rm_list(request):
+    session_id = request.session.get('Admin_id')
+    if session_id:
+        admin_obj = Admin_Login.objects.get(id=session_id)
+        context = {'admin_obj':admin_obj}
+        return render(request,'admin_user/RM/rm_list.html',context)
+    else:
+        return render(request,'home_page/Adminlogin.html')
+
+############ Views end for display rm list ###########################
+
+
+############ Views start for add rm ############################
+
+def Add_RM(request):
+    return HttpResponse("Add RM Views")
+
+################ Views end for add rm ###########################
+
+
 
 def broadcast_email(request):
     return render(request,"admin_user/broadcast_email.html")
