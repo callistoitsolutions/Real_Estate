@@ -18,6 +18,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
     
     <style>
         :root {
@@ -1294,12 +1296,12 @@
                 </ul>
             </li>
 
-            <li class="menu-section-title">MANAGEMENT</li>
+            <li class="menu-section-title" style="color:white;">MANAGEMENT</li>
 
             <li class="menu-item">
-                <a href="#" class="menu-link">
-                    <i class="fas fa-users menu-icon"></i>
-                    <span class="menu-text">Tenants</span>
+                <a href="{% url "rm_list" %}" class="menu-link" id="RM_List">
+                    <i class="fas fa-user-tie menu-icon"></i>
+                    <span class="menu-text">Relationship Manager(RM)</span>
                 </a>
             </li>
 
@@ -1403,7 +1405,7 @@
             </div>
         </div>
 
-{% comment %} Ajax Jquery and Javascript for admin logout {% endcomment %}
+{% comment %} Ajax Jquery and Javascript for admin Logout {% endcomment %}
 
 <script>
 
@@ -1412,7 +1414,7 @@
     {
         swal({
             title: "LOGOUT",
-            text: "Are you sure, you want to logout ?",
+            text: "Are you sure, you want to logout from panel ?",
             icon: "warning",
             buttons: ["No", "Yes"],	
             closeOnClickOutside: false,
@@ -1425,7 +1427,25 @@
                     type:"POST",
                     url: "{% url 'Admin_Logout' %}",
                     data: {'admin_id' : '{{admin_obj.id}}'},
-                   
+                    success: function (response) 
+                    {
+                        if (response.status == '1'){
+                            swal(""+response.msg+"", { 
+                                icon: "success",
+                                button: "Ok",
+                                closeOnClickOutside: false,
+                            }).then((addcat)=>{
+                                window.location.href = "{% url 'Adminlogin' %}"
+                            });
+                        }
+                        else{
+                            swal(""+response.msg+"", {
+                            icon: "info",
+                            button: "Ok",
+                            closeOnClickOutside: false,
+                            });
+                        }
+                    }
                     
                 })
             }
