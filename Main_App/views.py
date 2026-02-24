@@ -79,10 +79,9 @@ def Adminlogin(request):
 @csrf_exempt
 def Admin_Logout(request):
     try:
-        print("--------------------------")
         del request.session['Admin_id']
         del request.session['user_type']
-        return render(request,'home_page/Adminlogin.html')
+        return JsonResponse({"status":"1",'msg': 'Logout Successfully '})
     except:
         print(traceback.format_exc())
 
