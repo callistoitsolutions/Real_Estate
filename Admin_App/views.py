@@ -422,6 +422,34 @@ def Add_Landlord(request):
 ########### Views end for add landlords ########################
 
 
+######### Views start for display tenants list #####################
+
+def Tenant_List(request):
+    session_id = request.session.get('Admin_id')
+    if session_id:
+        admin_obj = Admin_Login.objects.get(id=session_id)
+        context = {'admin_obj':admin_obj}
+        return render(request,'admin_user/Tenant/tenant_list.html',context)
+    else:
+        return render(request,'home_page/Adminlogin.html')
+
+############ Views end for display tenants list ########################
+
+
+############ Views start for add tenants ######################
+
+def Add_Tenant(request):
+    session_id = request.session.get('Admin_id')
+    if session_id:
+        admin_obj = Admin_Login.objects.get(id=session_id)
+        context = {'admin_obj':admin_obj}
+        return render(request,'admin_user/Tenant/add_tenant.html',context)
+    else:
+        return render(request,'home_page/Adminlogin.html')
+
+######## Views end for add tenants ##########################
+
+
 
 def broadcast_email(request):
     return render(request,"admin_user/broadcast_email.html")
