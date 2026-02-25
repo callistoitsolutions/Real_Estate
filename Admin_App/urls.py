@@ -43,6 +43,14 @@ urlpatterns = [
     ############# urls for add rm ##############################
 
     path('Add_RM',views.Add_RM,name="Add_RM"),
+
+    ######### urls for display landlords list #################
+
+    path('Landlord_List',views.Landlord_List,name="Landlord_List"),
+
+    ########## urls for add landlords #######################
+
+    path('Add_Landlord',views.Add_Landlord,name="Add_Landlord"),
      
 
      
