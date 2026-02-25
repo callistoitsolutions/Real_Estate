@@ -67,6 +67,14 @@ urlpatterns = [
     ############# urls for add agents ####################
 
     path('Add_Agent',views.Add_Agent,name="Add_Agent"),
+
+    ########### urls for display vendors list ####################
+
+    path('Vendor_List',views.Vendor_List,name="Vendor_List"),
+
+    ########### urls for add vendors ####################
+
+    path('Add_Vendor',views.Add_Vendor,name="Add_Vendor"),
      
 
      
