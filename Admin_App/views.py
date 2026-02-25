@@ -478,6 +478,34 @@ def Add_Agent(request):
 ############## Views end for add agents #######################
 
 
+########## Views start for display vendors list ##################
+
+def Vendor_List(request):
+    session_id = request.session.get('Admin_id')
+    if session_id:
+        admin_obj = Admin_Login.objects.get(id=session_id)
+        context = {'admin_obj':admin_obj}
+        return render(request,'admin_user/Vendor/vendor_list.html',context)
+    else:
+        return render(request,'home_page/Adminlogin.html')
+
+######### Views end for display vendors list ######################
+
+
+########### Views start for add vendor #####################
+
+def Add_Vendor(request):
+    session_id = request.session.get('Admin_id')
+    if session_id:
+        admin_obj = Admin_Login.objects.get(id=session_id)
+        context = {'admin_obj':admin_obj}
+        return render(request,'admin_user/Vendor/add_vendor.html',context)
+    else:
+        return render(request,'home_page/Adminlogin.html')
+
+############### Views end for add vendor #######################
+
+
 
 def broadcast_email(request):
     return render(request,"admin_user/broadcast_email.html")
