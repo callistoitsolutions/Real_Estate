@@ -383,9 +383,43 @@ def rm_list(request):
 ############ Views start for add rm ############################
 
 def Add_RM(request):
-    return HttpResponse("Add RM Views")
+    session_id = request.session.get('Admin_id')
+    if session_id:
+        admin_obj = Admin_Login.objects.get(id=session_id)
+        context = {'admin_obj':admin_obj}
+        return render(request,'admin_user/RM/add_rm.html',context)
+    else:
+        return render(request,'home_page/Adminlogin.html')
 
 ################ Views end for add rm ###########################
+
+
+########### Views start for display landlords list ###################
+
+def Landlord_List(request):
+    session_id = request.session.get('Admin_id')
+    if session_id:
+        admin_obj = Admin_Login.objects.get(id=session_id)
+        context = {'admin_obj':admin_obj}
+        return render(request,'admin_user/Landlord/landlord_list.html',context)
+    else:
+        return render(request,'home_page/Adminlogin.html')
+
+############ Views end for display landlords list ######################
+
+
+############ Views start for add landlords #####################
+
+def Add_Landlord(request):
+    session_id = request.session.get('Admin_id')
+    if session_id:
+        admin_obj = Admin_Login.objects.get(id=session_id)
+        context = {'admin_obj':admin_obj}
+        return render(request,'admin_user/Landlord/add_landlord.html',context)
+    else:
+        return render(request,'home_page/Adminlogin.html')
+
+########### Views end for add landlords ########################
 
 
 
