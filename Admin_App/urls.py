@@ -51,6 +51,14 @@ urlpatterns = [
     ########## urls for add landlords #######################
 
     path('Add_Landlord',views.Add_Landlord,name="Add_Landlord"),
+
+    ############ urls for display tenants list ####################
+
+    path('Tenant_List',views.Tenant_List,name="Tenant_List"),
+
+    ########## urls for add tenants ########################
+
+    path('Add_Tenant',views.Add_Tenant,name="Add_Tenant"),
      
 
      
