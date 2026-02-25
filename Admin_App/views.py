@@ -450,6 +450,34 @@ def Add_Tenant(request):
 ######## Views end for add tenants ##########################
 
 
+######### Views start for display agents list ##################
+
+def Agent_List(request):
+    session_id = request.session.get('Admin_id')
+    if session_id:
+        admin_obj = Admin_Login.objects.get(id=session_id)
+        context = {'admin_obj':admin_obj}
+        return render(request,'admin_user/Agent/agent_list.html',context)
+    else:
+        return render(request,'home_page/Adminlogin.html')
+
+############ Views end for display agents list #################
+
+
+############ Views start for add agents #################
+
+def Add_Agent(request):
+    session_id = request.session.get('Admin_id')
+    if session_id:
+        admin_obj = Admin_Login.objects.get(id=session_id)
+        context = {'admin_obj':admin_obj}
+        return render(request,'admin_user/Agent/add_agent.html',context)
+    else:
+        return render(request,'home_page/Adminlogin.html')
+
+############## Views end for add agents #######################
+
+
 
 def broadcast_email(request):
     return render(request,"admin_user/broadcast_email.html")
