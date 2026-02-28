@@ -845,7 +845,7 @@
         <i class="fas fa-edit"></i>
         Add Relationship Manager (RM)
       </div>
-      <button  class="btn-back" onclick="history.back();r">
+      <button  class="btn-back" onclick="history.back();">
         <i class="fas fa-arrow-left"></i>
         Back to List
       </button>
@@ -856,38 +856,34 @@
 
       <div class="form-section">
         <div class="section-header">
-          <i class="fas fa-info-circle"></i>
-          Agricultural Land Details
+          <i class="fas fa-user-tie"></i>
+          Relationship Manager Details
         </div>
         <div class="section-body">
           <div class="row">
 
-            <div class="form-group">
-              <label class="form-label">Property Title <span class="required">*</span></label>
-              <input type="text" class="form-control" id="agri_title" placeholder="e.g., Fertile Agricultural Land"
-                required>
-            </div>
 
             <div class="col-md-4 mt-2">
               <div class="form-group">
-                <label class="form-label">Village <span class="required">*</span></label>
-                <input type="text" class="form-control" id="agri_village" placeholder="Village name" required>
+                <label class="form-label">Name <span class="required">*</span></label>
+                <input type="text" class="form-control" id="agri_village" placeholder="Enter Name" required>
               </div>
             </div>
 
             <div class="col-md-4 mt-2">
               <div class="form-group">
-                <label class="form-label">Taluka <span class="required">*</span></label>
-                <input type="text" class="form-control" id="agri_taluka" placeholder="Taluka name" required>
+                <label class="form-label">Email Address <span class="required">*</span></label>
+                <input type="text" class="form-control" id="agri_taluka" placeholder="Enter Email Address" required>
               </div>
             </div>
 
             <div class="col-md-4 mt-2">
               <div class="form-group">
-                <label class="form-label">District <span class="required">*</span></label>
-                <input type="text" class="form-control" id="agri_district" placeholder="District name" required>
+                <label class="form-label">Phone Number <span class="required">*</span></label>
+                <input type="text" class="form-control" id="agri_district" placeholder="Enter Phone Number" required>
               </div>
             </div>
+            
 
 
           </div>
@@ -895,334 +891,57 @@
           <div class="row">
             <div class="col-md-4 mt-2">
               <div class="form-group">
-                <label class="form-label">Land Area (Acres) <span class="required">*</span></label>
-                <input type="number" class="form-control" id="agri_area" placeholder="e.g., 5" step="0.01" required>
+                <label class="form-label">State <span class="required">*</span></label>
+                <input type="text" class="form-control" id="agri_district" placeholder="Enter State" required>
               </div>
             </div>
             <div class="col-md-4 mt-2">
-              <div class="form-group">
-                <label class="form-label">Soil Type</label>
-                <select class="form-select" id="agri_soil">
-                  <option value="">Select</option>
-                  <option value="red">Red Soil</option>
-                  <option value="black">Black Soil</option>
-                  <option value="alluvial">Alluvial Soil</option>
-                  <option value="loamy">Loamy Soil</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-md-4 mt-2">
-              <div class="form-group">
-                <label class="form-label">Irrigation Facility?</label>
-                <select class="form-select" id="agri_irrigation">
-                  <option value="no">No</option>
-                  <option value="yes">Yes</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-4 mt-2">
-              <div class="form-group">
-                <label class="form-label">Water Source</label>
-                <select class="form-select" id="agri_water">
-                  <option value="">Select</option>
-                  <option value="well">Well</option>
-                  <option value="borewell">Borewell</option>
-                  <option value="canal">Canal</option>
-                  <option value="river">River</option>
-                  <option value="none">None</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-md-4 mt-2">
-              <div class="form-group">
-                <label class="form-label">Previous Crops Grown</label>
-                <input type="text" class="form-control" id="agri_crops" placeholder="e.g., Rice, Wheat">
-              </div>
-            </div>
-            <div class="col-md-4 mt-2">
-              <div class="form-group">
-                <label class="form-label">Fertility Status</label>
-                <select class="form-select" id="agri_fertility">
-                  <option value="">Select</option>
-                  <option value="high">High</option>
-                  <option value="medium">Medium</option>
-                  <option value="low">Low</option>
-                </select>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-      <div class="form-section">
-        <div class="section-header">
-          <i class="fas fa-indian-rupee-sign"></i>
-          Pricing
-        </div>
-        <div class="section-body">
-          <div class="row">
-            <div class="form-row">
-              <div class="form-group">
-                <label class="form-label">Expected Price (₹) <span class="required">*</span></label>
-                <input type="number" class="form-control" id="agri_price" placeholder="e.g., 5000000" required>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-
-      <div class="form-section">
-        <div class="section-header">
-          <i class="fas fa-shield-halved"></i>
-          Ownership & Legal Details
-        </div>
-        <div class="section-body">
-          <div class="row">
-            <div class="col-md-12 mt-2">
-
-
-              <div class="form-group mt-2">
-                <label class="form-label">Ownership Type <span class="required">*</span></label>
-                <select class="form-select" id="agri_ownership" required>
-                  <option value="">Select</option>
-                  <option value="freehold">Freehold</option>
-                  <option value="leasehold">Leasehold</option>
-                </select>
-              </div>
-
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-12">
-
-              <div class="form-group mt-2">
-                <label class="form-label">Loan on Property? <span class="required">*</span></label>
-                <div class="radio-group">
-                  <label class="radio-option">
-                    <input type="radio" name="agri_loan" value="no" required> No
-                  </label>
-                  <label class="radio-option">
-                    <input type="radio" name="agri_loan" value="yes"> Yes
-                  </label>
-                </div>
-              </div>
-
-            </div>
-
-            <div class="conditional-section mt-2" id="agri_loan_amount_section" style="display: none;">
-              <div class="form-group">
-                <label class="form-label">Loan Amount (₹)</label>
-                <input type="number" class="form-control" id="agri_loan_amount" placeholder="e.g., 2000000">
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="form-group mt-2">
-              <label class="form-label">Existing Tenants? <span class="required">*</span></label>
-              <div class="radio-group">
-                <label class="radio-option">
-                  <input type="radio" name="agri_tenants" value="no" required> No
-                </label>
-                <label class="radio-option">
-                  <input type="radio" name="agri_tenants" value="yes"> Yes
-                </label>
-              </div>
-            </div>
-
-            <div class="conditional-section mt-2" id="agri_tenant_details_section" style="display: none;">
-              <div class="form-group">
-                <label class="form-label">Tenant Details</label>
-                <textarea class="form-control" id="agri_tenant_details" placeholder="Tenant information"></textarea>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-12">
-
-
-              <div class="form-group mt-2">
-                <label class="form-label">Any Legal Dispute? <span class="required">*</span></label>
-                <div class="radio-group">
-                  <label class="radio-option">
-                    <input type="radio" name="agri_dispute" value="no" required> No
-                  </label>
-                  <label class="radio-option">
-                    <input type="radio" name="agri_dispute" value="yes"> Yes
-                  </label>
-                </div>
-              </div>
-            </div>
-
-            <div class="conditional-section mt-2" id="agri_dispute_details_section" style="display: none;">
-              <div class="form-group">
-                <label class="form-label">Dispute Description</label>
-                <textarea class="form-control" id="agri_dispute_details"
-                  placeholder="Describe the legal dispute"></textarea>
-              </div>
-            </div>
-
-          </div>
-
-          <div class="row">
-            <div class="col-md-12">
-
-              <div class="form-group mt-2">
-                <label class="form-label">Government Tax Dues? <span class="required">*</span></label>
-                <div class="radio-group">
-                  <label class="radio-option">
-                    <input type="radio" name="agri_tax_due" value="no" required> No - Tax Paid
-                  </label>
-                  <label class="radio-option">
-                    <input type="radio" name="agri_tax_due" value="yes"> Yes - Pending
-                  </label>
-                </div>
-              </div>
-            </div>
-
-            <div class="conditional-section mt-2" id="agri_tax_amount_section" style="display: none;">
-              <div class="form-group">
-                <label class="form-label">Pending Tax Amount (₹)</label>
-                <input type="number" class="form-control" id="agri_tax_amount" placeholder="e.g., 20000">
-              </div>
-            </div>
-
-            <div class="form-group mt-2">
-              <label class="form-label">Property Description <span class="required">*</span></label>
-              <textarea class="form-control" id="resale_agricultural_desc" name="resale_agricultural_desc" placeholder="Describe property highlights, location benefits, nearby amenities..." required></textarea>
-            </div>
-
-          </div>
-
-        </div>
-      </div>
-
-      <div class="form-section">
-        <div class="form-section">
-          <div class="section-header">
-            <i class="fas fa-images"></i>
-            Property Images
-          </div>
-          <div class="image-upload-area" id="uploadArea">
-            <input type="file" id="imageInput" name="property_images[]" multiple accept="image/*"
-              style="display: none;">
-            <div class="upload-icon">
-              <i class="fas fa-cloud-upload-alt"></i>
-            </div>
-            <div class="upload-text">Click or Drag Images Here</div>
-            <div class="upload-subtext">Upload up to 10 high-quality images (JPG, PNG)</div>
-          </div>
-          <div class="image-preview" id="imagePreview"></div>
-
-        </div>
-
-        <div class="row mt-2">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label class="form-label">
-                <i class="fa-solid fa-file"></i> Upload Encumbrance Certificate <span class="required">*</span>
-              </label>
-
-              <input type="file" name="property_images" accept="image/*">
-            </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="form-group">
-              <label class="form-label">
-                <i class="fa-solid fa-camera"></i> Upload Video on Social Media <span class="required">*</span>
-              </label>
-
-              <input type="file" name="property_images" accept="video/*">
-            </div>
-          </div>
-
-        </div>
-        <br>
-
-
-        <div class="form-section">
-          <div class="section-header">
-            <i class="fas fa-star"></i>
-            Address
-          </div>
-          <div class="row">
-            <div class="col-md-6 mt-2">
               <div class="form-group">
                 <label class="form-label">City <span class="required">*</span></label>
-                <input type="text" class="form-control" id="comm_city" placeholder="e.g., Mumbai" required>
+                <input type="text" class="form-control" id="agri_district" placeholder="Enter City" required>
               </div>
             </div>
-            <div class="col-md-6 mt-2">
+            <div class="col-md-4 mt-2">
               <div class="form-group">
-                <label class="form-label">Area/Locality <span class="required">*</span></label>
-                <input type="text" class="form-control" id="comm_locality" placeholder="e.g., BKC" required>
+                <label class="form-label">Address <span class="required">*</span></label>
+                <textarea class="form-control" placeholder="Enter Address"></textarea>
               </div>
             </div>
           </div>
 
-
-          <div class="form-group mt-2">
-            <label class="form-label">Property Address <span class="required">*</span></label>
-            <textarea class="form-control" id="comm_address" placeholder="Complete address" required></textarea>
-          </div>
-
-
-        </div>
-
-        <div class="form-section">
-          <div class="section-header">
-            <i class="fas fa-user"></i>
-            Owner Contact Information
-          </div>
           <div class="row">
             <div class="col-md-4 mt-2">
               <div class="form-group">
-                <label class="form-label">Owner Name <span class="required">*</span></label>
-                <input type="text" class="form-control" id="comm_owner_name" placeholder="Full name" required>
+                <label class="form-label">Password <span class="required">*</span></label>
+                <input type="password" class="form-control" id="agri_district" placeholder="Enter Password" required>
               </div>
             </div>
             <div class="col-md-4 mt-2">
               <div class="form-group">
-                <label class="form-label">Owner Contact <span class="required">*</span></label>
-                <input type="tel" class="form-control" id="comm_owner_contact" placeholder="10-digit mobile"
-                  pattern="[0-9]{10}" required>
+                <label class="form-label">Confirm Password <span class="required">*</span></label>
+                <input type="text" class="form-control" id="agri_district" placeholder="Enter Confirm Password" required>
               </div>
             </div>
             <div class="col-md-4 mt-2">
               <div class="form-group">
-                <label class="form-label">Email <span class="required">*</span></label>
-                <input type="email" class="form-control" id="comm_owner_email" placeholder="email@example.com" required>
+                <label class="form-label">Profile Picture <span class="required">*</span></label>
+                <input type="file" class="form-control" id="agri_district" placeholder="Enter Confirm Password" required>
               </div>
             </div>
+
           </div>
 
-          <div class="form-group mt-2">
-            <label class="form-label">Residential Status <span class="required">*</span></label>
-            <div class="radio-group">
-              <label class="radio-option">
-                <input type="radio" name="comm_residency" value="resident" required> Resident
-              </label>
-              <label class="radio-option">
-                <input type="radio" name="comm_residency" value="nri"> NRI
-              </label>
-              <label class="radio-option">
-                <input type="radio" name="comm_residency" value="pio"> PIO
-              </label>
+          <div class="row">
+            <div class="col-md-4 mt-2">
+              <div class="form-group">
+                <label class="form-label">Role <span class="required">*</span></label>
+                <input type="text" class="form-control" id="agri_district" placeholder="Enter Password" required value="Relationship Manager" disabled>
+              </div>
             </div>
-          </div>
 
+          </div>
 
         </div>
-
       </div>
 
       <div class="form-footer">
