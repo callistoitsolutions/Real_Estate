@@ -450,6 +450,34 @@ def Add_Tenant(request):
 ######## Views end for add tenants ##########################
 
 
+############### Views start for display buyers list ####################
+
+def Buyer_List(request):
+    session_id = request.session.get('Admin_id')
+    if session_id:
+        admin_obj = Admin_Login.objects.get(id=session_id)
+        context = {'admin_obj':admin_obj}
+        return render(request,'admin_user/Buyer/buyer_list.html',context)
+    else:
+        return render(request,'home_page/Adminlogin.html')
+
+############## Views end for display buyers list #########################
+
+
+############# Views start for add buyers ########################
+
+def Add_Buyer(request):
+    session_id = request.session.get('Admin_id')
+    if session_id:
+        admin_obj = Admin_Login.objects.get(id=session_id)
+        context = {'admin_obj':admin_obj}
+        return render(request,'admin_user/Buyer/add_buyer.html',context)
+    else:
+        return render(request,'home_page/Adminlogin.html')
+
+############ Views end for add buyers ###############################
+
+
 ######### Views start for display agents list ##################
 
 def Agent_List(request):
@@ -476,6 +504,34 @@ def Add_Agent(request):
         return render(request,'home_page/Adminlogin.html')
 
 ############## Views end for add agents #######################
+
+
+########## Views start for display agency list #########################
+
+def Agency_List(request):
+    session_id = request.session.get('Admin_id')
+    if session_id:
+        admin_obj = Admin_Login.objects.get(id=session_id)
+        context = {'admin_obj':admin_obj}
+        return render(request,'admin_user/Agency/agency_list.html',context)
+    else:
+        return render(request,'home_page/Adminlogin.html')
+
+############ Views end for display agency list ############################
+
+
+############### Views start for add agency ########################
+
+def Add_Agency(request):
+    session_id = request.session.get('Admin_id')
+    if session_id:
+        admin_obj = Admin_Login.objects.get(id=session_id)
+        context = {'admin_obj':admin_obj}
+        return render(request,'admin_user/Agency/add_agency.html',context)
+    else:
+        return render(request,'home_page/Adminlogin.html')
+
+############ Views end for add agency ##########################
 
 
 ########## Views start for display vendors list ##################
