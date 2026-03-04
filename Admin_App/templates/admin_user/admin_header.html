@@ -1299,39 +1299,22 @@
             <li class="menu-section-title" style="color:white;">MANAGEMENT</li>
 
             <li class="menu-item">
-                <a href="{% url "rm_list" %}" class="menu-link" id="RM_List">
-                    <i class="fas fa-user-tie menu-icon"></i>
-                    <span class="menu-text">Relationship Manager(RM)</span>
+                <a href="javascript:void(0)" class="menu-link" onclick="toggleSubmenu(event, this)" id="Teams">
+                    <i class="fas fa-users menu-icon"></i>
+                    <span class="menu-text">Teams</span>
+                    <i class="fas fa-chevron-down dropdown-icon"></i>
                 </a>
+                <ul class="submenu">
+                    <li><a href="{% url "rm_list" %}" class="submenu-link" style="color:white;">Relationship Manager(RM)</a></li>
+                    <li><a href="{% url "Landlord_List" %}" class="submenu-link" style="color:white;">Landlords</a></li>
+                    <li><a href="{% url "Tenant_List" %}" class="submenu-link" style="color:white;">Tenants</a></li>
+                    <li><a href="{% url "Buyer_List" %}" class="submenu-link" style="color:white;">Buyers</a></li>
+                    <li><a href="{% url "Agent_List" %}" class="submenu-link" style="color:white;">Agents</a></li>
+                    <li><a href="{% url "Agency_List" %}" class="submenu-link" style="color:white;">Agencies</a></li>
+                    <li><a href="{% url "Vendor_List" %}" class="submenu-link" style="color:white;">Vendors</a></li>
+                </ul>
             </li>
 
-            <li class="menu-item">
-                <a href="{% url "Landlord_List" %}" class="menu-link" id="Landlord_List">
-                    <i class="fas fa-house-user menu-icon"></i>
-                    <span class="menu-text">Landlords</span>
-                </a>
-            </li>
-
-            <li class="menu-item">
-                <a href="{% url "Tenant_List" %}" class="menu-link" id="Tenant_List">
-                    <i class="fas fa-user-friends menu-icon"></i>
-                    <span class="menu-text">Tenants/Buyers</span>
-                </a>
-            </li>
-
-            <li class="menu-item">
-                <a href="{% url "Agent_List" %}" class="menu-link" id="Agent_List">
-                    <i class="fas fa-users-cog menu-icon"></i>
-                    <span class="menu-text">Agents/Agencies</span>
-                </a>
-            </li>
-
-            <li class="menu-item">
-                <a href="{% url "Vendor_List" %}" class="menu-link" id="Vendor_List">
-                    <i class="fas fa-user-graduate menu-icon"></i>
-                    <span class="menu-text">Vendors</span>
-                </a>
-            </li>
 
             <li class="menu-item">
                 <a href="#" class="menu-link">
