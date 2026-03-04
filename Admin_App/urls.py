@@ -60,6 +60,14 @@ urlpatterns = [
 
     path('Add_Tenant',views.Add_Tenant,name="Add_Tenant"),
 
+    ############## urls for display buyers list #####################
+
+    path('Buyer_List',views.Buyer_List,name="Buyer_List"),
+
+    ############## urls for add buyers #########################
+
+    path('Add_Buyer',views.Add_Buyer,name="Add_Buyer"),
+
     ############# urls for display agents list ####################
 
     path('Agent_List',views.Agent_List,name="Agent_List"),
@@ -67,6 +75,14 @@ urlpatterns = [
     ############# urls for add agents ####################
 
     path('Add_Agent',views.Add_Agent,name="Add_Agent"),
+
+    ########### urls for display agency list ##############
+
+    path('Agency_List',views.Agency_List,name="Agency_List"),
+
+    ########### urls for add agency #######################
+
+    path('Add_Agency',views.Add_Agency,name="Add_Agency"),
 
     ########### urls for display vendors list ####################
 
