@@ -238,7 +238,6 @@ class Ad(models.Model):
 
 
 
-
 class Admin_Login(models.Model):
    
     email=models.CharField(max_length=100, default="")
