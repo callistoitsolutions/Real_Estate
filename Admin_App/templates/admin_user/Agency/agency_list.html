@@ -6,10 +6,10 @@
             <!-- Page Header -->
             <div class="page-header">
                 <div class="page-header-content">
-                    <h1 class="page-title"><i class="fas fa-user-friends"></i> Agencies Listings</h1>
+                    <h1 class="page-title"><i class="fas fa-user-friends"></i> Agencies/Builders Listings</h1>
                     <div class="page-actions">
                         <a href="{% url "Add_Agency" %}"><button class="btn-primary-custom">
-                            <i class="fas fa-plus-circle"></i> Add Agency
+                            <i class="fas fa-plus-circle"></i> Add Agency/Builder
                         </button></a>
                         <button class="btn-primary-custom" style="background: transparent; border: 2px solid white; color: white;" data-toggle="modal" data-target="#exampleModalCenter">
                             <i class="fas fa-download"></i> Import Excel
@@ -309,7 +309,7 @@
             
             <div class="col-md-12">
               <div class="form-group">
-                <label class="form-label">Upload Agency Data Excel File <span class="required" style="color:red;">*</span></label>
+                <label class="form-label">Upload Agency/Builder Data Excel File <span class="required" style="color:red;">*</span></label>
                 <input type="file" class="form-control" id="agri_district" placeholder="Enter Confirm Password" required onchange="checkSelectedFileSize(this)" accept=".xlsx">
               </div>
             </div>
