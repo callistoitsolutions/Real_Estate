@@ -21,6 +21,10 @@ urlpatterns = [
 
      path('Ameneties_List',views.Ameneties_List,name="Ameneties_List"),
 
+     ########## urls for ajax for add/update ameneties ######################
+
+     path('Ameneties_Ajax',views.Ameneties_Ajax,name="Ameneties_Ajax"),
+
      ############# urls for rental property list ########################
 
      path('residential_list',views.residential_list,name="residential_list"),
