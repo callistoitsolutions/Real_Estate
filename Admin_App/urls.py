@@ -16,6 +16,11 @@ urlpatterns = [
      path('commercial',views.commercial,name="commercial"),
      path('pg_coliving',views.pg_coliving,name="pg_coliving"),
 
+
+     ############# urls for ameneties list ############################
+
+     path('Ameneties_List',views.Ameneties_List,name="Ameneties_List"),
+
      ############# urls for rental property list ########################
 
      path('residential_list',views.residential_list,name="residential_list"),
