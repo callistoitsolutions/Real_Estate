@@ -7,6 +7,9 @@ from django.shortcuts import render,redirect,get_object_or_404
 from Admin_App .models import *
 from Main_App .models import *
 from seo .models import *
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+from datetime import datetime
 
 # Create your views here.
 
@@ -202,6 +205,101 @@ def pg_coliving(request):
         return render(request,"admin_user/pg_coliving.html",context)
     else:
         return render(request,'home_page/Adminlogin.html')
+    
+
+############## Views start for ameneties list ##########################
+
+def Ameneties_List(request):
+    session_id = request.session.get('Admin_id')
+    if session_id:
+        admin_obj = Admin_Login.objects.get(id=session_id)
+        context = {'admin_obj':admin_obj}
+        return render(request,"admin_user/Ameneties/ameneties_list.html",context)
+    else:
+        return render(request,'home_page/Adminlogin.html')
+
+########### Views end for ameneties list ################################
+
+
+########### Views start for ajax for add/update ameneties #####################
+
+@csrf_exempt
+def Ameneties_Ajax(request):
+    data = request.POST.dict()
+
+    if data.get('id') == "":
+        data.pop("id", None)         
+        data['amenties_date'] = datetime.today()
+        data['amenties_time'] = datetime.now()
+        print("-------------------------------")
+        Ameneties_Details.objects.create(**data)
+        return JsonResponse({"status":"1", "msg" : f"Ameneties Details added successfully"})
+
+    # UPDATE MODE
+    # else:
+        # try:
+        #     withdraw = WithdrawDetails.objects.get(id=data['id'])
+        # except WithdrawDetails.DoesNotExist:
+        #     return JsonResponse({'status': '0', 'msg': 'Withdraw Details not found'})
+
+        # member = MemberDetails.objects.get(user_id=data['fk_member'])
+        
+        # if data['withdraw_status'] == "Done":
+        #     if withdraw.is_withdraw == False:
+        #         try:
+                    
+                    
+        #             withdraw.is_withdraw = True
+                    
+
+                    
+        #             # STEP 2: DEDUCT withdrawal ONLY from activation
+        #             # if member.user_activation >= withdraw_amount:
+        #             #     member.user_activation -= withdraw_amount  #  DEDUCT ONLY!
+                        
+        #             #     super_amount = float(getattr(super_admin, 'super_total_amount', 0) or 0)
+        #             #     super_admin.super_total_amount = super_amount - withdraw_amount
+                        
+        #             #     super_admin.save()
+        #             #     member.save()
+        #             #     withdraw.is_withdraw = True
+                        
+        #             #     print(f"COMPLETE: Remaining activation ₹{member.user_activation}")
+        #             #     print(f"EARNINGS KEPT: Match=₹{member.user_total_match}, Level=₹{member.user_total_level_amount}")
+        #             # else:
+        #             #     return JsonResponse({
+        #             #         'status': '0', 
+        #             #         'msg': f'Insufficient: ₹{member.user_activation:.2f}'
+        #             #     })
+        #         except (ValueError, TypeError) as e:
+        #             print(f"Error: {e}")
+        #             return JsonResponse({'status': '0', 'msg': 'Invalid amount'})
+
+        # # Donation logic (unchanged)
+        # if withdraw.donation_paid == False:
+        #     DonationDetails.objects.create(
+        #         donor_id=withdraw.fk_member.user_id,
+        #         donor_name=withdraw.fk_member.user_name,
+        #         donor_email=withdraw.fk_member.user_email,
+        #         donor_phone=withdraw.fk_member.user_phone,
+        #         donor_address=withdraw.fk_member.user_address,
+        #         donation_amount=data['donation_amount'],
+        #         donation_payment_mode="UPI",
+        #         donation_status="Done",
+        #         donation_date=datetime.today(),
+        #         donation_time=datetime.now()
+        #     )
+        #     withdraw.donation_paid = True
+
+        # # Update withdraw fields (unchanged)
+        # for key, value in data.items():
+        #     if key != 'fk_member':
+        #         setattr(withdraw, key, value)
+
+        # withdraw.save()
+        # return JsonResponse({"status":"1", "msg" : f"Withdraw updated successfully"})
+
+############ Views end for ajax for add/update ameneties #########################
 
 
 ############  Views start for rental property list ########################
@@ -1018,8 +1116,7 @@ def services_list1(request):
     return render(request, "admin_user/services_list1.html", {"services": services})
 
 
-import datetime
-from decimal import Decimal
+
 
 def plans_list(request):
     plans = Plan.objects.all().order_by('-id')
