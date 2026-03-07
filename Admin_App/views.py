@@ -10,6 +10,8 @@ from seo .models import *
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from datetime import datetime
+from openpyxl import load_workbook
+from django.template.loader import render_to_string
 
 # Create your views here.
 
@@ -213,7 +215,13 @@ def Ameneties_List(request):
     session_id = request.session.get('Admin_id')
     if session_id:
         admin_obj = Admin_Login.objects.get(id=session_id)
-        context = {'admin_obj':admin_obj}
+
+        ameneties_obj = Ameneties_Details.objects.all().order_by('-id')
+        ameneties_obj_count = Ameneties_Details.objects.all().count()
+        
+        rendered = render_to_string("admin_user/render_to_string/R_Ameneties/r_t_s_ameneties.html",{'ameneties_obj':ameneties_obj,'ameneties_obj_count':ameneties_obj_count})
+
+        context = {'admin_obj':admin_obj,'ameneties_list':rendered}
         return render(request,"admin_user/Ameneties/ameneties_list.html",context)
     else:
         return render(request,'home_page/Adminlogin.html')
@@ -300,6 +308,36 @@ def Ameneties_Ajax(request):
         # return JsonResponse({"status":"1", "msg" : f"Withdraw updated successfully"})
 
 ############ Views end for ajax for add/update ameneties #########################
+
+
+############# Views start for upload ameneties data via excel ##################
+
+@csrf_exempt
+def Ameneties_Data(request):
+    if request.method == 'POST':
+        data=request.POST.dict()
+        data['ameneties_file'] = request.FILES.get('ameneties_file')
+        wb = load_workbook(data['ameneties_file'])
+        sheet = wb.active
+        for row in sheet.iter_rows(min_row=2, values_only=True):
+            amenties_icon = row[0]
+            amenties_name = row[1]
+
+            if not amenties_icon or not amenties_name:
+                continue
+
+            Ameneties_Details.objects.create(
+                amenties_icon=amenties_icon,
+                amenties_name=amenties_name,
+                amenties_date=datetime.today(),
+                amenties_time=datetime.now()
+            )
+
+        return JsonResponse({"status":"1", "msg" : "Data Uploaded Successfully..."})
+    else:
+        return JsonResponse({"status":"0", "msg" : "Something went wrong..."})
+
+############## Views end for upload ameneties date via excel #######################
 
 
 ############  Views start for rental property list ########################
