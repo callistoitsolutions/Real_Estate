@@ -25,6 +25,10 @@ urlpatterns = [
 
      path('Ameneties_Ajax',views.Ameneties_Ajax,name="Ameneties_Ajax"),
 
+     ########## urls for upload ameneties data via excel ###################
+
+     path('Ameneties_Data',views.Ameneties_Data,name="Ameneties_Data"),
+
      ############# urls for rental property list ########################
 
      path('residential_list',views.residential_list,name="residential_list"),
