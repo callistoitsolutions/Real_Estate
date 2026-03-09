@@ -65,6 +65,24 @@ urlpatterns = [
 
     path('Add_RM',views.Add_RM,name="Add_RM"),
 
+    ######## urls for upload data functionality via excel ###################
+
+    path('Rm_Data',views.Rm_Data,name="Rm_Data"),
+
+    ######### urls for delete rm details #########################
+
+    path('Delete_RM',views.Delete_RM,name='Delete_RM'),
+
+    ########## urls for update rm details #######################
+
+    path('Update_RM/<int:id>',views.Update_RM,name='Update_RM'),
+
+    ########### urls for ajax for add/update rm functionality ###############
+
+    path('User_Ajax',views.User_Ajax,name="User_Ajax"),
+
+
+
     ######### urls for display landlords list #################
 
     path('Landlord_List',views.Landlord_List,name="Landlord_List"),
