@@ -627,6 +627,55 @@
     }    
 </script>
 
+
+{% comment %} Ajax Jquery and Javascript for delete ameneties {% endcomment %}
+
+<script>
+
+
+    function Delete_Ameneties(ameneties_id)
+    {
+        swal({
+            title: "DELETE",
+            text: "Are you sure, you want to delete the ameneties detail ?",
+            icon: "warning",
+            buttons: ["No", "Yes"],	
+            closeOnClickOutside: false,
+            dangerMode: true,
+        })
+        .then((willUpdate) => {
+            if (willUpdate) 
+            {	
+                $.ajax({
+                    type:"POST",
+                    url: "{% url 'Delete_Ameneties' %}",
+                    data: {'ameneties_id' : ameneties_id},
+                    success: function (response) 
+                    {
+                        if (response.status == '1'){
+                            swal(""+response.msg+"", { 
+                                icon: "success",
+                                button: "Ok",
+                                closeOnClickOutside: false,
+                            }).then((addcat)=>{
+                                location.reload();
+                            });
+                        }
+                        else{
+                            swal(""+response.msg+"", {
+                            icon: "info",
+                            button: "Ok",
+                            closeOnClickOutside: false,
+                            });
+                        }
+                    }
+                    
+                })
+            }
+        });
+    }
+</script>
+
 </body>
 
 </html>
