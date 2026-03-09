@@ -508,7 +508,13 @@ def rm_list(request):
     session_id = request.session.get('Admin_id')
     if session_id:
         admin_obj = Admin_Login.objects.get(id=session_id)
-        context = {'admin_obj':admin_obj}
+
+        rm_obj = User_Details.objects.filter(user_role="Relationship Manager").order_by('-id')
+        rm_obj_count = User_Details.objects.all().count()
+
+        rendered = render_to_string("admin_user/render_to_string/R_RM/r_t_s_rm.html",{'rm_obj':rm_obj,'rm_obj_count':rm_obj_count,'Role':'Relationship Manager'})
+
+        context = {'admin_obj':admin_obj,'rm_list':rendered}
         return render(request,'admin_user/RM/rm_list.html',context)
     else:
         return render(request,'home_page/Adminlogin.html')
@@ -528,6 +534,148 @@ def Add_RM(request):
         return render(request,'home_page/Adminlogin.html')
 
 ################ Views end for add rm ###########################
+
+
+########### Views start for data upload functtionality via excel ##############
+
+@csrf_exempt
+def Rm_Data(request):
+
+    if request.method == 'POST':
+
+        excel_file = request.FILES.get('rm_file')
+
+        if not excel_file:
+            return JsonResponse({"status": "0", "msg": "Excel file not found"})
+
+        wb = load_workbook(excel_file)
+        sheet = wb.active
+
+        for row in sheet.iter_rows(min_row=2, values_only=True):
+
+            user_name = row[0]
+            user_email = row[1]
+            user_phone = row[2]
+            user_state = row[3]
+            user_city = row[4]
+            user_address = row[5]
+            user_password = row[6]
+            user_profile = row[7]
+            user_role = row[8]
+
+            if user_password is not None:
+                user_password = str(user_password).split(".")[0]
+
+            if user_phone is not None:
+                user_phone = str(user_phone).split(".")[0]
+
+            if not user_phone:
+                continue
+
+            User_Details.objects.update_or_create(
+                user_phone=user_phone,   # unique identifier
+                defaults={
+                    "user_name": user_name,
+                    "user_email": user_email,
+                    "user_state": user_state,
+                    "user_city": user_city,
+                    "user_address": user_address,
+                    "user_role": user_role,
+                    "user_profile": user_profile,
+                    "user_password": user_password,
+                    "user_register_date": datetime.today(),
+                    "user_register_time": datetime.now()
+                }
+            )
+
+        return JsonResponse({
+            "status": "1",
+            "msg": "Data Uploaded / Updated Successfully..."
+        })
+
+    return JsonResponse({
+        "status": "0",
+        "msg": "Invalid Request"
+    })
+
+########## Views end for data upload functionality via excel #######################
+
+
+########### Views start for delete rm details ######################
+
+@csrf_exempt
+def Delete_RM(request):
+    try:
+        try:
+            rm_id = request.POST.get('rm_id')
+            User_Details.objects.filter(id=rm_id).delete()
+            return JsonResponse({'status':'1', 'msg':'RM details deleted successfully...'}) 
+        except:
+            traceback.print_exc()
+            return JsonResponse({"status":"0", "msg" : "Something went wrong..."})
+    except:
+        traceback.print_exc()
+        return JsonResponse({"status":"0", "msg" : "Something went wrong..."})
+
+############ Views end for delete rm details #########################
+
+
+########### Views start for update rm details #########################
+
+def Update_RM(request,id):
+    session_id = request.session.get('Admin_id')
+    if session_id:
+        admin_obj = Admin_Login.objects.get(id=session_id)
+        rm = User_Details.objects.get(id=id)
+
+        context = {'admin_obj':admin_obj,'rm':rm}
+        return render(request,'admin_user/RM/update_rm.html',context)
+    else:
+        return render(request,'home_page/Adminlogin.html')
+
+######### Views end for update rm details #############################
+
+
+########## Views start for ajax for add/update rm functionality #################4
+
+@csrf_exempt
+def User_Ajax(request):
+    data = request.POST.dict()
+
+    if data.get('id') == "":
+        data.pop("id", None)
+        data['user_profile'] = request.FILES.get('user_profile')         
+        data['user_register_date'] = datetime.today()
+        data['user_register_time'] = datetime.now()
+        if User_Details.objects.filter(user_role=data['user_role'],user_phone=data['user_phone']).exists():
+            return JsonResponse({"status":"0", "msg" : f"User with this phone number already exists"})
+        else:
+            User_Details.objects.create(**data)
+            return JsonResponse({"status":"1", "msg" : f"User Details added successfully"})
+
+    # UPDATE MODE
+    else:
+        try:
+            rm = User_Details.objects.get(id=data['id'])
+        except User_Details.DoesNotExist:
+            return JsonResponse({'status': '0', 'msg': 'User Details not found'})
+        
+        data['user_profile'] = request.FILES.get('user_profile')
+
+        if request.FILES.get('user_profile'):
+            data['user_profile'] = request.FILES.get('user_profile')
+        else:
+            data.pop('user_profile', None)
+
+
+        # Update withdraw fields (unchanged)
+        for key, value in data.items():
+            setattr(rm, key, value)
+
+        rm.save()
+        return JsonResponse({"status":"1", "msg" : f"User Details updated successfully"})
+
+########### Views end for ajax for add/update rm functionality ###################
 
 
 ########### Views start for display landlords list ###################
