@@ -29,6 +29,14 @@ urlpatterns = [
 
      path('Ameneties_Data',views.Ameneties_Data,name="Ameneties_Data"),
 
+     ######### urls for delete ameneties data ##########################
+
+     path('Delete_Ameneties',views.Delete_Ameneties,name='Delete_Ameneties'),
+
+     ########### urls for update ameneties data ######################
+
+     path('Update_Ameneties/<int:id>',views.Update_Ameneties,name='Update_Ameneties'),
+
      ############# urls for rental property list ########################
 
      path('residential_list',views.residential_list,name="residential_list"),
