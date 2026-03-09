@@ -60,15 +60,15 @@
                         <i class="fas fa-eye"></i>
                     </button> {% endcomment %}
 
-                    <button class="btn-action btn-edit" title="Edit">
+                    <a href="{% url "Update_Ameneties" ameneties.id %}" class="btn-action btn-edit" title="Edit">
                         <i class="fas fa-edit"></i>
-                    </button>
+                    </a>
 
                     {% comment %} <button class="btn-action btn-toggle" title="Toggle">
                         <i class="fas fa-power-off"></i>
                     </button> {% endcomment %}
 
-                    <button class="btn-action btn-delete" title="Delete">
+                    <button class="btn-action btn-delete" title="Delete" onclick="Delete_Ameneties({{ameneties.id}})">
                         <i class="fas fa-trash"></i>
                     </button>
 
