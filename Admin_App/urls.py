@@ -131,6 +131,18 @@ urlpatterns = [
 
     path('Add_Buyer',views.Add_Buyer,name="Add_Buyer"),
 
+    ############# urls for buyer data functionality via excel #####################
+
+    path('Buyer_Data',views.Buyer_Data,name="Buyer_Data"),
+
+    ############# urls for delete buyer details #########################
+
+    path('Delete_Buyer',views.Delete_Buyer,name='Delete_Buyer'),
+
+    ############# urls for update buyer details ####################
+
+    path('Update_Buyer/<int:id>',views.Update_Buyer,name='Update_Buyer'),
+
     ############# urls for display agents list ####################
 
     path('Agent_List',views.Agent_List,name="Agent_List"),
