@@ -65,7 +65,7 @@ urlpatterns = [
 
     path('Add_RM',views.Add_RM,name="Add_RM"),
 
-    ######## urls for upload data functionality via excel ###################
+    ######## urls for upload rm data functionality via excel ###################
 
     path('Rm_Data',views.Rm_Data,name="Rm_Data"),
 
@@ -90,6 +90,18 @@ urlpatterns = [
     ########## urls for add landlords #######################
 
     path('Add_Landlord',views.Add_Landlord,name="Add_Landlord"),
+
+    ############ urls for upload landlord data functionality via excel #################
+
+    path('Landlord_Data',views.Landlord_Data,name="Landlord_Data"),
+
+    ########### urls for delete landlord details #################
+
+    path('Delete_Landlord',views.Delete_Landlord,name='Delete_Landlord'),
+
+    ########### urls for update landlord details ######################
+
+    path('Update_Landlord/<int:id>',views.Update_Landlord,name='Update_Landlord'),
 
     ############ urls for display tenants list ####################
 
