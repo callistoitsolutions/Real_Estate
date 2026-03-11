@@ -276,6 +276,9 @@ class User_Details(models.Model):
     user_profile = models.ImageField(upload_to="Profile/", blank=True, null=True)
     user_role = models.CharField(max_length=200,blank=True,null=True)
 
+    user_agency_name = models.CharField(max_length=200,blank=True,null=True)
+    user_license_number = models.CharField(max_length=200,blank=True,null=True)
+
     user_register_date = models.DateField(blank=True,null=True)
     user_register_time = models.TimeField(blank=True,null=True)
 
