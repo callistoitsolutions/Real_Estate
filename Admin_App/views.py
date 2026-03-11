@@ -1212,7 +1212,7 @@ def Update_Agent(request,id):
         agent = User_Details.objects.get(id=id)
 
         context = {'admin_obj':admin_obj,'agent':agent}
-        
+
         return render(request,'admin_user/Agent/update_agent.html',context)
     else:
         return render(request,'home_page/Adminlogin.html')
@@ -1226,7 +1226,13 @@ def Agency_List(request):
     session_id = request.session.get('Admin_id')
     if session_id:
         admin_obj = Admin_Login.objects.get(id=session_id)
-        context = {'admin_obj':admin_obj}
+
+        agency_obj = User_Details.objects.filter(user_role="Agency/Builder").order_by('-id')
+        agency_obj_count = User_Details.objects.filter(user_role="Agency/Builder").count()
+
+        rendered = render_to_string("admin_user/render_to_string/R_Agency/r_t_s_agency.html",{'agency_obj':agency_obj,'agency_obj_count':agency_obj_count,'Role':'Agency'})
+
+        context = {'admin_obj':admin_obj,'agency_list':rendered}
         return render(request,'admin_user/Agency/agency_list.html',context)
     else:
         return render(request,'home_page/Adminlogin.html')
@@ -1246,6 +1252,110 @@ def Add_Agency(request):
         return render(request,'home_page/Adminlogin.html')
 
 ############ Views end for add agency ##########################
+
+
+########## Views start for upload agency data functionality via excel #################
+
+@csrf_exempt
+def Agency_Data(request):
+    if request.method == 'POST':
+
+        excel_file = request.FILES.get('agency_file')
+
+        if not excel_file:
+            return JsonResponse({"status": "0", "msg": "Excel file not found"})
+
+        wb = load_workbook(excel_file)
+        sheet = wb.active
+
+        for row in sheet.iter_rows(min_row=2, values_only=True):
+
+            user_name = row[0]
+            user_email = row[1]
+            user_phone = row[2]
+            user_state = row[3]
+            user_city = row[4]
+            user_address = row[5]
+            user_password = row[6]
+            user_agency_name = row[7]
+            user_license_number = row[8]
+            user_profile = row[9]
+            user_role = row[10]
+
+            if user_password is not None:
+                user_password = str(user_password).split(".")[0]
+
+            if user_phone is not None:
+                user_phone = str(user_phone).split(".")[0]
+
+            if not user_phone:
+                continue
+
+            User_Details.objects.update_or_create(
+                user_phone=user_phone, 
+                user_role=user_role,  # unique identifier
+                defaults={
+                    "user_name": user_name,
+                    "user_email": user_email,
+                    "user_state": user_state,
+                    "user_city": user_city,
+                    "user_address": user_address,
+                    "user_profile": user_profile,
+                    "user_password": user_password,
+                    "user_agency_name": user_agency_name,
+                    "user_license_number": user_license_number,
+                    "user_register_date": datetime.today(),
+                    "user_register_time": datetime.now()
+                }
+            )
+
+        return JsonResponse({
+            "status": "1",
+            "msg": "Data Uploaded / Updated Successfully..."
+        })
+
+    return JsonResponse({
+        "status": "0",
+        "msg": "Invalid Request"
+    })
+
+############# Views end for upload agency data functionality via excel ##################
+
+
+############## Views start for delete agency ###########################
+
+@csrf_exempt
+def Delete_Agency(request):
+    try:
+        try:
+            agency_id = request.POST.get('agency_id')
+            User_Details.objects.filter(id=agency_id).delete()
+            return JsonResponse({"status":"1", "msg" : "Agency Details Deleted Successfully..."}) 
+        except:
+            traceback.print_exc()
+            return JsonResponse({"status":"0", "msg" : "Something went wrong..."})
+    except:
+        traceback.print_exc()
+
+############ Views end for delete agency ################################
+
+
+########### Views start for update agency ###########################
+
+def Update_Agency(request,id):
+    session_id = request.session.get('Admin_id')
+    if session_id:
+        admin_obj = Admin_Login.objects.get(id=session_id)
+
+        agency = User_Details.objects.get(id=id)
+        
+        context = {'admin_obj':admin_obj,'agency':agency}
+
+        return render(request,'admin_user/Agency/update_agency.html',context)
+    else:
+        return render(request,'home_page/Adminlogin.html')
+
+######### Views end for update agency ###############################
 
 
 ########## Views start for display vendors list ##################
