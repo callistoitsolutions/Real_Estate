@@ -12,6 +12,10 @@ admin.site.register(Admin_Login)
 
 admin.site.register(Ameneties_Details)
 
+########### Register Service Type Details Model ##################
+
+admin.site.register(Service_Type_Details)
+
 ########### Register User Details Table/Modal ###############
 
 admin.site.register(User_Details)
