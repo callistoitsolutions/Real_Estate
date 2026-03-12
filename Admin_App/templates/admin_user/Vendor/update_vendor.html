@@ -843,7 +843,7 @@
     <div class="form-header">
       <div class="form-title">
         <i class="fas fa-edit"></i>
-        Add Vendors
+        Update Vendors
       </div>
       <button class="btn-back" onclick="history.back();">
         <i class="fas fa-arrow-left"></i>
@@ -851,271 +851,124 @@
       </button>
     </div>
 
-    <form method="POST" enctype="multipart/form-data">
+    <form id="vendorForm" enctype="multipart/form-data">
       {% csrf_token %}
-
+      
       <div class="form-section">
-        <div class="section-header">
-          <i class="fas fa-user-tie"></i>
-          Vendor Details
-        </div>
+        <div class="section-header"><i class="fas fa-user-tie"></i> Vendor Details</div>
         <div class="section-body">
           <div class="row">
-
-
             <div class="col-md-4 mt-2">
-              <div class="form-group">
-                <label class="form-label">
-                  Name <span class="required">*</span>
-                </label>
-
-                <input type="text" class="form-control" id="user_name" name="user_name" placeholder="Enter Name"
-                  pattern="[A-Za-z ]+" title="Only letters are allowed" required>
-              </div>
+              <label class="form-label">Name <span class="required">*</span></label>
+              <input type="text" class="form-control" id="user_name" name="user_name" value="{{vendor.user_name}}" required>
             </div>
             <div class="col-md-4 mt-2">
-              <div class="form-group">
-                <label class="form-label">Email Address <span class="required">*</span></label>
-                <input type="text" class="form-control" id="user_email" name="user_name"
-                  placeholder="Enter Email Address" required>
-              </div>
-            </div>
-
-            <div class="col-md-4 mt-2">
-              <div class="form-group">
-                <label class="form-label">
-                  Phone Number <span class="required">*</span>
-                </label>
-
-                <input type="text" class="form-control" id="user_phone" name="user_phone"
-                  placeholder="Enter Phone Number" pattern="[0-9]{10}" maxlength="10" inputmode="numeric"
-                  title="Enter a valid 10 digit phone number" required>
-              </div>
-            </div>
-
-
-
-          </div>
-
-          <div class="row">
-            <div class="col-md-4 mt-2">
-              <div class="form-group">
-                <label class="form-label">State <span class="required">*</span></label>
-                <input type="text" class="form-control" id="user_state" name="user_state" placeholder="Enter State"
-                  required>
-              </div>
+              <label class="form-label">Email <span class="required">*</span></label>
+              <input type="email" class="form-control" id="user_email" name="user_email" value="{{vendor.user_email}}" required>
             </div>
             <div class="col-md-4 mt-2">
-              <div class="form-group">
-                <label class="form-label">City <span class="required">*</span></label>
-                <input type="text" class="form-control" id="user_city" name="user_city" placeholder="Enter City"
-                  required>
-              </div>
-            </div>
-            <div class="col-md-4 mt-2">
-              <div class="form-group">
-                <label class="form-label">Address <span class="required">*</span></label>
-                <textarea class="form-control" placeholder="Enter Address" id="user_address"
-                  name="user_address"></textarea>
-              </div>
+              <label class="form-label">Phone <span class="required">*</span></label>
+              <input type="text" class="form-control" id="user_phone" name="user_phone" value="{{vendor.user_phone}}" maxlength="10" required>
             </div>
           </div>
-
-          <div class="row">
-            <div class="col-md-4 mt-2">
-              <div class="form-group">
-                <label class="form-label">Password <span class="required">*</span></label>
-                <input type="password" class="form-control" id="user_password" name="user_password"
-                  placeholder="Enter Password" required>
-              </div>
+          <div class="row mt-3">
+            <div class="col-md-4">
+              <label class="form-label">State</label>
+              <input type="text" class="form-control" id="user_state" name="user_state" value="{{vendor.user_state}}">
             </div>
-            <div class="col-md-4 mt-2">
-              <div class="form-group">
-                <label class="form-label">Confirm Password <span class="required">*</span></label>
-                <input type="text" class="form-control" id="user_com_password" name="user_com_password"
-                  placeholder="Enter Confirm Password" required>
-              </div>
+            <div class="col-md-4">
+              <label class="form-label">City</label>
+              <input type="text" class="form-control" id="user_city" name="user_city" value="{{vendor.user_city}}">
             </div>
-
-            <div class="col-md-4 mt-2">
-              <div class="form-group">
-                <label class="form-label" for="service_type">Service Type <span class="required">*</span></label>
-                <select class="form-control" id="user_service_type" name="user_service_type" required>
-                  <option value="SelectService" selected disabled>Select a service...</option>
-                  {% for service in services_obj %}
-                    <option value="{{service.service_name}}">{{service.service_name}}</option>
-                  {% endfor %}
-                </select>
-              </div>
+            <div class="col-md-4">
+              <label class="form-label">Service Type</label>
+              <select class="form-control" id="user_service_type" name="user_service_type">
+                <option value="SelectService" disabled>Select Service...</option>
+                {% for service in services_obj %}
+                <option value="{{service.service_name}}" {% if vendor.user_service_type == service.service_name %}selected{% endif %}>{{service.service_name}}</option>
+                {% endfor %}
+              </select>
             </div>
-
-            <div class="col-md-4 mt-2">
-              <div class="form-group">
-                <label class="form-label">Company Name <span class="required">*</span></label>
-                <input type="text" class="form-control" id="user_company_name" name="user_company_name"
-                  placeholder="Enter Company Name" required>
-              </div>
-            </div>
-
-            <div class="col-md-4 mt-2">
-              <div class="form-group">
-                <label class="form-label">PAN Number <span class="required">*</span></label>
-                <input type="text" class="form-control" id="user_pan_number" name="user_pan_number"
-                  placeholder="Enter PAN Number" required>
-              </div>
-            </div>
-            
-            <div class="col-md-4 mt-2">
-              <div class="form-group">
-                <label class="form-label">GSTIN Number <span class="required">*</span></label>
-                <input type="text" class="form-control" id="user_gstin_number" name="user_gstin_number"
-                  placeholder="Enter GSTIN Number" required>
-              </div>
-            </div>
-
-            <div class="col-md-4 mt-2">
-              <div class="form-group">
-                <label class="form-label">Profile Picture <span class="required">*</span></label>
-                <input type="file" class="form-control" id="user_profile" name="user_profile"
-                  placeholder="Enter Confirm Password" required>
-              </div>
-            </div>
-
-            <div class="col-md-4 mt-2">
-              <div class="form-group">
-                <label class="form-label">Role <span class="required">*</span></label>
-                <input type="text" class="form-control" id="user_role" name="user_role" placeholder="Enter Password"
-                  required value="Vendor" disabled>
-              </div>
-            </div>
-
           </div>
-
-
+          <div class="row mt-3">
+             <div class="col-md-4">
+              <label class="form-label">Company Name</label>
+              <input type="text" class="form-control" id="user_company_name" name="user_company_name" value="{{vendor.user_company_name}}">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">PAN Number</label>
+              <input type="text" class="form-control" id="user_pan_number" name="user_pan_number" value="{{vendor.user_pan_number}}">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">GSTIN Number</label>
+              <input type="text" class="form-control" id="user_gstin_number" name="user_gstin_number" value="{{vendor.user_gstin_number}}">
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-md-6">
+              <label class="form-label">Password <span class="required">*</span></label>
+              <input type="password" class="form-control" id="user_password" name="user_password" value="{{vendor.user_password}}" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Confirm Password <span class="required">*</span></label>
+              <input type="password" class="form-control" id="user_com_password" value="{{vendor.user_password}}" required>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-md-6">
+              <label class="form-label">Profile Picture {% if not vendor.id %}<span class="required">*</span>{% endif %}</label>
+              <input type="file" class="form-control" id="user_profile">
+              {% if vendor.user_profile %}
+              <small class="text-success">Current: <a href="{{vendor.user_profile.url}}" target="_blank">View File</a></small>
+              {% endif %}
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Role</label>
+              <input type="text" class="form-control" id="user_role" value="Vendor" disabled>
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="form-section">
-        <div class="section-header">
-          <i class="fas fa-map-signs"></i>
-          Operational Areas Details
-        </div>
+        <div class="section-header"><i class="fas fa-map-signs"></i> Operational Areas Details</div>
         <div class="section-body">
-
           <div class="row">
-              <div class="col-md-12 mt-2">
-                <div class="form-group">
-                  <label class="form-label">Operational Areas <span class="required">*</span></label>
-                  <select class="form-control" id="user_operational_scope" name="user_operational_scope" onchange="handleScopeChange()">
-                    <option value="all" selected>All Over India</option>
-                    <option value="other">Other (Select Specific Regions)</option>
-                  </select>
+            <div class="col-md-12">
+              <label class="form-label">Scope</label>
+              <select class="form-control" id="user_operational_scope" onchange="handleScopeChange()">
+                <option value="all" {% if vendor.user_operational_scope == 'all' or not vendor.id %}selected{% endif %}>All Over India</option>
+                <option value="other" {% if vendor.user_operational_scope == 'other' %}selected{% endif %}>Other (Select Specific Regions)</option>
+              </select>
+            </div>
+            <div class="col-md-12 mt-3" id="state_selection_container" style="display: none;">
+                <div class="d-flex justify-content-between mb-2">
+                    <label><strong>Select States</strong></label>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="toggleAllBoxes()">Toggle All</button>
                 </div>
-              </div>
-
-              <div class="col-md-12 mt-3" id="state_selection_container" style="display: none;">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                  <label class="form-label mb-0"><strong>Select Applicable States & Union Territories</strong></label>
-                  <button type="button" class="btn btn-sm btn-outline-secondary" id="toggle_all_btn" onclick="toggleAllBoxes()">Select All</button>
+                <div class="card p-3" style="max-height: 300px; overflow-y: auto;">
+                    <div class="row" id="region_list_row"></div>
                 </div>
-                
-                <div class="card p-3 shadow-sm" style="max-height: 350px; overflow-y: auto; border: 1px solid #ced4da; background-color: #fdfdfd;">
-                  <div class="row" id="region_list_row">
-                    </div>
-                </div>
-                <small class="text-muted mt-1">Check the states where your services are operational.</small>
-              </div>
+            </div>
           </div>
-
-
         </div>
       </div>
 
-      <div class="form-footer">
-        <button type="reset" class="btn-reset">
-          <i class="fas fa-redo"></i> Reset
-        </button>
-        <button type="button" class="btn-submit" onclick="Register_Vendor(this)">
-          <i class="fas fa-add"></i> Register Vendor
+      <div class="text-end">
+        <button type="button" class="btn-submit" onclick="Update_Vendor(this)">
+          <i class="fas fa-save"></i> Update Vendor
         </button>
       </div>
     </form>
   </div>
 </div>
-</div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-<script>
-  window.onload = function () {
-    if (CKEDITOR.instances.resale_agricultural_desc) {
-      CKEDITOR.instances.resale_agricultural_desc.destroy();
-    }
-    CKEDITOR.replace('resale_agricultural_desc');
-  };
-</script>
-
-<script>
-  // Complete list of 28 States + 8 Union Territories
-  const indiaRegions = [
-    "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal",
-    "Andaman and Nicobar Islands", "Chandigarh", "Dadra and Nagar Haveli and Daman and Diu", "Lakshadweep", "Delhi", "Puducherry", "Ladakh", "Jammu and Kashmir"
-  ];
-
-  function populateRegions() {
-    const container = document.getElementById('region_list_row');
-    // Sorting alphabetically for better UX
-    indiaRegions.sort().forEach(region => {
-      const id = region.replace(/\s+/g, '-').toLowerCase();
-      const col = document.createElement('div');
-      col.className = 'col-md-4 mb-2'; 
-      col.innerHTML = `
-        <div class="form-check custom-checkbox">
-          <input class="form-check-input region-checkbox" type="checkbox" value="${region}" id="check_${id}" name="selected_regions[]">
-          <label class="form-check-label" for="check_${id}" style="font-size: 0.9rem; cursor: pointer; user-select: none;">${region}</label>
-        </div>
-      `;
-      container.appendChild(col);
-    });
-  }
-
-  function handleScopeChange() {
-    const scope = document.getElementById('user_operational_scope').value;
-    const container = document.getElementById('state_selection_container');
-    const checkboxes = document.querySelectorAll('.region-checkbox');
-    const toggleBtn = document.getElementById('toggle_all_btn');
-
-    if (scope === 'other') {
-      container.style.display = 'block';
-      // Default to unchecked so they can pick
-      checkboxes.forEach(cb => cb.checked = false);
-      toggleBtn.innerText = "Select All";
-    } else {
-      container.style.display = 'none';
-      // Automatically check everything for "All Over India"
-      checkboxes.forEach(cb => cb.checked = true);
-    }
-  }
-
-  function toggleAllBoxes() {
-    const checkboxes = document.querySelectorAll('.region-checkbox');
-    const toggleBtn = document.getElementById('toggle_all_btn');
-    const allChecked = Array.from(checkboxes).every(cb => cb.checked);
-
-    checkboxes.forEach(cb => cb.checked = !allChecked);
-    toggleBtn.innerText = allChecked ? "Select All" : "Deselect All";
-  }
-
-  // Initialize on page load
-  document.addEventListener('DOMContentLoaded', () => {
-    populateRegions();
-    handleScopeChange();
-  });
-</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script>
 
-  $("#Teams").addClass("active");
+    $("#Teams").addClass("active");
 
   {% comment %} Validations for check name Validations {% endcomment %}
 
@@ -1129,7 +982,7 @@
     this.value = this.value.replace(/\D/g, "").slice(0, 10);
   });
 
-  // Sidebar Toggle for Desktop and Mobile
+    // Sidebar Toggle for Desktop and Mobile
   function toggleSidebar() {
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('sidebarOverlay');
@@ -1181,131 +1034,51 @@
   }
 
 
+  // Data passed from Django
+  const vendorId = "{{ vendor.id|default:'' }}";
+  const savedRegions = "{{ vendor.selected_regions|safe }}".split(',').map(s => s.trim());
+  
+  const indiaRegions = [
+    "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal",
+    "Andaman and Nicobar Islands", "Chandigarh", "Dadra and Nagar Haveli and Daman and Diu", "Lakshadweep", "Delhi", "Puducherry", "Ladakh", "Jammu and Kashmir"
+  ];
 
-  // Filter buttons
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', function () {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      this.classList.add('active');
-    });
-  });
-
-  // Close sidebar on window resize
-  window.addEventListener('resize', function () {
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.getElementById('sidebarOverlay');
-    const windowWidth = window.innerWidth;
-
-    if (windowWidth > 768) {
-      sidebar.classList.remove('active');
-      overlay.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-  });
-
-  // Handle clicks on submenu links and regular menu links
-  document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.submenu-link').forEach(link => {
-      link.addEventListener('click', function (e) {
-        if (window.innerWidth <= 768) {
-          setTimeout(() => {
-            closeSidebar();
-          }, 200);
-        }
-      });
-    });
-
-    document.querySelectorAll('.menu-link').forEach(link => {
-      if (!link.hasAttribute('onclick')) {
-        link.addEventListener('click', function (e) {
-          if (window.innerWidth <= 768) {
-            setTimeout(() => {
-              closeSidebar();
-            }, 200);
-          }
-        });
-      }
-    });
-  });
-
-  // Prevent body scroll when sidebar is open on mobile
-  document.getElementById('sidebar').addEventListener('transitionend', function () {
-    if (this.classList.contains('active')) {
-      document.body.style.overflow = 'hidden';
-    }
-  });
-
-  // Image Upload Functionality
-  const uploadArea = document.getElementById('uploadArea');
-  const imageInput = document.getElementById('imageInput');
-  const imagePreview = document.getElementById('imagePreview');
-  let selectedFiles = [];
-
-  uploadArea.addEventListener('click', () => imageInput.click());
-
-  uploadArea.addEventListener('dragover', (e) => {
-    e.preventDefault();
-    uploadArea.classList.add('dragover');
-  });
-
-  uploadArea.addEventListener('dragleave', () => {
-    uploadArea.classList.remove('dragover');
-  });
-
-  uploadArea.addEventListener('drop', (e) => {
-    e.preventDefault();
-    uploadArea.classList.remove('dragover');
-    handleFiles(e.dataTransfer.files);
-  });
-
-  imageInput.addEventListener('change', (e) => {
-    handleFiles(e.target.files);
-  });
-
-  function handleFiles(files) {
-    const fileArray = Array.from(files);
-    if (selectedFiles.length + fileArray.length > 10) {
-      alert('Maximum 10 images allowed');
-      return;
-    }
-
-    fileArray.forEach(file => {
-      if (file.type.startsWith('image/')) {
-        selectedFiles.push(file);
-        displayImage(file);
-      }
+  function populateRegions() {
+    const container = document.getElementById('region_list_row');
+    indiaRegions.sort().forEach(region => {
+      const id = region.replace(/\s+/g, '-').toLowerCase();
+      const isChecked = savedRegions.includes(region) ? "checked" : "";
+      const col = `<div class="col-md-4 mb-2">
+        <div class="form-check">
+          <input class="form-check-input region-checkbox" type="checkbox" value="${region}" id="check_${id}" ${isChecked}>
+          <label class="form-check-label" for="check_${id}" style="cursor:pointer">${region}</label>
+        </div>
+      </div>`;
+      $(container).append(col);
     });
   }
 
-  function displayImage(file) {
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const div = document.createElement('div');
-      div.className = 'preview-item';
-      div.innerHTML = `
-                    <img src="${e.target.result}" alt="Preview">
-                    <button type="button" class="remove-image" onclick="removeImage(this, '${file.name}')">
-                        <i class="fas fa-times"></i>
-                    </button>
-                `;
-      imagePreview.appendChild(div);
-    };
-    reader.readAsDataURL(file);
+  function handleScopeChange() {
+    const scope = $("#user_operational_scope").val();
+    if (scope === 'other') {
+      $("#state_selection_container").fadeIn();
+    } else {
+      $("#state_selection_container").fadeOut();
+      $(".region-checkbox").prop('checked', true); // Auto-check for "All Over India"
+    }
   }
 
-  function removeImage(button, fileName) {
-    selectedFiles = selectedFiles.filter(file => file.name !== fileName);
-    button.parentElement.remove();
+  function toggleAllBoxes() {
+    const anyUnchecked = $(".region-checkbox:not(:checked)").length > 0;
+    $(".region-checkbox").prop('checked', anyUnchecked);
   }
 
-</script>
-
-<script>
-
-  {% comment %} Ajax and Jquery to add vendors {% endcomment %}
 
 
-  function Register_Vendor(_this) {
+  {% comment %} Ajax and Jquery to update vendors {% endcomment %}
+
+
+  function Update_Vendor(_this) {
     var user_name = $("#user_name").val();
     var user_email = $("#user_email").val();
     var user_phone = $("#user_phone").val();
@@ -1354,9 +1127,6 @@
       alert("Passwords do not match");
     }
 
-    else if (user_profile.length == 0) {
-      alert("Please Upload Profile Picture");
-    }
 
     else if (user_service_type == "SelectService") {
       alert("Please Select Service Type");
@@ -1372,7 +1142,7 @@
     }
     else {
       var fd = new FormData();
-      fd.append('id', '');
+      fd.append('id', '{{vendor.id}}');
       fd.append('user_name', user_name);
       fd.append('user_email', user_email);
       fd.append('user_phone', user_phone);
@@ -1408,7 +1178,7 @@
       }
 
       $(_this).prop("disabled", true);
-      _this.innerHTML = `<span class="spinner-border spinner-border-sm" role="status"></span> Adding...`;
+      _this.innerHTML = `<span class="spinner-border spinner-border-sm" role="status"></span> Updating...`;
 
       $.ajax({
         method: "POST",
@@ -1421,7 +1191,7 @@
         mode: 'same-origin',
         success: function (response) {
           $(_this).prop("disabled", false);
-          _this.innerHTML = `<i class="fas fa-add mr-1"></i> Register Vendor`;
+          _this.innerHTML = `<i class="fas fa-save mr-1"></i> Update Vendor`;
 
           if (response.status == '1') {
             swal({
@@ -1447,8 +1217,9 @@
       });
     }
   }
+
+  $(document).ready(() => {
+    populateRegions();
+    handleScopeChange();
+  });
 </script>
-
-</body>
-
-</html>

@@ -13,6 +13,7 @@ from datetime import datetime
 from openpyxl import load_workbook
 from django.template.loader import render_to_string
 import traceback
+import json
 
 # Create your views here.
 
@@ -240,7 +241,6 @@ def Ameneties_Ajax(request):
         data.pop("id", None)         
         data['amenties_date'] = datetime.today()
         data['amenties_time'] = datetime.now()
-        print("-------------------------------")
         Ameneties_Details.objects.create(**data)
         return JsonResponse({"status":"1", "msg" : f"Ameneties Details added successfully"})
 
@@ -338,6 +338,99 @@ def Update_Ameneties(request,id):
         return render(request,'home_page/Adminlogin.html')
 
 ########### Views end for update ameneties data #####################
+
+
+########## Views start for vendor services list ########################
+
+def Services_List(request):
+    session_id = request.session.get('Admin_id')
+    if session_id:
+        admin_obj = Admin_Login.objects.get(id=session_id)
+
+        services_obj = Service_Type_Details.objects.all().order_by('-id')
+        services_obj_count = Service_Type_Details.objects.all().count()
+
+        rendered = render_to_string("admin_user/render_to_string/R_Services/r_t_s_services.html",{'services_obj':services_obj,'services_obj_count':services_obj_count})
+
+        context = {'admin_obj':admin_obj,'services_list':rendered}
+
+        return render(request,"admin_user/Service_Type/service_type_list.html",context)
+    else:
+        return render(request,'home_page/Adminlogin.html')
+
+############## Views end for vendor services list ###########################
+
+
+########## Views start for ajax for add/update service types ###################
+
+@csrf_exempt
+def Services_Ajax(request):
+    data = request.POST.dict()
+
+    if data.get('id') == "":
+        data.pop("id", None)         
+        data['service_upload_date'] = datetime.today()
+        data['service_upload_time'] = datetime.now()
+        Service_Type_Details.objects.create(**data)
+        return JsonResponse({"status":"1", "msg" : f"Service Type Details added successfully"})
+
+    # UPDATE MODE
+    # else:
+    #     try:
+    #         ameneties = Ameneties_Details.objects.get(id=data['id'])
+    #     except Ameneties_Details.DoesNotExist:
+    #         return JsonResponse({'status': '0', 'msg': 'Ameneties Details not found'})
+
+
+    #     # Update withdraw fields (unchanged)
+    #     for key, value in data.items():
+    #         setattr(ameneties, key, value)
+
+    #     ameneties.save()
+    #     return JsonResponse({"status":"1", "msg" : f"Ameneties Details updated successfully"})
+
+########## Views end for ajax for add/update service types ########################
+
+
+############ Views start for upload service type details via excel ###################
+
+@csrf_exempt
+def Services_Data(request):
+    if request.method == 'POST':
+
+        excel_file = request.FILES.get('services_file')
+
+        wb = load_workbook(excel_file)
+        sheet = wb.active
+
+        for row in sheet.iter_rows(min_row=2, values_only=True):
+
+            service_id = row[0]
+            service_name = row[1]
+
+            if not service_id or not service_id:
+                continue
+
+            Service_Type_Details.objects.update_or_create(
+                service_id=service_id,  # condition to check existing
+                defaults={
+                    "service_name": service_name,
+                    "service_upload_date": datetime.today(),
+                    "service_upload_time": datetime.now()
+                }
+            )
+
+        return JsonResponse({
+            "status": "1",
+            "msg": "Data Uploaded / Updated Successfully..."
+        })
+
+    return JsonResponse({
+        "status": "0",
+        "msg": "Something went wrong..."
+    })
+
+############ Views end for upload service type details via excel ######################
 
 
 ############  Views start for rental property list ########################
@@ -641,6 +734,20 @@ def Update_RM(request,id):
 @csrf_exempt
 def User_Ajax(request):
     data = request.POST.dict()
+
+    # --- HANDLE NEW FIELDS ---
+    # 1. Handle Checkboxes: .dict() fails on lists, so we use .getlist
+    user_operational_scope = data.get('user_operational_scope')
+    if user_operational_scope == 'all':
+        data['selected_regions'] = "All Over India"
+    else:
+        # We sent it as a JSON string from AJAX
+        regions_raw = request.POST.get('selected_regions')
+        try:
+            regions_list = json.loads(regions_raw)
+            data['selected_regions'] = ", ".join(regions_list)
+        except (json.JSONDecodeError, TypeError):
+            data['selected_regions'] = ""
 
     if data.get('id') == "":
         data.pop("id", None)
@@ -1364,7 +1471,14 @@ def Vendor_List(request):
     session_id = request.session.get('Admin_id')
     if session_id:
         admin_obj = Admin_Login.objects.get(id=session_id)
-        context = {'admin_obj':admin_obj}
+
+        vendor_obj = User_Details.objects.filter(user_role="Vendor").order_by('-id')
+        vendor_obj_count = User_Details.objects.filter(user_role="Vendor").count()
+
+        rendered = render_to_string("admin_user/render_to_string/R_Vendor/r_t_s_vendor.html",{'vendor_obj':vendor_obj,'vendor_obj_count':vendor_obj_count,'Role':'Vendor'})
+
+        context = {'admin_obj':admin_obj,'vendors_list':rendered}
+
         return render(request,'admin_user/Vendor/vendor_list.html',context)
     else:
         return render(request,'home_page/Adminlogin.html')
@@ -1378,12 +1492,129 @@ def Add_Vendor(request):
     session_id = request.session.get('Admin_id')
     if session_id:
         admin_obj = Admin_Login.objects.get(id=session_id)
-        context = {'admin_obj':admin_obj}
+
+        services_obj = Service_Type_Details.objects.all()
+
+        context = {'admin_obj':admin_obj,'services_obj':services_obj}
         return render(request,'admin_user/Vendor/add_vendor.html',context)
     else:
         return render(request,'home_page/Adminlogin.html')
 
 ############### Views end for add vendor #######################
+
+
+############# Views start for upload vendor data functionality via excel ###############
+
+@csrf_exempt
+def Vendor_Data(request):
+    if request.method == 'POST':
+        excel_file = request.FILES.get('vendor_file')
+
+        if not excel_file:
+            return JsonResponse({"status": "0", "msg": "Excel file not found"})
+
+        wb = load_workbook(excel_file)
+        sheet = wb.active
+
+        # We start from row 2 to skip headers
+        for row in sheet.iter_rows(min_row=2, values_only=True):
+            # Basic Fields
+            user_name = row[0]
+            user_email = row[1]
+            user_phone = row[2]
+            user_state = row[3]
+            user_city = row[4]
+            user_address = row[5]
+            user_password = row[6]
+            # Confirm Password is row[7], we skip it
+            
+            # New Vendor Fields (Matching the Excel I generated)
+            user_service_type = row[8]
+            user_company_name = row[9]
+            user_pan_number = row[10]
+            user_gstin_number = row[11]
+            user_role = row[12]
+            operational_areas = row[13]
+
+            # Cleaning numeric strings (Phone/Password often come as floats from Excel)
+            if user_password is not None:
+                user_password = str(user_password).split(".")[0]
+
+            if user_phone is not None:
+                user_phone = str(user_phone).split(".")[0]
+
+            if not user_phone:
+                continue
+
+            # Update or Create Logic
+            User_Details.objects.update_or_create(
+                user_phone=user_phone, 
+                user_role=user_role,
+                defaults={
+                    "user_name": user_name,
+                    "user_email": user_email,
+                    "user_state": user_state,
+                    "user_city": user_city,
+                    "user_address": user_address,
+                    "user_password": user_password,
+                    "user_service_type": user_service_type,
+                    "user_company_name": user_company_name,
+                    "user_pan_number": user_pan_number,
+                    "user_gstin_number": user_gstin_number,
+                    "user_operational_scope": 'all' if operational_areas == 'All Over India' else 'other',
+                    "selected_regions": operational_areas,
+                    "user_register_date": datetime.today(),
+                    "user_register_time": datetime.now()
+                }
+            )
+
+        return JsonResponse({
+            "status": "1",
+            "msg": "Vendor Data Uploaded / Updated Successfully..."
+        })
+
+    return JsonResponse({"status": "0", "msg": "Invalid Request"})
+
+
+############ Views end for upload vendor data functionality via excel #################
+
+
+########## Views start for delete vendor ##########################
+
+@csrf_exempt
+def Delete_Vendor(request):
+    try:
+        try:
+            vendor_id = request.POST.get('vendor_id')
+            User_Details.objects.filter(id=vendor_id).delete()
+            return JsonResponse({'status':'1', 'msg':'Vendor details deleted successfully...'}) 
+        except:
+            traceback.print_exc()
+            return JsonResponse({"status":"0", "msg" : "Something went wrong..."})
+    except:
+        traceback.print_exc()
+        return JsonResponse({"status":"0", "msg" : "Something went wrong..."})
+
+############# Views end for delete vendor ###########################
+
+
+############## Views start for update vendor #######################
+
+def Update_Vendor(request,id):
+    session_id = request.session.get('Admin_id')
+    if session_id:
+        admin_obj = Admin_Login.objects.get(id=session_id)
+
+        services_obj = Service_Type_Details.objects.all()
+        vendor = User_Details.objects.get(id=id)
+
+        context = {'admin_obj':admin_obj,'services_obj':services_obj,'vendor':vendor}
+
+        return render(request,'admin_user/Vendor/update_vendor.html',context)
+    else:
+        return render(request,'home_page/Adminlogin.html')
+
+######### Views end for update vendor ##########################
 
 
 
