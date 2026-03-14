@@ -15,3 +15,13 @@ admin.site.register(Ameneties_Details)
 ########### Register User Details Table/Modal ###############
 
 admin.site.register(User_Details)
+
+
+########### Register  RentalResidentialProperty Table/Modal ###############
+
+admin.site.register(RentalResidentialProperty)
+
+
+########### Register  CommercialRentalProperty Table/Modal ###############
+
+admin.site.register(CommercialRentalProperty)
