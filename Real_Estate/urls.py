@@ -31,7 +31,14 @@ urlpatterns = [
     path('CRM_Panel/',include('CRM_Panel.urls')),
     path('Agent_Dashboard/',include('Agent_Dashboard.urls')),
     path('RM_Dashboard/',include('RM_Dashboard.urls')),
+<<<<<<< HEAD
    # path('Vendors/',include('Vendors.urls')),
+=======
+    path('Vendors/',include('Vendors.urls')),
+    path('Tenant_Panel/',include('Tenant_App.urls')),
+    path('Buyer_Panel/',include('Buyer_App.urls')),
+    path('Agency_Panel/',include('Agency_App.urls')),
+>>>>>>> 95e668b80da7d62f7dcfe9ccd07b71b911d10bda
     path('seo/',include('seo.urls')),
     path('captcha/', include('captcha.urls')),
 #path('api/', include(finance_router.urls)),
