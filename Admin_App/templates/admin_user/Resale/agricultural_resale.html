@@ -862,11 +862,27 @@
         <div class="section-body">
           <div class="row">
 
+
+
+
             <div class="form-group">
               <label class="form-label">Property Title <span class="required">*</span></label>
               <input type="text" class="form-control" id="agri_title" placeholder="e.g., Fertile Agricultural Land"
                 required>
             </div>
+
+           <div class="col-md-4 mt-2">
+  <div class="form-group">
+    <label class="form-label"> Property Type <span class="required">*</span></label>
+    <select class="form-select" id="agriculture_property_type" name="agriculture_property_type" required>
+      <option value="">Select</option>
+    
+      <option value="agriculture_land">Agriculture Land</option>
+      <option value="farm_land">Farm Land</option>
+      <option value="orchard_land">Orchard Land</option>
+    </select>
+  </div>
+</div>
 
             <div class="col-md-4 mt-2">
               <div class="form-group">
@@ -965,12 +981,26 @@
         </div>
         <div class="section-body">
           <div class="row">
-            <div class="form-row">
+            <div class="col-md-4 mt-2">
               <div class="form-group">
                 <label class="form-label">Expected Price (₹) <span class="required">*</span></label>
                 <input type="number" class="form-control" id="agri_price" placeholder="e.g., 5000000" required>
               </div>
             </div>
+
+               <div class="col-md-4 mt-2">
+    <div class="form-group">
+        <label class="form-label">
+            <i class="fas fa-handshake"></i>
+            Brokerage
+        </label>
+        <select class="form-select" name="brokerage" id="brokerageSelect">
+            <option value="">Select Option</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+    </div>
+</div>
           </div>
 
         </div>

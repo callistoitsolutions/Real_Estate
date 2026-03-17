@@ -56,7 +56,7 @@ INSTALLED_APPS = [
    
     'captcha',
     'Main_App',
-    'Vendors',
+    
    
     'rest_framework'
 ]

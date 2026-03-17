@@ -337,8 +337,46 @@ urlpatterns = [
     path('Admin_App/pg/download-template/',  views.download_pg_template,  name='download_pg_template'),
     
     path('Admin_App/pg/delete/<int:pk>/', views.pg_delete, name='pg_delete'),
-
+    
+    
+      ####################Start Urls Section For Resindential Resale Property #######################################
+    
+    
+   
+    path('resale_residential_add',  views.resale_residential_add,    name='resale_residential_add'),
+  #  path('resale_residential_list',            views.resale_residential_list,   name='resale_residential_list'),
+    path('resale_residential_view/<int:pk>/',   views.resale_residential_view,   name='resale_residential_view'),
+    path('resale_residential_delete/<int:pk>/', views.resale_residential_delete, name='resale_residential_delete'),
+    
+    
+    # Excel Import & Sample Download
+    path('resale/import-excel/',     views.resale_residential_import_excel,  name='resale_residential_import_excel'),
+    path('resale/sample-excel/',     views.resale_residential_sample_excel,  name='resale_residential_sample_excel'),
+    
+    
+    ####################End Urls Section For Resindential Resale Property #######################################
+    
+    
+    
+     path('add_commercial_property', views.add_commercial_property, name='add_commercial_property'),
+     
+    
+# ✅ CORRECT — add trailing slash
+    # path('commercial/import/', views.import_commercial_data, name='import_commercial_data'),
+     path('commercial/import/', views.import_commercial_data, name='import_commercial_data'),
+     path('commercial/import/test/', views.import_test_view,            name='import_test_view'),       
+     #path('commercial/list/',                   views.commercial_list_view,              name='commercial_list'),
+     path('commercial_toggle',                 views.toggle_commercial_property,         name='toggle_commercial_property'),
+     path('commercial_delete',                 views.delete_commercial_property,         name='delete_commercial_property'),
+     path('commercial_import',                 views.import_commercial_data,             name='import_commercial_data'),
+     path('commercial_sample_excel',           views.download_commercial_sample_excel,   name='download_commercial_sample_excel'),
+    # path('commercial/view/<int:prop_id>/',     views.view_commercial_property,           name='view_commercial_property'),
+    # path('commercial/edit/<int:prop_id>/',     views.edit_commercial_property,           name='edit_commercial_property'),
+# ]
+    
 ]
+
+
 
 
 

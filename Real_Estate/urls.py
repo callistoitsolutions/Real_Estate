@@ -31,7 +31,7 @@ urlpatterns = [
     path('CRM_Panel/',include('CRM_Panel.urls')),
     path('Agent_Dashboard/',include('Agent_Dashboard.urls')),
     path('RM_Dashboard/',include('RM_Dashboard.urls')),
-    path('Vendors/',include('Vendors.urls')),
+   # path('Vendors/',include('Vendors.urls')),
     path('seo/',include('seo.urls')),
     path('captcha/', include('captcha.urls')),
 #path('api/', include(finance_router.urls)),

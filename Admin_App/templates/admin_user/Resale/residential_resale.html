@@ -851,724 +851,714 @@
             </button>
         </div>
 
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-
-            <div class="form-section">
-                <div class="section-header">
-                    <i class="fas fa-info-circle"></i>
-                    Basic Information
-                </div>
-                <div class="section-body">
-                    <div class="row">
-
-                        <div class="form-group mt-2">
-                            <label class="form-label">Property Title <span class="required">*</span></label>
-                            <input type="text" class="form-control" id="res_title"
-                                placeholder="e.g., Spacious 3BHK Apartment in Prime Location" required>
-                        </div>
-
-                        <div class="col-md-6 mt-2">
-                            <div class="form-group">
-                                <label class="form-label">Property Type <span class="required">*</span></label>
-                                <select class="form-select" id="res_property_type" required>
-                                    <option value="">Select property type</option>
-                                    <option value="apartment">Apartment</option>
-                                    <option value="house">Independent House/Villa</option>
-                                    <option value="floor">Independent Floor</option>
-                                    <option value="plot">Plot/Land</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 mt-2">
-                            <div class="form-group">
-                                <label class="form-label">Zone <span class="required">*</span></label>
-                                <select class="form-select" id="res_zone" required>
-                                    <option value="">Select zone</option>
-                                    <option value="north">North Zone</option>
-                                    <option value="south">South Zone</option>
-                                    <option value="east">East Zone</option>
-                                    <option value="west">West Zone</option>
-                                    <option value="central">Central Zone</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6 mt-2">
-                            <div class="form-group">
-                                <label class="form-label">Society Type <span class="required">*</span></label>
-                                <select class="form-select" id="res_society_type" required>
-                                    <option value="">Select society type</option>
-                                    <option value="gated">Gated Community</option>
-                                    <option value="open">Open Society</option>
-                                    <option value="cooperative">Co-operative Housing</option>
-                                    <option value="apartment">Apartment Complex</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mt-2">
-                            <div class="form-group">
-                                <label class="form-label">Water Type <span class="required">*</span></label>
-                                <select class="form-select" id="res_water_type" required>
-                                    <option value="">Select water type</option>
-                                    <option value="municipal">Municipal Corporation</option>
-                                    <option value="borewell">Borewell</option>
-                                    <option value="both">Both</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6 mt-2">
-                            <div class="form-group">
-                                <label class="form-label">Furnishing Type <span class="required">*</span></label>
-                                <select class="form-select" id="res_furnishing" required>
-                                    <option value="">Select furnishing</option>
-                                    <option value="unfurnished">Unfurnished</option>
-                                    <option value="semi">Semi-Furnished</option>
-                                    <option value="fully">Fully Furnished</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mt-2">
-                            <div class="form-group">
-                                <label class="form-label">Age of Property <span class="required">*</span></label>
-                                <select class="form-select" id="res_age" required>
-                                    <option value="">Select age</option>
-                                    <option value="0-1">0-1 Year</option>
-                                    <option value="1-3">1-3 Years</option>
-                                    <option value="3-5">3-5 Years</option>
-                                    <option value="5-10">5-10 Years</option>
-                                    <option value="10+">10+ Years</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 mt-2">
-                            <div class="form-group">
-                                <label class="form-label">
-                                    <i class="fas fa-compass"></i>
-                                    Facing Direction <span class="required-star" style="color:red;">*</span>
-                                </label>
-                                <select class="form-select" name="facing">
-                                    <option value="">Select Direction</option>
-                                    <option value="North">North</option>
-                                    <option value="South">South</option>
-                                    <option value="East">East</option>
-                                    <option value="West">West</option>
-                                    <option value="North-East">North-East</option>
-                                    <option value="North-West">North-West</option>
-                                    <option value="South-East">South-East</option>
-                                    <option value="South-West">South-West</option>
-                                </select>
-                            </div>
-                        </div>
+      {% load static %}
 
 
-                           <div class="col-md-6">
-                <div class="form-group">
-                  <label class="form-label">Available From</label>
-                  <input type="date" class="form-control">
-                </div>
-              </div>
+      <form method="POST" action="{% url 'resale_residential_add' %}" enctype="multipart/form-data">
+  
+    {% csrf_token %}
 
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-section">
-                <div class="section-header">
-                    <i class="fas fa-sliders"></i>
-                    Property Configuration
-                </div>
-                <div class="section-body">
-                    <div class="row">
-                        <div class="col-md-4 mt-2">
-                            <div class="form-group">
-                                <label class="form-label">BHK <span class="required">*</span></label>
-                                <select class="form-select" id="res_bhk" required>
-                                    <option value="">Select</option>
-                                    <option value="1rk">1 RK</option>
-                                    <option value="1bhk">1 BHK</option>
-                                    <option value="2bhk">2 BHK</option>
-                                    <option value="3bhk">3 BHK</option>
-                                    <option value="4bhk">4 BHK</option>
-                                    <option value="5+bhk">5+ BHK</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mt-2">
-                            <div class="form-group">
-                                <label class="form-label">Bathrooms <span class="required">*</span></label>
-                                <input type="number" class="form-control" id="res_bathrooms" min="1" value="1" required>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mt-2">
-                            <div class="form-group">
-                                <label class="form-label">Balconies</label>
-                                <input type="number" class="form-control" id="res_balconies" min="0" value="1">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-4 mt-2">
-                            <div class="form-group">
-                                <label class="form-label">Covered Parking</label>
-                                <input type="number" class="form-control" id="res_covered_parking" min="0" value="0">
-                            </div>
-                        </div>
-                        <div class="col-md-4 mt-2">
-                            <div class="form-group">
-                                <label class="form-label">Open Parking</label>
-                                <input type="number" class="form-control" id="res_open_parking" min="0" value="0">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-section">
-                <div class="section-header">
-                    <i class="fas fa-ruler-combined"></i>
-                    Property Measurements
-                </div>
-                <div class="section-body">
-                    <div class="row">
-                        <div class="col-md-4 mt-2">
-                            <div class="form-group">
-                                <label class="form-label">Built-up Area (sq.ft) <span class="required">*</span></label>
-                                <input type="number" class="form-control" id="res_builtup_area" placeholder="e.g., 1200"
-                                    required>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mt-2">
-                            <div class="form-group">
-                                <label class="form-label">Carpet Area (sq.ft) <span class="required">*</span></label>
-                                <input type="number" class="form-control" id="res_carpet_area" placeholder="e.g., 950"
-                                    required>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mt-2">
-                            <div class="form-group">
-                                <label class="form-label">Plot Area (sq.ft)</label>
-                                <input type="number" class="form-control" id="res_plot_area" placeholder="Optional">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6 mt-2">
-                            <div class="form-group">
-                                <label class="form-label">Floor No. <span class="required">*</span></label>
-                                <input type="number" class="form-control" id="res_floor" placeholder="e.g., 3" required>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mt-2">
-                            <div class="form-group">
-                                <label class="form-label">Total Floors <span class="required">*</span></label>
-                                <input type="number" class="form-control" id="res_total_floors" placeholder="e.g., 10"
-                                    required>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-section">
-                <div class="section-header">
-                    <i class="fas fa-shield-halved"></i>
-                    Ownership & Legal Details
-                </div>
-                <div class="section-body">
-                    <div class="row">
-                        <div class="col-md-6 mt-2">
-
-                            <div class="form-group">
-                                <label class="form-label">Ownership Type <span class="required">*</span></label>
-                                <select class="form-select" id="res_ownership" required>
-                                    <option value="">Select</option>
-                                    <option value="freehold">Freehold</option>
-                                    <option value="leasehold">Leasehold</option>
-                                    <option value="cooperative">Co-operative</option>
-                                    <option value="poa">Power of Attorney</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mt-2">
-                            <div class="form-group">
-                                <label class="form-label">No. of Owners <span class="required">*</span></label>
-                                <select class="form-select" id="res_num_owners" required>
-                                    <option value="">Select</option>
-                                    <option value="1">Single Owner</option>
-                                    <option value="2">2 Owners</option>
-                                    <option value="3">3 Owners</option>
-                                    <option value="4+">4+ Owners</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12 mt-2">
-                            <div class="form-group">
-                                <label class="form-label">Loan on Property? <span class="required">*</span></label>
-                                <div class="radio-group">
-                                    <label class="radio-option">
-                                        <input type="radio" name="res_loan" value="no" required> No
-                                    </label>
-                                    <label class="radio-option">
-                                        <input type="radio" name="res_loan" value="yes"> Yes
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="conditional-section mt-2" id="res_loan_amount_section" style="display: none;">
-                            <div class="form-group">
-                                <label class="form-label">Loan Amount (₹)</label>
-                                <input type="number" class="form-control" id="res_loan_amount"
-                                    placeholder="e.g., 2000000">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12 mt-2">
-                            <div class="form-group">
-                                <label class="form-label">Existing Tenants? <span class="required">*</span></label>
-                                <div class="radio-group">
-                                    <label class="radio-option">
-                                        <input type="radio" name="res_tenants" value="no" required> No
-                                    </label>
-                                    <label class="radio-option">
-                                        <input type="radio" name="res_tenants" value="yes"> Yes
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="conditional-section mt-2" id="res_tenant_details_section" style="display: none;">
-                            <div class="form-group">
-                                <label class="form-label">Tenant Details</label>
-                                <textarea class="form-control" id="res_tenant_details"
-                                    placeholder="Tenant name, lease period, rent amount"></textarea>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12 mt-2">
-
-                            <div class="form-group">
-                                <label class="form-label">Any Legal Dispute? <span class="required">*</span></label>
-                                <div class="radio-group">
-                                    <label class="radio-option">
-                                        <input type="radio" name="res_dispute" value="no" required> No
-                                    </label>
-                                    <label class="radio-option">
-                                        <input type="radio" name="res_dispute" value="yes"> Yes
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="conditional-section mt-2" id="res_dispute_details_section" style="display: none;">
-                            <div class="form-group">
-                                <label class="form-label">Dispute Description</label>
-                                <textarea class="form-control" id="res_dispute_details"
-                                    placeholder="Describe the legal dispute"></textarea>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12 mt-2">
-
-                            <div class="form-group">
-                                <label class="form-label">Government Tax Dues? <span class="required">*</span></label>
-                                <div class="radio-group">
-                                    <label class="radio-option">
-                                        <input type="radio" name="res_tax_due" value="no" required> No - Tax Paid
-                                    </label>
-                                    <label class="radio-option">
-                                        <input type="radio" name="res_tax_due" value="yes"> Yes - Pending
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="conditional-section mt-2" id="res_tax_amount_section" style="display: none;">
-                            <div class="form-group">
-                                <label class="form-label">Pending Tax Amount (₹)</label>
-                                <input type="number" class="form-control" id="res_tax_amount" placeholder="e.g., 50000">
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="form-section">
-                <div class="section-header">
-                    <i class="fas fa-indian-rupee-sign"></i>
-                    Pricing Details
-                </div>
-                <div class="row">
-                    <div class="col-md-4 mt-2">
-                        <div class="form-group">
-                            <label class="form-label">Expected Price (₹) <span class="required">*</span></label>
-                            <input type="number" class="form-control" id="res_price" placeholder="e.g., 5000000"
-                                required>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mt-2">
-                        <div class="form-group">
-                            <label class="form-label">Price per Sq.ft (₹)</label>
-                            <input type="number" class="form-control" id="res_price_per_sqft"
-                                placeholder="Auto-calculated" readonly>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mt-2">
-                        <div class="form-group">
-                            <label class="form-label">Price Negotiable?</label>
-                            <select class="form-select" id="res_negotiable">
-                                <option value="yes">Yes</option>
-                                <option value="no">No - Fixed</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                   <div class="row">
-                  
-             
-                    <div class="col-md-4 mt-2">
-    <div class="form-group">
-        <label class="form-label">
-            <i class="fas fa-handshake"></i>
-            Brokerage
-        </label>
-        <select class="form-select" name="brokerage" id="brokerageSelect">
-            <option value="">Select Option</option>
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>
-        </select>
-    </div>
-</div>
-
-                    <div class="col-md-4 mt-2" id="brokerageSection" style="display:none;">
-                       
-
-                      
-    <div class="form-group">
-        <label class="form-label">
-            <i class="fas fa-percent"></i>
-            Brokerage Percentage
-        </label>
-
-        <select class="form-select" name="brokerage_percentage" id="brokeragePercentage">
-            <option value="">Select Brokerage</option>
-            <option value="1%">1%</option>
-            <option value="1.5%">1.5%</option>
-            <option value="2%">2%</option>
-            <option value="Negotiable">Negotiable</option>
-            <option value="Manual">Enter Manually</option>
-        </select>
-
-    </div>
-</div>
-                    
-                    <div class="col-md-4 mt-2" id="manualBrokerage" style="display:none;">
-                        
-                      
-    <div class="form-group">
-        <label class="form-label">
-            <i class="fas fa-edit"></i>
-            Enter Brokerage
-        </label>
-
-        <input type="text" class="form-control" name="manual_brokerage" placeholder="Enter Brokerage e.g. 2.5%">
-    </div>
-</div>
-                    </div>
-                
+    <!-- ═══════════════════════════════════════════
+         SECTION 1: Basic Information
+    ════════════════════════════════════════════ -->
+    <div class="form-section">
+        <div class="section-header">
+            <i class="fas fa-info-circle"></i>
+            Basic Information
+        </div>
+        <div class="section-body">
+            <div class="row">
 
                 <div class="form-group mt-2">
-                    <label class="form-label">Property Description <span class="required">*</span></label>
-                    <textarea class="form-control" id="resale_residential_desc" name="resale_residential_desc"
-                        placeholder="Describe property highlights, location benefits, nearby amenities..."
-                        required></textarea>
+                    <label class="form-label">Property Title <span class="required">*</span></label>
+                    <input type="text" class="form-control" id="res_title" name="title"
+                        placeholder="e.g., Spacious 3BHK Apartment in Prime Location" required>
                 </div>
 
-                <br>
-                <div class="form-section">
-                    <div class="section-header">
-                        <i class="fas fa-images"></i>
-                        Property Images
+                <div class="col-md-6 mt-2">
+                    <div class="form-group">
+                        <label class="form-label">Property Type <span class="required">*</span></label>
+                        <select class="form-select" id="res_property_type" name="property_type" required>
+                            <option value="">Select property type</option>
+                            <option value="apartment">Apartment</option>
+                            <option value="house">Independent House/Villa</option>
+                            <option value="floor">Independent Floor</option>
+                            <option value="plot">Plot/Land</option>
+                        </select>
                     </div>
-                    <div class="image-upload-area" id="uploadArea">
-                        <input type="file" id="imageInput" name="property_images[]" multiple accept="image/*"
-                            style="display: none;">
-                        <div class="upload-icon">
-                            <i class="fas fa-cloud-upload-alt"></i>
-                        </div>
-                        <div class="upload-text">Click or Drag Images Here</div>
-                        <div class="upload-subtext">Upload up to 10 high-quality images (JPG, PNG)</div>
-                    </div>
-                    <div class="image-preview" id="imagePreview"></div>
-
                 </div>
 
-                <div class="row mt-2">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="form-label">
-                                <i class="fa-solid fa-camera"></i> Upload Floor Plan <span class="required">*</span>
-                            </label>
-
-                            <input type="file" name="property_images" accept="image/*">
-                        </div>
+                <div class="col-md-6 mt-2">
+                    <div class="form-group">
+                        <label class="form-label">Zone <span class="required">*</span></label>
+                        <select class="form-select" id="res_zone" name="zone" required>
+                            <option value="">Select zone</option>
+                            <option value="north">North Zone</option>
+                            <option value="south">South Zone</option>
+                            <option value="east">East Zone</option>
+                            <option value="west">West Zone</option>
+                            <option value="central">Central Zone</option>
+                        </select>
                     </div>
-
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="form-label">
-                                <i class="fa-solid fa-camera"></i> Upload Video on Social Media <span
-                                    class="required">*</span>
-                            </label>
-
-                            <input type="file" name="property_images" accept="video/*">
-                        </div>
-                    </div>
-
                 </div>
-                <br>
+            </div>
 
-
-                <div class="form-section">
-                    <div class="section-header">
-                        <i class="fas fa-star"></i>
-                        Nearby Facilities & Amenities
+            <div class="row">
+                <div class="col-md-6 mt-2">
+                    <div class="form-group">
+                        <label class="form-label">Society Type <span class="required">*</span></label>
+                        <select class="form-select" id="res_society_type" name="society_type" required>
+                            <option value="">Select society type</option>
+                            <option value="gated">Gated Community</option>
+                            <option value="open">Open Society</option>
+                            <option value="cooperative">Co-operative Housing</option>
+                            <option value="apartment">Apartment Complex</option>
+                        </select>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group mt-2">
-                                <label class="form-label">Nearby Facilities</label>
-                                <div class="amenities-grid">
-                                    <label class="checkbox-option">
-                                        <input type="checkbox" value="schools"> Schools Nearby
-                                    </label>
-                                    <label class="checkbox-option">
-                                        <input type="checkbox" value="hospitals"> Hospitals Nearby
-                                    </label>
-                                    <label class="checkbox-option">
-                                        <input type="checkbox" value="transport"> Public Transport
-                                    </label>
-                                    <label class="checkbox-option">
-                                        <input type="checkbox" value="shopping"> Shopping Centers
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
+                </div>
+                <div class="col-md-6 mt-2">
+                    <div class="form-group">
+                        <label class="form-label">Water Type <span class="required">*</span></label>
+                        <select class="form-select" id="res_water_type" name="water_type" required>
+                            <option value="">Select water type</option>
+                            <option value="municipal">Municipal Corporation</option>
+                            <option value="borewell">Borewell</option>
+                            <option value="both">Both</option>
+                        </select>
                     </div>
+                </div>
+            </div>
 
-                    <div class="form-group mt-2">
-                        <label class="form-label">Property Amenities</label>
-                        <div class="amenities-grid">
-                            <label class="checkbox-option">
-                                <input type="checkbox" value="gym"> Gym
-                            </label>
-                            <label class="checkbox-option">
-                                <input type="checkbox" value="pool"> Swimming Pool
-                            </label>
-                            <label class="checkbox-option">
-                                <input type="checkbox" value="garden"> Garden
-                            </label>
-                            <label class="checkbox-option">
-                                <input type="checkbox" value="playground"> Children's Play Area
-                            </label>
-                            <label class="checkbox-option">
-                                <input type="checkbox" value="security"> 24x7 Security
-                            </label>
-                            <label class="checkbox-option">
-                                <input type="checkbox" value="power"> Power Backup
-                            </label>
-                            <label class="checkbox-option">
-                                <input type="checkbox" value="lift"> Lift
-                            </label>
-                            <label class="checkbox-option">
-                                <input type="checkbox" value="clubhouse"> Club House
-                            </label>
-                        </div>
+            <div class="row">
+                <div class="col-md-6 mt-2">
+                    <div class="form-group">
+                        <label class="form-label">Furnishing Type <span class="required">*</span></label>
+                        <select class="form-select" id="res_furnishing" name="furnishing_type" required>
+                            <option value="">Select furnishing</option>
+                            <option value="unfurnished">Unfurnished</option>
+                            <option value="semi">Semi-Furnished</option>
+                            <option value="fully">Fully Furnished</option>
+                        </select>
                     </div>
-
+                </div>
+                <div class="col-md-6 mt-2">
+                    <div class="form-group">
+                        <label class="form-label">Age of Property <span class="required">*</span></label>
+                        <select class="form-select" id="res_age" name="age_of_property" required>
+                            <option value="">Select age</option>
+                            <option value="0-1">0-1 Year</option>
+                            <option value="1-3">1-3 Years</option>
+                            <option value="3-5">3-5 Years</option>
+                            <option value="5-10">5-10 Years</option>
+                            <option value="10+">10+ Years</option>
+                        </select>
+                    </div>
                 </div>
 
-                <div class="form-section">
-                    <div class="section-header">
-                        <i class="fas fa-star"></i>
-                        Address
+                <div class="col-md-6 mt-2">
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-compass"></i>
+                            Facing Direction <span class="required-star" style="color:red;">*</span>
+                        </label>
+                        <select class="form-select" name="facing" id="res_facing" required>
+                            <option value="">Select Direction</option>
+                            <option value="North">North</option>
+                            <option value="South">South</option>
+                            <option value="East">East</option>
+                            <option value="West">West</option>
+                            <option value="North-East">North-East</option>
+                            <option value="North-West">North-West</option>
+                            <option value="South-East">South-East</option>
+                            <option value="South-West">South-West</option>
+                        </select>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6 mt-2">
-                            <div class="form-group">
-                                <label class="form-label">City <span class="required">*</span></label>
-                                <input type="text" class="form-control" id="res_city" placeholder="e.g., Mumbai"
-                                    required>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mt-2">
-                            <div class="form-group">
-                                <label class="form-label">Locality <span class="required">*</span></label>
-                                <input type="text" class="form-control" id="res_locality"
-                                    placeholder="e.g., Bandra West" required>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group mt-2">
-                        <label class="form-label">Building/Society Name</label>
-                        <input type="text" class="form-control" id="res_building"
-                            placeholder="Building or society name">
-                    </div>
-
-                    <div class="form-group mt-2">
-                        <label class="form-label">Complete Address <span class="required">*</span></label>
-                        <textarea class="form-control" id="res_address" placeholder="Enter complete address"
-                            required></textarea>
-                    </div>
-
-
                 </div>
 
-                <div class="form-section">
-                    <div class="section-header">
-                        <i class="fas fa-user"></i>
-                        Owner Contact Information
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label">Available From</label>
+                        <input type="date" class="form-control" name="available_from" id="res_available_from">
                     </div>
-                    <div class="row">
-                        <div class="col-md-4 mt-2">
-                            <div class="form-group">
-                                <label class="form-label">Owner Name <span class="required">*</span></label>
-                                <input type="text" class="form-control" id="res_owner_name" placeholder="Full name"
-                                    required>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mt-2">
-                            <div class="form-group">
-                                <label class="form-label">Owner Contact <span class="required">*</span></label>
-                                <input type="tel" class="form-control" id="res_owner_contact"
-                                    placeholder="10-digit mobile" pattern="[0-9]{10}" required>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mt-2">
-                            <div class="form-group">
-                                <label class="form-label">Email <span class="required">*</span></label>
-                                <input type="email" class="form-control" id="res_owner_email"
-                                    placeholder="email@example.com" required>
-                            </div>
-                        </div>
-                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                    <div class="form-group mt-2">
-                        <label class="form-label">Residential Status <span class="required">*</span></label>
+    <!-- ═══════════════════════════════════════════
+         SECTION 2: Property Configuration
+    ════════════════════════════════════════════ -->
+    <div class="form-section">
+        <div class="section-header">
+            <i class="fas fa-sliders"></i>
+            Property Configuration
+        </div>
+        <div class="section-body">
+            <div class="row">
+                <div class="col-md-4 mt-2">
+                    <div class="form-group">
+                        <label class="form-label">BHK <span class="required">*</span></label>
+                        <select class="form-select" id="res_bhk" name="bhk" required>
+                            <option value="">Select</option>
+                            <option value="1rk">1 RK</option>
+                            <option value="1bhk">1 BHK</option>
+                            <option value="2bhk">2 BHK</option>
+                            <option value="3bhk">3 BHK</option>
+                            <option value="4bhk">4 BHK</option>
+                            <option value="5+bhk">5+ BHK</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-2">
+                    <div class="form-group">
+                        <label class="form-label">Bathrooms <span class="required">*</span></label>
+                        <input type="number" class="form-control" id="res_bathrooms" name="bathrooms" min="1" value="1" required>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-2">
+                    <div class="form-group">
+                        <label class="form-label">Balconies</label>
+                        <input type="number" class="form-control" id="res_balconies" name="balconies" min="0" value="1">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 mt-2">
+                    <div class="form-group">
+                        <label class="form-label">Covered Parking</label>
+                        <input type="number" class="form-control" id="res_covered_parking" name="covered_parking" min="0" value="0">
+                    </div>
+                </div>
+                <div class="col-md-4 mt-2">
+                    <div class="form-group">
+                        <label class="form-label">Open Parking</label>
+                        <input type="number" class="form-control" id="res_open_parking" name="open_parking" min="0" value="0">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+         SECTION 3: Property Measurements
+    ════════════════════════════════════════════ -->
+    <div class="form-section">
+        <div class="section-header">
+            <i class="fas fa-ruler-combined"></i>
+            Property Measurements
+        </div>
+        <div class="section-body">
+            <div class="row">
+                <div class="col-md-4 mt-2">
+                    <div class="form-group">
+                        <label class="form-label">Built-up Area (sq.ft) <span class="required">*</span></label>
+                        <input type="number" class="form-control" id="res_builtup_area" name="builtup_area"
+                            placeholder="e.g., 1200" required>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-2">
+                    <div class="form-group">
+                        <label class="form-label">Carpet Area (sq.ft) <span class="required">*</span></label>
+                        <input type="number" class="form-control" id="res_carpet_area" name="carpet_area"
+                            placeholder="e.g., 950" required>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-2">
+                    <div class="form-group">
+                        <label class="form-label">Plot Area (sq.ft)</label>
+                        <input type="number" class="form-control" id="res_plot_area" name="plot_area"
+                            placeholder="Optional">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mt-2">
+                    <div class="form-group">
+                        <label class="form-label">Floor No. <span class="required">*</span></label>
+                        <input type="number" class="form-control" id="res_floor" name="floor_no"
+                            placeholder="e.g., 3" required>
+                    </div>
+                </div>
+                <div class="col-md-6 mt-2">
+                    <div class="form-group">
+                        <label class="form-label">Total Floors <span class="required">*</span></label>
+                        <input type="number" class="form-control" id="res_total_floors" name="total_floors"
+                            placeholder="e.g., 10" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+         SECTION 4: Ownership & Legal Details
+    ════════════════════════════════════════════ -->
+    <div class="form-section">
+        <div class="section-header">
+            <i class="fas fa-shield-halved"></i>
+            Ownership & Legal Details
+        </div>
+        <div class="section-body">
+            <div class="row">
+                <div class="col-md-6 mt-2">
+                    <div class="form-group">
+                        <label class="form-label">Ownership Type <span class="required">*</span></label>
+                        <select class="form-select" id="res_ownership" name="ownership_type" required>
+                            <option value="">Select</option>
+                            <option value="freehold">Freehold</option>
+                            <option value="leasehold">Leasehold</option>
+                            <option value="cooperative">Co-operative</option>
+                            <option value="poa">Power of Attorney</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6 mt-2">
+                    <div class="form-group">
+                        <label class="form-label">No. of Owners <span class="required">*</span></label>
+                        <select class="form-select" id="res_num_owners" name="num_owners" required>
+                            <option value="">Select</option>
+                            <option value="1">Single Owner</option>
+                            <option value="2">2 Owners</option>
+                            <option value="3">3 Owners</option>
+                            <option value="4+">4+ Owners</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loan on Property -->
+            <div class="row">
+                <div class="col-md-12 mt-2">
+                    <div class="form-group">
+                        <label class="form-label">Loan on Property? <span class="required">*</span></label>
                         <div class="radio-group">
                             <label class="radio-option">
-                                <input type="radio" name="res_residency" value="resident" required> Resident
+                                <input type="radio" name="has_loan" value="no" required> No
                             </label>
                             <label class="radio-option">
-                                <input type="radio" name="res_residency" value="nri"> NRI
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="res_residency" value="pio"> PIO
+                                <input type="radio" name="has_loan" value="yes"> Yes
                             </label>
                         </div>
                     </div>
-
-
                 </div>
 
+                <div class="conditional-section mt-2" id="res_loan_amount_section" style="display: none;">
+                    <div class="form-group">
+                        <label class="form-label">Loan Amount (₹)</label>
+                        <input type="number" class="form-control" id="res_loan_amount" name="loan_amount"
+                            placeholder="e.g., 2000000">
+                    </div>
+                </div>
+            </div>
 
-<div class="form-section">
-    <div class="section-header">
-        <i class="fas fa-upload"></i>
-        Listing Uploaded By
+            <!-- Existing Tenants -->
+            <div class="row">
+                <div class="col-md-12 mt-2">
+                    <div class="form-group">
+                        <label class="form-label">Existing Tenants? <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="has_tenants" value="no" required> No
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="has_tenants" value="yes"> Yes
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="conditional-section mt-2" id="res_tenant_details_section" style="display: none;">
+                    <div class="form-group">
+                        <label class="form-label">Tenant Details</label>
+                        <textarea class="form-control" id="res_tenant_details" name="tenant_details"
+                            placeholder="Tenant name, lease period, rent amount"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Legal Dispute -->
+            <div class="row">
+                <div class="col-md-12 mt-2">
+                    <div class="form-group">
+                        <label class="form-label">Any Legal Dispute? <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="has_legal_dispute" value="no" required> No
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="has_legal_dispute" value="yes"> Yes
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="conditional-section mt-2" id="res_dispute_details_section" style="display: none;">
+                    <div class="form-group">
+                        <label class="form-label">Dispute Description</label>
+                        <textarea class="form-control" id="res_dispute_details" name="dispute_details"
+                            placeholder="Describe the legal dispute"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tax Dues -->
+            <div class="row">
+                <div class="col-md-12 mt-2">
+                    <div class="form-group">
+                        <label class="form-label">Government Tax Dues? <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="has_tax_due" value="no" required> No - Tax Paid
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="has_tax_due" value="yes"> Yes - Pending
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="conditional-section mt-2" id="res_tax_amount_section" style="display: none;">
+                    <div class="form-group">
+                        <label class="form-label">Pending Tax Amount (₹)</label>
+                        <input type="number" class="form-control" id="res_tax_amount" name="pending_tax_amount"
+                            placeholder="e.g., 50000">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="row">
-
-        <div class="col-md-3">
-            <div class="form-group">
-                <label class="form-label">
-                    <i class="fas fa-user"></i> Name
-                </label>
-                <input type="text" class="form-control"
-                       name="uploaded_by_name"
-                       value="{{ uploader_name }}"
-                       readonly>
+    <!-- ═══════════════════════════════════════════
+         SECTION 5: Pricing Details
+    ════════════════════════════════════════════ -->
+    <div class="form-section">
+        <div class="section-header">
+            <i class="fas fa-indian-rupee-sign"></i>
+            Pricing Details
+        </div>
+        <div class="row">
+            <div class="col-md-4 mt-2">
+                <div class="form-group">
+                    <label class="form-label">Expected Price (₹) <span class="required">*</span></label>
+                    <input type="number" class="form-control" id="res_price" name="expected_price"
+                        placeholder="e.g., 5000000" required>
+                </div>
+            </div>
+            <div class="col-md-4 mt-2">
+                <div class="form-group">
+                    <label class="form-label">Price per Sq.ft (₹)</label>
+                    <input type="number" class="form-control" id="res_price_per_sqft" name="price_per_sqft"
+                        placeholder="Auto-calculated" readonly>
+                </div>
+            </div>
+            <div class="col-md-4 mt-2">
+                <div class="form-group">
+                    <label class="form-label">Price Negotiable?</label>
+                    <select class="form-select" id="res_negotiable" name="is_negotiable">
+                        <option value="yes">Yes</option>
+                        <option value="no">No - Fixed</option>
+                    </select>
+                </div>
             </div>
         </div>
 
-        <div class="col-md-3">
-            <div class="form-group">
-                <label class="form-label">
-                    <i class="fas fa-envelope"></i> Email
-                </label>
-                <input type="email" class="form-control"
-                       name="uploaded_by_email"
-                       value="{{ uploader_email }}"
-                       readonly>
+        <div class="row">
+            <div class="col-md-4 mt-2">
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-handshake"></i> Brokerage
+                    </label>
+                    <select class="form-select" name="brokerage" id="brokerageSelect">
+                        <option value="">Select Option</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-4 mt-2" id="brokerageSection" style="display:none;">
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-percent"></i> Brokerage Percentage
+                    </label>
+                    <select class="form-select" name="brokerage_percentage" id="brokeragePercentage">
+                        <option value="">Select Brokerage</option>
+                        <option value="1%">1%</option>
+                        <option value="1.5%">1.5%</option>
+                        <option value="2%">2%</option>
+                        <option value="Negotiable">Negotiable</option>
+                        <option value="Manual">Enter Manually</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-4 mt-2" id="manualBrokerage" style="display:none;">
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-edit"></i> Enter Brokerage
+                    </label>
+                    <input type="text" class="form-control" name="manual_brokerage"
+                        placeholder="Enter Brokerage e.g. 2.5%">
+                </div>
             </div>
         </div>
 
-        <div class="col-md-3">
-            <div class="form-group">
-                <label class="form-label">
-                    <i class="fas fa-phone"></i> Contact
-                </label>
-                <input type="text" class="form-control"
-                       name="uploaded_by_contact"
-                       value="{{ uploader_phone }}"
-                       readonly>
-            </div>
+        <div class="form-group mt-2">
+            <label class="form-label">Property Description <span class="required">*</span></label>
+            <textarea class="form-control" id="resale_residential_desc" name="description"
+                placeholder="Describe property highlights, location benefits, nearby amenities..."
+                required></textarea>
         </div>
-
-        <div class="col-md-3">
-            <div class="form-group">
-                <label class="form-label">
-                    <i class="fas fa-user-tag"></i> Role
-                </label>
-                <input type="text" class="form-control"
-                       name="uploaded_by_role"
-                       value="{{ uploader_role }}"
-                       readonly>
-            </div>
-        </div>
-
     </div>
 
+    <!-- ═══════════════════════════════════════════
+         SECTION 6: Property Images
+    ════════════════════════════════════════════ -->
+    <div class="form-section">
+        <div class="section-header">
+            <i class="fas fa-images"></i>
+            Property Images
+        </div>
+        <div class="image-upload-area" id="uploadArea">
+            <input type="file" id="imageInput" name="property_images" multiple accept="image/*"
+                style="display: none;">
+            <div class="upload-icon">
+                <i class="fas fa-cloud-upload-alt"></i>
+            </div>
+            <div class="upload-text">Click or Drag Images Here</div>
+            <div class="upload-subtext">Upload up to 10 high-quality images (JPG, PNG)</div>
+        </div>
+        <div class="image-preview" id="imagePreview"></div>
 
-
-  </div>
-</div>
-
+        <div class="row mt-2">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fa-solid fa-camera"></i> Upload Floor Plan <span class="required">*</span>
+                    </label>
+                    <input type="file" name="floor_plan" accept="image/*">
+                </div>
             </div>
 
-            <div class="form-footer">
-                <button type="reset" class="btn-reset">
-                    <i class="fas fa-redo"></i> Reset
-                </button>
-                <button type="submit" class="btn-submit">
-                    <i class="fas fa-save"></i> Submit
-                </button>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fa-solid fa-camera"></i> Upload Video on Social Media <span class="required">*</span>
+                    </label>
+                    <input type="file" name="property_video" accept="video/*">
+                </div>
             </div>
-        </form>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+         SECTION 7: Nearby Facilities & Amenities
+    ════════════════════════════════════════════ -->
+    <div class="form-section">
+        <div class="section-header">
+            <i class="fas fa-star"></i>
+            Nearby Facilities & Amenities
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group mt-2">
+                    <label class="form-label">Nearby Facilities</label>
+                    <div class="amenities-grid">
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="nearby_facilities" value="schools"> Schools Nearby
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="nearby_facilities" value="hospitals"> Hospitals Nearby
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="nearby_facilities" value="transport"> Public Transport
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="nearby_facilities" value="shopping"> Shopping Centers
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group mt-2">
+            <label class="form-label">Property Amenities</label>
+            <div class="amenities-grid">
+                <label class="checkbox-option">
+                    <input type="checkbox" name="amenities" value="gym"> Gym
+                </label>
+                <label class="checkbox-option">
+                    <input type="checkbox" name="amenities" value="pool"> Swimming Pool
+                </label>
+                <label class="checkbox-option">
+                    <input type="checkbox" name="amenities" value="garden"> Garden
+                </label>
+                <label class="checkbox-option">
+                    <input type="checkbox" name="amenities" value="playground"> Children's Play Area
+                </label>
+                <label class="checkbox-option">
+                    <input type="checkbox" name="amenities" value="security"> 24x7 Security
+                </label>
+                <label class="checkbox-option">
+                    <input type="checkbox" name="amenities" value="power"> Power Backup
+                </label>
+                <label class="checkbox-option">
+                    <input type="checkbox" name="amenities" value="lift"> Lift
+                </label>
+                <label class="checkbox-option">
+                    <input type="checkbox" name="amenities" value="clubhouse"> Club House
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+         SECTION 8: Address
+    ════════════════════════════════════════════ -->
+    <div class="form-section">
+        <div class="section-header">
+            <i class="fas fa-location-dot"></i>
+            Address
+        </div>
+        <div class="row">
+            <div class="col-md-6 mt-2">
+                <div class="form-group">
+                    <label class="form-label">City <span class="required">*</span></label>
+                    <input type="text" class="form-control" id="res_city" name="city"
+                        placeholder="e.g., Mumbai" required>
+                </div>
+            </div>
+            <div class="col-md-6 mt-2">
+                <div class="form-group">
+                    <label class="form-label">Locality <span class="required">*</span></label>
+                    <input type="text" class="form-control" id="res_locality" name="locality"
+                        placeholder="e.g., Bandra West" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group mt-2">
+            <label class="form-label">Building/Society Name</label>
+            <input type="text" class="form-control" id="res_building" name="building_name"
+                placeholder="Building or society name">
+        </div>
+
+        <div class="form-group mt-2">
+            <label class="form-label">Complete Address <span class="required">*</span></label>
+            <textarea class="form-control" id="res_address" name="complete_address"
+                placeholder="Enter complete address" required></textarea>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+         SECTION 9: Owner Contact Information
+    ════════════════════════════════════════════ -->
+    <div class="form-section">
+        <div class="section-header">
+            <i class="fas fa-user"></i>
+            Owner Contact Information
+        </div>
+        <div class="row">
+            <div class="col-md-4 mt-2">
+                <div class="form-group">
+                    <label class="form-label">Owner Name <span class="required">*</span></label>
+                    <input type="text" class="form-control" id="res_owner_name" name="owner_name"
+                        placeholder="Full name" required>
+                </div>
+            </div>
+            <div class="col-md-4 mt-2">
+                <div class="form-group">
+                    <label class="form-label">Owner Contact <span class="required">*</span></label>
+                    <input type="tel" class="form-control" id="res_owner_contact" name="owner_contact"
+                        placeholder="10-digit mobile" pattern="[0-9]{10}" required>
+                </div>
+            </div>
+            <div class="col-md-4 mt-2">
+                <div class="form-group">
+                    <label class="form-label">Email <span class="required">*</span></label>
+                    <input type="email" class="form-control" id="res_owner_email" name="owner_email"
+                        placeholder="email@example.com" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group mt-2">
+            <label class="form-label">Residential Status <span class="required">*</span></label>
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" name="residential_status" value="resident" required> Resident
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="residential_status" value="nri"> NRI
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="residential_status" value="pio"> PIO
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+         SECTION 10: Listing Uploaded By
+    ════════════════════════════════════════════ -->
+    <div class="form-section">
+        <div class="section-header">
+            <i class="fas fa-upload"></i>
+            Listing Uploaded By
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label class="form-label"><i class="fas fa-user"></i> Name</label>
+                    <input type="text" class="form-control"
+                           name="uploaded_by_name"
+                           value="{{ uploader_name }}"
+                           readonly>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label class="form-label"><i class="fas fa-envelope"></i> Email</label>
+                    <input type="email" class="form-control"
+                           name="uploaded_by_email"
+                           value="{{ uploader_email }}"
+                           readonly>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label class="form-label"><i class="fas fa-phone"></i> Contact</label>
+                    <input type="text" class="form-control"
+                           name="uploaded_by_contact"
+                           value="{{ uploader_phone }}"
+                           readonly>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label class="form-label"><i class="fas fa-user-tag"></i> Role</label>
+                    <input type="text" class="form-control"
+                           name="uploaded_by_role"
+                           value="{{ uploader_role }}"
+                           readonly>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Form Footer -->
+    <div class="form-footer">
+        <button type="reset" class="btn-reset">
+            <i class="fas fa-redo"></i> Reset
+        </button>
+        <button type="submit" class="btn-submit">
+            <i class="fas fa-save"></i> Submit
+        </button>
+    </div>
+
+</form>
     </div>
 </div>
 </div>
