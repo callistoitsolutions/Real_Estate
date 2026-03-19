@@ -552,43 +552,45 @@ import random
 
 
 
-def index(request):
-    # Active hero section
-    hero = HeroSection.objects.filter(is_active=True).first()
+from django.shortcuts import render
+from django.db.models import Q
+from itertools import chain
+from datetime import datetime, timedelta
+import random
 
-    # Blogs, FAQs, Plans
+
+
+def get_featured_queryset(model):
+    return model.objects.filter(
+       
+    ).order_by('-created_at')[:6]
+
+
+def index(request):
+    hero = HeroSection.objects.filter(is_active=True).first()
     blogs = Blog.objects.all().order_by("-date_posted")
     faqs = FAQ.objects.all().order_by('-created_at')
-  #  plans = SubscriptionPlan.objects.all()
 
-    # Featured/Exclusive/Verified Properties
-    residential = list(ResidentialProperty.objects.filter(
-        Q(is_featured__iexact="yes") | Q(exclusive_property=True) | Q(is_verified__iexact="yes")
-    ).order_by('-created_at')[:6])
+    # ✅ CORRECT FUNCTION CALL
+    residential = list(get_featured_queryset(ResidentialProperty))
+    commercial = list(get_featured_queryset(CommercialProperty))
+    pg = list(get_featured_queryset(PGProperty))
 
-    commercial = list(CommercialProperty.objects.filter(
-        Q(is_featured=True) | Q(exclusive_property=True) | Q(is_verified=True)
-    ).order_by('-created_at')[:6])
+    # Combine
+    all_props = (
+        [{"data": prop, "type": "Residential"} for prop in residential] +
+        [{"data": prop, "type": "Commercial"} for prop in commercial] +
+        [{"data": prop, "type": "PG"} for prop in pg]
+    )
 
-    pg = list(PGProperty.objects.filter(
-        Q(is_featured__iexact="yes") | Q(exclusive_property=True) | Q(is_verified__iexact="yes")
-    ).order_by('-created_at')[:6])
-
-    # Combine and randomize Featured Properties
-    all_props = [{"data": prop, "type": "Residential"} for prop in residential]
-    all_props += [{"data": prop, "type": "Commercial"} for prop in commercial]
-    all_props += [{"data": prop, "type": "PG"} for prop in pg]
     random.shuffle(all_props)
-    featured_props = all_props[:6]  # Limit to 6 featured total
+    featured_props = all_props[:6]
 
-    # Combine all for latest listings
-    props = sorted(chain(residential, commercial, pg),
-                   key=lambda x: getattr(x, 'created_at', None),
-                   reverse=True)
-
-    # Dates for badges
-    today = datetime.today().date()
-    fifteen_days_ago = today - timedelta(days=15)
+    props = sorted(
+        chain(residential, commercial, pg),
+        key=lambda x: getattr(x, 'created_at', None),
+        reverse=True
+    )
 
     context = {
         "featured_props": featured_props,
@@ -596,9 +598,6 @@ def index(request):
         "hero": hero,
         "blogs": blogs,
         "faqs": faqs,
-        #"plans": plans,
-        "today": today,
-        "fifteen_days_ago": fifteen_days_ago,
     }
 
     return render(request, "home_page/index.html", context)
