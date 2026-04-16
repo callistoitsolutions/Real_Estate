@@ -13,6 +13,35 @@ urlpatterns = [
     ############# urls for user logout ######################
 
     path('User_Logout',views.User_Logout,name="User_Logout"),
+
+    ########### urls for rental forms list for RM #######################
+
+    path('residential_rm_list',views.residential_rm_list,name="residential_rm_list"),
+
+    ######## urls for rental forms for RM ########################
+
+    path('residential_rm',views.residential_rm,name="residential_rm"),
+
+    ########## urls for commercial rent forms for RM ################
+
+    path('commercial_rm_list',views.commercial_rm_list,name="commercial_rm_list"),
+
+    ############# urls for commercial forms for RM ####################
+
+    path('commercial_rm',views.commercial_rm,name="commercial_rm"),
+
+    ########### urls for pg list forms for RM ###########################
+
+    path('pg_rm_list',views.pg_rm_list,name="pg_rm_list"),
+
+    ########### urls for pg forms for RM ###########################
+
+    path('pg_rm',views.pg_rm,name="pg_rm"),
+
+
+    ############## urls for resale property list #########################
+
+    path('residential_resale_rm_list',views.residential_resale_rm_list,name="residential_resale_rm_list"),
       
     path('affilate_page',views.affilate_page,name="affilate_page"),
     

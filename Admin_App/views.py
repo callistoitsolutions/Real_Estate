@@ -1114,7 +1114,7 @@ def commercial_resale_list(request):
     industrial_count = props.filter(property_type='industrial').count()
     land_count       = props.filter(property_type='land').count()
 
-    # ✅ FIXED (use correct field)
+    #  FIXED (use correct field)
     avg_price = props.aggregate(
         Avg('expected_rent')
     )['expected_rent__avg']
@@ -2968,9 +2968,9 @@ def rental_list(request):
     # ── Base queryset ──
     try:
         properties = RentalResidentialProperty.objects.all().order_by('-id')
-        print("✅ STEP 1 - properties count:", properties.count())
+        print("STEP 1 - properties count:", properties.count())
     except Exception as e:
-        print("❌ STEP 1 FAILED:", e)
+        print("STEP 1 FAILED:", e)
         properties = RentalResidentialProperty.objects.none()
 
     # ── Search filter ──
@@ -2985,9 +2985,9 @@ def rental_list(request):
                 Q(owner_name__icontains=search_query) |
                 Q(possession_status__icontains=search_query)
             )
-            print("✅ STEP 2 - search filter ok:", properties.count())
+            print(" STEP 2 - search filter ok:", properties.count())
         except Exception as e:
-            print("❌ STEP 2 FAILED:", e)
+            print(" STEP 2 FAILED:", e)
             properties = RentalResidentialProperty.objects.none()
 
     # ── CSV Download ──
@@ -3037,13 +3037,13 @@ def rental_list(request):
         paginator = Paginator(properties, 10)
         page_number = request.GET.get('page', 1)
         page_obj = paginator.get_page(page_number)
-        print("✅ STEP 3 - page_obj count:", page_obj.object_list.count())
+        print(" STEP 3 - page_obj count:", page_obj.object_list.count())
     except Exception as e:
-        print("❌ STEP 3 FAILED:", e)
+        print("STEP 3 FAILED:", e)
         page_obj = Paginator(RentalResidentialProperty.objects.none(), 10).get_page(1)
 
     total_count = properties.count()
-    print("✅ STEP 4 - total_count:", total_count)
+    print(" STEP 4 - total_count:", total_count)
 
     # ════════════════════════════════════════════════
     # STATS — computed on the FULL unfiltered queryset
@@ -3198,7 +3198,7 @@ def rental_list(request):
         'prop_type_data':     prop_type_data,
     }
 
-    print("✅ STEP 5 - context keys:", list(context.keys()))
+    print(" STEP 5 - context keys:", list(context.keys()))
     return render(request, 'admin_user/Reports/Rental/rental_list.html', context)
 
 import os
@@ -3288,7 +3288,7 @@ def _email(val):
 @require_POST
 def import_residential_excel(request):
 
-    # ✅ Defined INSIDE the function — PG COLUMN_MAP cannot override this
+    #  Defined INSIDE the function — PG COLUMN_MAP cannot override this
     RESIDENTIAL_COLUMN_MAP = [
         ("property_title", "property_title", _str),
         ("property_purpose", "property_purpose", _str),
@@ -3403,7 +3403,7 @@ def import_residential_excel(request):
             obj.save()
             created_count += 1
         except Exception as e:
-            print(f"❌ DB ERROR ROW {row_idx}:", e)
+            print(f" DB ERROR ROW {row_idx}:", e)
             error_rows.append(f"Row {row_idx}: DB error — {e}")
 
     wb.close()
@@ -3429,7 +3429,7 @@ def download_residential_template(request):
     ws = wb.active
     ws.title = "Residential Properties"
 
-    # ✅ Exact headers matching COLUMN_MAP
+    #  Exact headers matching COLUMN_MAP
     headers = [
         "property_title", "property_purpose", "property_type", "bhk_type",
         "renting_option", "furnishing_status", "available_for", "built_up_area",

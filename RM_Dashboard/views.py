@@ -104,6 +104,157 @@ def User_Logout(request):
 ######### Views end for user logout #############################
 
 
+############ Views start for rental forms for RM ######################
+
+def residential_rm_list(request):
+    # 1. Retrieve identity from browser session
+    user_id = request.session.get('User_id')
+    user_role = request.session.get('user_type')
+
+    # 2. Access Control: If ID is missing OR role is wrong, redirect to login
+    if not user_id or user_role != "Relationship Manager":
+        return redirect('login') 
+
+    # 3. Data Fetching: Get the full user object for the template
+    user_obj = User_Details.objects.get(id=user_id)
+    
+    context = {
+        'user_obj': user_obj,
+        'user_role': user_role
+    }
+    
+    return render(request, "rm_panel/Reports/Rental/residential_list.html", context)
+
+############### Views end foor rental forms for RM #####################
+
+
+############## Views start for rental forms for RM ###################
+
+def residential_rm(request):
+    # 1. Retrieve identity from browser session
+    user_id = request.session.get('User_id')
+    user_role = request.session.get('user_type')
+
+    # 2. Access Control: If ID is missing OR role is wrong, redirect to login
+    if not user_id or user_role != "Relationship Manager":
+        return redirect('login') 
+
+    # 3. Data Fetching: Get the full user object for the template
+    user_obj = User_Details.objects.get(id=user_id)
+    
+    context = {
+        'user_obj': user_obj,
+        'user_role': user_role
+    }
+    
+    return render(request, "rm_panel/Forms/Rental/residential.html", context)
+
+############# Views end for rental forms for RM #######################
+
+
+############# Views start for commercial list for RM ################
+
+def commercial_rm_list(request):
+    # 1. Retrieve identity from browser session
+    user_id = request.session.get('User_id')
+    user_role = request.session.get('user_type')
+
+    # 2. Access Control: If ID is missing OR role is wrong, redirect to login
+    if not user_id or user_role != "Relationship Manager":
+        return redirect('login') 
+
+    # 3. Data Fetching: Get the full user object for the template
+    user_obj = User_Details.objects.get(id=user_id)
+    
+    context = {
+        'user_obj': user_obj,
+        'user_role': user_role
+    }
+    
+    return render(request, "rm_panel/Reports/Rental/commercial_list.html", context)
+
+############ Views end for commercial list for RM #######################
+
+
+########## Views start for commercial forms for RM #####################
+
+def commercial_rm(request):
+     # 1. Retrieve identity from browser session
+    user_id = request.session.get('User_id')
+    user_role = request.session.get('user_type')
+
+    # 2. Access Control: If ID is missing OR role is wrong, redirect to login
+    if not user_id or user_role != "Relationship Manager":
+        return redirect('login') 
+
+    # 3. Data Fetching: Get the full user object for the template
+    user_obj = User_Details.objects.get(id=user_id)
+    
+    context = {
+        'user_obj': user_obj,
+        'user_role': user_role
+    }
+    
+    return render(request, "rm_panel/Forms/Rental/commercial.html", context)
+
+########### Views end for commercial forms for RM ########################
+
+
+############# Views start for pg forms for RM ########################
+
+def pg_rm_list(request):
+    # 1. Retrieve identity from browser session
+    user_id = request.session.get('User_id')
+    user_role = request.session.get('user_type')
+
+    # 2. Access Control: If ID is missing OR role is wrong, redirect to login
+    if not user_id or user_role != "Relationship Manager":
+        return redirect('login') 
+
+    # 3. Data Fetching: Get the full user object for the template
+    user_obj = User_Details.objects.get(id=user_id)
+    
+    context = {
+        'user_obj': user_obj,
+        'user_role': user_role
+    }
+    
+    return render(request, "rm_panel/Reports/Rental/pg_list.html", context)
+
+############ Views end for pg forms for RM ############################
+
+
+########## Views start for pg forms for RM #############################
+
+def pg_rm(request):
+    # 1. Retrieve identity from browser session
+    user_id = request.session.get('User_id')
+    user_role = request.session.get('user_type')
+
+    # 2. Access Control: If ID is missing OR role is wrong, redirect to login
+    if not user_id or user_role != "Relationship Manager":
+        return redirect('login') 
+
+    # 3. Data Fetching: Get the full user object for the template
+    user_obj = User_Details.objects.get(id=user_id)
+    
+    context = {
+        'user_obj': user_obj,
+        'user_role': user_role
+    }
+    
+    return render(request, "rm_panel/Forms/Rental/pg_coliving.html", context)
+
+############# Views end for pg forms for RM ############################
+
+
+############# Views start for resale property list ####################
+
+def residential_resale_rm_list(request):
+    return HttpResponse("Residential Resale List")
+
+
+
 @login_required
 def user_affiliate_links(request):
     links = AffiliateLink.objects.filter(owner=request.user).order_by('-created_at')
