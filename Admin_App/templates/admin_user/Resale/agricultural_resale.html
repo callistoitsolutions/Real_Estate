@@ -1253,6 +1253,63 @@
 
         </div>
 
+        <div class="form-section">
+            <div class="section-header">
+                <i class="fas fa-upload"></i>
+                Listing Uploaded By
+            </div>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-user"></i> Name
+                        </label>
+                        <input type="text" class="form-control"
+                               name="uploaded_by_name"
+                               value="{{ admin_obj.name }}"
+                               disabled>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-envelope"></i> Email
+                        </label>
+                        <input type="email" class="form-control"
+                               name="uploaded_by_email"
+                               value="{{ admin_obj.email }}"
+                               disabled>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-phone"></i> Contact
+                        </label>
+                        <input type="text" class="form-control"
+                               name="uploaded_by_contact"
+                               value="{{ admin_obj.phone }}"
+                               disabled>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-user-tag"></i> Role
+                        </label>
+                        <input type="text" class="form-control"
+                               name="uploaded_by_role"
+                               value="{{ admin_obj.role }}"
+                               disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+
       </div>
 
       <div class="form-footer">

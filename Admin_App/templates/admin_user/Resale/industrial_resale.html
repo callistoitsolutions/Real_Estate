@@ -1308,8 +1308,8 @@
                 </label>
                 <input type="text" class="form-control"
                        name="uploaded_by_name"
-                       value="{{ uploader_name }}"
-                       readonly>
+                       value="{{ admin_obj.name }}"
+                       disabled>
             </div>
         </div>
 
@@ -1320,8 +1320,8 @@
                 </label>
                 <input type="email" class="form-control"
                        name="uploaded_by_email"
-                       value="{{ uploader_email }}"
-                       readonly>
+                       value="{{ admin_obj.email }}"
+                       disabled>
             </div>
         </div>
 
@@ -1332,8 +1332,8 @@
                 </label>
                 <input type="text" class="form-control"
                        name="uploaded_by_contact"
-                       value="{{ uploader_phone }}"
-                       readonly>
+                       value="{{ admin_obj.phone }}"
+                       disabled>
             </div>
         </div>
 
@@ -1344,8 +1344,8 @@
                 </label>
                 <input type="text" class="form-control"
                        name="uploaded_by_role"
-                       value="{{ uploader_role }}"
-                       readonly>
+                       value="{{ admin_obj.role }}"
+                       disabled>
             </div>
         </div>
 

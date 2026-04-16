@@ -1515,7 +1515,7 @@
                     <label class="form-label"><i class="fas fa-user"></i> Name</label>
                     <input type="text" class="form-control"
                            name="uploaded_by_name"
-                           value="{{ uploader_name }}"
+                           value="{{ admin_obj.name }}"
                            readonly>
                 </div>
             </div>
@@ -1524,7 +1524,7 @@
                     <label class="form-label"><i class="fas fa-envelope"></i> Email</label>
                     <input type="email" class="form-control"
                            name="uploaded_by_email"
-                           value="{{ uploader_email }}"
+                           value="{{ admin_obj.email }}"
                            readonly>
                 </div>
             </div>
@@ -1533,7 +1533,7 @@
                     <label class="form-label"><i class="fas fa-phone"></i> Contact</label>
                     <input type="text" class="form-control"
                            name="uploaded_by_contact"
-                           value="{{ uploader_phone }}"
+                           value="{{ admin_obj.phone }}"
                            readonly>
                 </div>
             </div>
@@ -1542,7 +1542,7 @@
                     <label class="form-label"><i class="fas fa-user-tag"></i> Role</label>
                     <input type="text" class="form-control"
                            name="uploaded_by_role"
-                           value="{{ uploader_role }}"
+                           value="{{ admin_obj.role }}"
                            readonly>
                 </div>
             </div>
